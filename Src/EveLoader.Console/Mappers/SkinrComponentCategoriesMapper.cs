@@ -1,12 +1,13 @@
-using EveLoader.Entities;
+using EveLoader.Entities.Db;
+using EveLoader.Entities.StaticDataModels;
 
 namespace EveLoader.Mappers;
 
 public static class SkinrComponentCategoriesMapper
 {
-    public static Entities.SkinrComponentCategories ToEntity(this StaticDataModels.SkinrComponentCategories model)
+    public static EveLoader.Entities.Db.SkinrComponentCategories ToEntity(this EveLoader.Entities.StaticDataModels.SkinrComponentCategories model)
     {
-        return new Entities.SkinrComponentCategories
+        return new EveLoader.Entities.Db.SkinrComponentCategories
         {
             key = model._key,
             name = model.name

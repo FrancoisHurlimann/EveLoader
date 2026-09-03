@@ -1,12 +1,7 @@
-using EveLoader.DbContexts;
-using EveLoader.Entities;
-using EveLoader.Mappers;
+using EveLoader.Entities.StaticDataModels;
 using EveLoader.Repositories;
-using EveLoader.Services;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 using System.Text.Json;
 
 
@@ -32,17 +27,24 @@ public class LoadStaticData : ILoadStaticData
         {
             var fullPath = System.IO.Path.Combine(path, fileName);
 
+            var bob = Path.GetFileName(fullPath)?.ToLowerInvariant();
             switch (Path.GetFileName(fullPath)?.ToLowerInvariant())
             {
                 case "agentsinspace.jsonl":
                     LoadBasic<AgentsInSpace>(fullPath);
                     break;
-                case "skinrcomponentcategories.jsonl":
-                    LoadBasic<SkinrComponentCategories>(fullPath);
-                    break;
-                case "skinrslotcategories.jsonl":
-                    LoadBasic<SkinrSlotCategories>(fullPath);
-                    break;
+                //case "agenttypes.jsonl":
+                //    LoadBasic<AgentType>(fullPath);
+                //    break;
+                //case "ancestries.jsonl":
+                //    LoadBasic<Ancestry>(fullPath);
+                //    break;
+                //case "skinrcomponentcategories.jsonl":
+                //    LoadBasic<SkinrComponentCategories>(fullPath);
+                //    break;
+                //case "skinrslotcategories.jsonl":
+                //    LoadBasic<SkinrSlotCategories>(fullPath);
+                //    break;
             }
         }
     }
@@ -68,6 +70,8 @@ public class LoadStaticData : ILoadStaticData
             .Select(line => JsonSerializer.Deserialize<T>(line))
             .Where(item => item != null)
             .ToList();
+        
+
         using (var scope = _serviceProvider.CreateScope())
         {
             var repository = scope.ServiceProvider.GetRequiredService<IAsyncRepository<T>>();

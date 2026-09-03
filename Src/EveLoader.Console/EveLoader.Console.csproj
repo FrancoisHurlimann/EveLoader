@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Repositories\Migrations\" />
+    <Folder Include="StaticDataModels\" />
   </ItemGroup>
 
 </Project>

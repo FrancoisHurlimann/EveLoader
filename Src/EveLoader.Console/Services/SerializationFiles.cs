@@ -5,6 +5,7 @@ using System.Text.Json;
 using EveLoader.Entities;
 using System.IO;
 using System.Linq;
+using EveLoader.Entities.StaticDataModels;
 
 namespace EveLoader.Services
 {
@@ -17,11 +18,11 @@ namespace EveLoader.Services
             _filePath = filePath;
         }
 
-        public List<EveLoader.StaticDataModels.SkinrComponentCategories> Load()
+        public List<SkinrComponentCategories> Load()
         {
 
             return File.ReadLines(_filePath)
-                .Select(line => JsonSerializer.Deserialize<EveLoader.StaticDataModels.SkinrComponentCategories>(line)!)
+                .Select(line => JsonSerializer.Deserialize<SkinrComponentCategories>(line)!)
                .ToList();
 
             //return File.ReadLines(_filePath)
