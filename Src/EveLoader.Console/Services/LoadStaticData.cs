@@ -1,4 +1,5 @@
 using EveLoader.Entities.StaticDataModels;
+using EveLoader.Mappers;
 using EveLoader.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,24 +28,26 @@ public class LoadStaticData : ILoadStaticData
         {
             var fullPath = System.IO.Path.Combine(path, fileName);
 
-            var bob = Path.GetFileName(fullPath)?.ToLowerInvariant();
             switch (Path.GetFileName(fullPath)?.ToLowerInvariant())
             {
                 case "agentsinspace.jsonl":
-                    LoadBasic<AgentsInSpace>(fullPath);
+                    LoadBasic<EveLoader.Entities.StaticDataModels.AgentsInSpace, EveLoader.Entities.Db.AgentsInSpace>(fullPath, m => m.ToDbEntity());
                     break;
-                //case "agenttypes.jsonl":
-                //    LoadBasic<AgentType>(fullPath);
-                //    break;
-                //case "ancestries.jsonl":
-                //    LoadBasic<Ancestry>(fullPath);
-                //    break;
-                //case "skinrcomponentcategories.jsonl":
-                //    LoadBasic<SkinrComponentCategories>(fullPath);
-                //    break;
-                //case "skinrslotcategories.jsonl":
-                //    LoadBasic<SkinrSlotCategories>(fullPath);
-                //    break;
+                case "agenttypes.jsonl":
+                    LoadBasic<EveLoader.Entities.StaticDataModels.AgentType, EveLoader.Entities.Db.AgentType>(fullPath, m => m.ToDbEntity());
+                    break;
+                case "ancestries.jsonl":
+                    LoadBasic<EveLoader.Entities.StaticDataModels.Ancestry, EveLoader.Entities.Db.Ancestry>(fullPath, m => m.ToDbEntity());
+                    break;
+                case "Archetype.jsonl":
+                    LoadBasic<EveLoader.Entities.StaticDataModels.Archetype, EveLoader.Entities.Db.Archetype>(fullPath, m => m.ToDbEntity());
+                break;
+                    //case "skinrcomponentcategories.jsonl":
+                    //    LoadBasic<SkinrComponentCategories>(fullPath);
+                    //    break;
+                    //case "skinrslotcategories.jsonl":
+                    //    LoadBasic<SkinrSlotCategories>(fullPath);
+                    //    break;
             }
         }
     }
@@ -63,20 +66,24 @@ public class LoadStaticData : ILoadStaticData
             .ToList();
     }
 
-    public void LoadBasic<T>(string fileName) where T : class
+    public void LoadBasic<TModel, TEntity>(string fileName, Func<TModel, TEntity> map)
+        where TModel : class
+        where TEntity : class
     {
         var lines = File.ReadLines(fileName);
         var items = lines
-            .Select(line => JsonSerializer.Deserialize<T>(line))
+            .Select(line => JsonSerializer.Deserialize<TModel>(line))
             .Where(item => item != null)
+            .Select(item => map(item!))
             .ToList();
-        
 
         using (var scope = _serviceProvider.CreateScope())
         {
-            var repository = scope.ServiceProvider.GetRequiredService<IAsyncRepository<T>>();
+            var repository = scope.ServiceProvider.GetRequiredService<IAsyncRepository<TEntity>>();
             repository.DeleteAllAsync().Wait();
             repository.AddRangeAsync(items!).Wait();
         }
     }
 }
+
+

@@ -1,14 +1,10 @@
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace EveLoader.Entities.Db
+namespace EveLoader.Entities.StaticDataModels
 {
     public class Ancestry
     {
-        [Key]
-        public int id { get; set; }
-
         [JsonPropertyName("_key")]
         public long Key { get; set; }
 
@@ -19,7 +15,7 @@ namespace EveLoader.Entities.Db
         public long Charisma { get; set; }
 
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public Dictionary<string, string> Description { get; set; }
 
         [JsonPropertyName("iconID")]
         public long IconID { get; set; }
@@ -31,13 +27,13 @@ namespace EveLoader.Entities.Db
         public long Memory { get; set; }
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public Dictionary<string, string> Name { get; set; }
 
         [JsonPropertyName("perception")]
         public long Perception { get; set; }
 
         [JsonPropertyName("shortDescription")]
-        public string? ShortDescription { get; set; }
+        public string ShortDescription { get; set; }
 
         [JsonPropertyName("willpower")]
         public long Willpower { get; set; }
