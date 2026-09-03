@@ -1,10 +1,14 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace EveLoader.Entities.Db
 {
     public class Sde
     {
+        [Key]
+        public int id { get; set; }
+
         [JsonPropertyName("_key")]
         public string Key { get; set; }
 

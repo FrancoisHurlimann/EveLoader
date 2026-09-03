@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -6,6 +7,9 @@ namespace EveLoader.Entities.Db
 {
     public class MilitaryCampaign
     {
+        [Key]
+        public int id { get; set; }
+
         [JsonPropertyName("_key")]
         public string Key { get; set; }
 
