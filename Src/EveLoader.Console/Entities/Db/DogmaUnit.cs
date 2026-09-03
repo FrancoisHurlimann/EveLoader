@@ -16,7 +16,7 @@ namespace EveLoader.Entities.Db
         public Dictionary<string, string> Description { get; set; }
 
         [JsonPropertyName("displayName")]
-        public Dictionary<string, string> DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }

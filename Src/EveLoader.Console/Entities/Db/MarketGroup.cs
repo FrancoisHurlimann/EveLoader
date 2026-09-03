@@ -22,7 +22,7 @@ namespace EveLoader.Entities.Db
         public long IconID { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("parentGroupID")]
         public long? ParentGroupID { get; set; }

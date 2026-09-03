@@ -25,7 +25,7 @@ namespace EveLoader.Entities.Db
         public string Description { get; set; }
 
         [JsonPropertyName("displayName")]
-        public Dictionary<string, string> DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         [JsonPropertyName("displayWhenZero")]
         public bool DisplayWhenZero { get; set; }
@@ -46,10 +46,10 @@ namespace EveLoader.Entities.Db
         public bool Stackable { get; set; }
 
         [JsonPropertyName("tooltipDescription")]
-        public Dictionary<string, string> TooltipDescription { get; set; }
+        public string TooltipDescription { get; set; }
 
         [JsonPropertyName("tooltipTitle")]
-        public Dictionary<string, string> TooltipTitle { get; set; }
+        public string TooltipTitle { get; set; }
 
         [JsonPropertyName("unitID")]
         public long? UnitID { get; set; }

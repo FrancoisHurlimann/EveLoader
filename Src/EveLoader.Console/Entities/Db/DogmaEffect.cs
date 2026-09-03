@@ -22,7 +22,7 @@ namespace EveLoader.Entities.Db
         public long? DischargeAttributeID { get; set; }
 
         [JsonPropertyName("displayName")]
-        public Dictionary<string, string> DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         [JsonPropertyName("distribution")]
         public long? Distribution { get; set; }

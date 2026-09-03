@@ -13,13 +13,13 @@ namespace EveLoader.Entities.Db
         public long Key { get; set; }
 
         [JsonPropertyName("description")]
-        public Dictionary<string, string> Description { get; set; }
+        public string Description { get; set; }
 
         [JsonPropertyName("groupID")]
         public long GroupID { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("recommendedFor")]
         public List<long> RecommendedFor { get; set; }

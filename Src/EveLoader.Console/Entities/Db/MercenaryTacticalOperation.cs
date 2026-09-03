@@ -28,6 +28,6 @@ namespace EveLoader.Entities.Db
         public long InfomorphBonus { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
     }
 }

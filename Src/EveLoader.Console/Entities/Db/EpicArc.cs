@@ -25,7 +25,7 @@ namespace EveLoader.Entities.Db
         public List<EpicArcMission> Missions { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
     }
 
     public class EpicArcMission

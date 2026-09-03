@@ -34,7 +34,7 @@ namespace EveLoader.Entities.Db
         public long? MilitiaCorporationID { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("shortDescription")]
         public Dictionary<string, string> ShortDescription { get; set; }

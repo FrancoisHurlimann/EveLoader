@@ -25,6 +25,6 @@ namespace EveLoader.Entities.Db
         public Dictionary<string, string> LeaderTypeName { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
     }
 }

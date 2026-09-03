@@ -19,7 +19,7 @@ namespace EveLoader.Entities.Db
         public long CorporationID { get; set; }
 
         [JsonPropertyName("description")]
-        public Dictionary<string, string> Description { get; set; }
+        public string Description { get; set; }
 
         [JsonPropertyName("iconID")]
         public long IconID { get; set; }
@@ -31,7 +31,7 @@ namespace EveLoader.Entities.Db
         public long Memory { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("perception")]
         public long Perception { get; set; }

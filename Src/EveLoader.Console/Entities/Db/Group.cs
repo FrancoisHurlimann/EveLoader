@@ -28,7 +28,7 @@ namespace EveLoader.Entities.Db
         public long? IconID { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("published")]
         public bool Published { get; set; }

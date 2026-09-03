@@ -11,8 +11,8 @@ public static class ArchetypeMapper
         return new EveLoader.Entities.Db.Archetype
         {
             Key = model.Key,
-            Description = model.Description,
-            Title = model.Title
+            Description = model.Description?.GetValueOrDefault("en") ?? string.Empty,
+            Title = model.Title?.GetValueOrDefault("en") ?? string.Empty,
         };
     }
 }

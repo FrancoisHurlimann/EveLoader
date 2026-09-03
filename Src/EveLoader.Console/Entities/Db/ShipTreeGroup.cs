@@ -31,7 +31,7 @@ namespace EveLoader.Entities.Db
         public string IconSmallNPC { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("preReqSkills")]
         public List<ShipTreeGroupPreReqSkillFaction> PreReqSkills { get; set; }

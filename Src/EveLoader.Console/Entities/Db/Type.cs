@@ -34,7 +34,7 @@ namespace EveLoader.Entities.Db
         public double? Mass { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("portionSize")]
         public long PortionSize { get; set; }

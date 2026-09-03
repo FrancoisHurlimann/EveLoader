@@ -29,7 +29,7 @@ namespace EveLoader.Entities.Db
         public long LocationID { get; set; }
 
         [JsonPropertyName("name")]
-        public Dictionary<string, string> Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("raceID")]
         public long RaceID { get; set; }

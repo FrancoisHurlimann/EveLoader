@@ -13,7 +13,7 @@ namespace EveLoader.Entities.Db
         public long Key { get; set; }
 
         [JsonPropertyName("displayName")]
-        public Dictionary<string, string> DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         [JsonPropertyName("materialSetID")]
         public long MaterialSetID { get; set; }

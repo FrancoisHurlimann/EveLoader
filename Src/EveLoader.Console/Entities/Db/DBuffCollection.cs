@@ -19,7 +19,7 @@ namespace EveLoader.Entities.Db
         public string DeveloperDescription { get; set; }
 
         [JsonPropertyName("displayName")]
-        public Dictionary<string, string> DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         [JsonPropertyName("itemModifiers")]
         public List<DBuffItemModifier> ItemModifiers { get; set; }
