@@ -15,6 +15,7 @@ namespace EveLoader.DbContexts
 
         public DbSet<SkinrComponentCategories> SkinrComponentCategories { get; set; }
         public DbSet<SkinrSlotCategories> SkinrSlotCategories { get; set; }
+        public DbSet<AgentsInSpace> AgentsInSpace { get; set; }
 
     }
 }

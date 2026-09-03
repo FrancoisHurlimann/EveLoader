@@ -13,7 +13,7 @@ public class Program
     private readonly ILogger<Program> _logger;
     private readonly ILoadStaticData _loadStaticData;
 
-    public Program(ILogger<Program> logger, ILoadStaticData loadStaticData) 
+    public Program(ILogger<Program> logger, ILoadStaticData loadStaticData)
     {
         _logger = logger;
         _loadStaticData = loadStaticData;
@@ -30,8 +30,6 @@ public class Program
     {
         await _loadStaticData.Load();
         return;
-
-     
     }
 
     private static IHostBuilder CreateHostBuilder(string[] args)
@@ -40,7 +38,7 @@ public class Program
             .ConfigureServices((context, services) =>
             {
                 services.AddTransient<Program>();
-               
+
                 services.AddTransient(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
                 services.AddDbContext<EveDbContext>(options =>
                     options.UseSqlServer(context.Configuration.GetConnectionString("EveDb")));

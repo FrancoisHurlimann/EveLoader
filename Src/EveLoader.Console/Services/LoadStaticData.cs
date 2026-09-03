@@ -3,19 +3,23 @@ using EveLoader.Entities;
 using EveLoader.Mappers;
 using EveLoader.Repositories;
 using EveLoader.Services;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using System.Text.Json;
+
 
 public class LoadStaticData : ILoadStaticData
 {
 
     private readonly IConfiguration _configuration;
-    private readonly IAsyncRepository<SkinrComponentCategories> _repository;
+    private readonly IServiceProvider _serviceProvider;
 
-    public LoadStaticData(IConfiguration configuration, IAsyncRepository<SkinrComponentCategories> repository)
+    public LoadStaticData(IConfiguration configuration, IServiceProvider serviceProvider)
     {
         _configuration = configuration;
-        _repository = repository;
+        _serviceProvider = serviceProvider;
     }
 
     public async Task Load()
@@ -26,19 +30,19 @@ public class LoadStaticData : ILoadStaticData
 
         foreach (var fileName in fileNames)
         {
-            Type? loadType = fileName switch
-            {
-                var f when f == "skinrComponentCategories.jsonl" => typeof(SkinrComponentCategories),
-                _ => null
-            };
+            var fullPath = System.IO.Path.Combine(path, fileName);
 
-            Console.WriteLine(loadType);
-
-            if (loadType != null)
+            switch (Path.GetFileName(fullPath)?.ToLowerInvariant())
             {
-                var x = File.ReadLines(path + fileName)
-                    .Select(line => JsonSerializer.Deserialize(line, loadType)!)
-                    .ToList();
+                case "agentsinspace.jsonl":
+                    LoadBasic<AgentsInSpace>(fullPath);
+                    break;
+                case "skinrcomponentcategories.jsonl":
+                    LoadBasic<SkinrComponentCategories>(fullPath);
+                    break;
+                case "skinrslotcategories.jsonl":
+                    LoadBasic<SkinrSlotCategories>(fullPath);
+                    break;
             }
         }
     }
@@ -51,10 +55,24 @@ public class LoadStaticData : ILoadStaticData
         }
 
         return Directory
-            .EnumerateFiles(path)
+            .EnumerateFiles(path, "*.jsonl")
             .Select(Path.GetFileName)
             .Where(fileName => !string.IsNullOrWhiteSpace(fileName))
-            .Cast<string>()
             .ToList();
+    }
+
+    public void LoadBasic<T>(string fileName) where T : class
+    {
+        var lines = File.ReadLines(fileName);
+        var items = lines
+            .Select(line => JsonSerializer.Deserialize<T>(line))
+            .Where(item => item != null)
+            .ToList();
+        using (var scope = _serviceProvider.CreateScope())
+        {
+            var repository = scope.ServiceProvider.GetRequiredService<IAsyncRepository<T>>();
+            repository.DeleteAllAsync().Wait();
+            repository.AddRangeAsync(items!).Wait();
+        }
     }
 }

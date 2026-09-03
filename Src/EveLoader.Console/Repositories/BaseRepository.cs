@@ -49,5 +49,11 @@ namespace EveLoader.Repositories;
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task DeleteAllAsync()
+        {
+            _dbContext.Set<T>().RemoveRange(_dbContext.Set<T>());
+            await _dbContext.SaveChangesAsync();
+        }
     }
 

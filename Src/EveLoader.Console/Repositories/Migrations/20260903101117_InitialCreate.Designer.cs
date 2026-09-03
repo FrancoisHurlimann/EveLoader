@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EveLoader.Console.Repositories.Migrations
 {
     [DbContext(typeof(EveDbContext))]
-    [Migration("20260821124034_v2")]
-    partial class v2
+    [Migration("20260903101117_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,39 @@ namespace EveLoader.Console.Repositories.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("EveLoader.Entities.AgentsInSpace", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<long>("DungeonID")
+                        .HasColumnType("bigint")
+                        .HasJsonPropertyName("dungeonID");
+
+                    b.Property<long>("Key")
+                        .HasColumnType("bigint")
+                        .HasJsonPropertyName("_key");
+
+                    b.Property<long>("SolarSystemID")
+                        .HasColumnType("bigint")
+                        .HasJsonPropertyName("solarSystemID");
+
+                    b.Property<long>("SpawnPointID")
+                        .HasColumnType("bigint")
+                        .HasJsonPropertyName("spawnPointID");
+
+                    b.Property<long>("TypeID")
+                        .HasColumnType("bigint")
+                        .HasJsonPropertyName("typeID");
+
+                    b.HasKey("id");
+
+                    b.ToTable("AgentsInSpace");
+                });
+
             modelBuilder.Entity("EveLoader.Entities.SkinrComponentCategories", b =>
                 {
                     b.Property<int>("id")
@@ -33,7 +66,8 @@ namespace EveLoader.Console.Repositories.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<int>("key")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasJsonPropertyName("_key");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -53,7 +87,8 @@ namespace EveLoader.Console.Repositories.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<int>("key")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasJsonPropertyName("_key");
 
                     b.Property<string>("name")
                         .IsRequired()
