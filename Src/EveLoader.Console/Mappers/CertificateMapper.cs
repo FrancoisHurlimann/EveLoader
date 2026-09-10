@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class CertificateMapper
 {
-    public static EveLoader.Entities.Db.Certificate ToDbEntity(this EveLoader.Entities.StaticDataModels.Certificate model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.Certificate, EveLoader.Entities.Db.Certificate>();
+    public static Certificate ToDbEntity(this Console.StaticDataModels.CertificateFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.CertificateFile, Certificate>();
 }

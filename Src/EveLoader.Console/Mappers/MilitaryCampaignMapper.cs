@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class MilitaryCampaignMapper
 {
-    public static EveLoader.Entities.Db.MilitaryCampaign ToDbEntity(this EveLoader.Entities.StaticDataModels.MilitaryCampaign model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.MilitaryCampaign, EveLoader.Entities.Db.MilitaryCampaign>();
+    public static MilitaryCampaign ToDbEntity(this Console.StaticDataModels.MilitaryCampaignFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.MilitaryCampaignFile, MilitaryCampaign>();
 }

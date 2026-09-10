@@ -1,14 +1,14 @@
 using System;
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
+using EveLoader.Console.StaticDataModels;
 
 namespace EveLoader.Mappers;
 
 public static class AgentTypeMapper
 {
-    public static EveLoader.Entities.Db.AgentType ToDbEntity(this EveLoader.Entities.StaticDataModels.AgentType model)
+    public static AgentType ToDbEntity(this Console.StaticDataModels.AgentTypeFile model)
     {
-        return new EveLoader.Entities.Db.AgentType
+        return new AgentType
         {
             Key = model.Key,
             Name = model.Name

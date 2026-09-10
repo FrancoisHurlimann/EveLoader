@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class MercenaryTacticalOperationMapper
 {
-    public static EveLoader.Entities.Db.MercenaryTacticalOperation ToDbEntity(this EveLoader.Entities.StaticDataModels.MercenaryTacticalOperation model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.MercenaryTacticalOperation, EveLoader.Entities.Db.MercenaryTacticalOperation>();
+    public static MercenaryTacticalOperation ToDbEntity(this Console.StaticDataModels.MercenaryTacticalOperationFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.MercenaryTacticalOperationFile, MercenaryTacticalOperation>();
 }

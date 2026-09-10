@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class SkinrComponentPointValueMapper
 {
-    public static EveLoader.Entities.Db.SkinrComponentPointValue ToDbEntity(this EveLoader.Entities.StaticDataModels.SkinrComponentPointValue model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.SkinrComponentPointValue, EveLoader.Entities.Db.SkinrComponentPointValue>();
+    public static SkinrComponentPointValue ToDbEntity(this Console.StaticDataModels.SkinrComponentPointValueFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.SkinrComponentPointValueFile, SkinrComponentPointValue>();
 }

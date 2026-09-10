@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class MapRegionMapper
 {
-    public static EveLoader.Entities.Db.MapRegion ToDbEntity(this EveLoader.Entities.StaticDataModels.MapRegion model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.MapRegion, EveLoader.Entities.Db.MapRegion>();
+    public static MapRegion ToDbEntity(this Console.StaticDataModels.MapRegionFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.MapRegionFile, MapRegion>();
 }

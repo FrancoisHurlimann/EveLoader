@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class CategoryMapper
 {
-    public static EveLoader.Entities.Db.Category ToDbEntity(this EveLoader.Entities.StaticDataModels.Category model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.Category, EveLoader.Entities.Db.Category>();
+    public static Category ToDbEntity(this Console.StaticDataModels.CategoryFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.CategoryFile, Category>();
 }

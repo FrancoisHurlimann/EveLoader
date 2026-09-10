@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class MapConstellationMapper
 {
-    public static EveLoader.Entities.Db.MapConstellation ToDbEntity(this EveLoader.Entities.StaticDataModels.MapConstellation model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.MapConstellation, EveLoader.Entities.Db.MapConstellation>();
+    public static MapConstellation ToDbEntity(this Console.StaticDataModels.MapConstellationFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.MapConstellationFile, MapConstellation>();
 }

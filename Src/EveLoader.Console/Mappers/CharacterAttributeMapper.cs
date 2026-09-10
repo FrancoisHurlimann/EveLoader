@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class CharacterAttributeMapper
 {
-    public static EveLoader.Entities.Db.CharacterAttribute ToDbEntity(this EveLoader.Entities.StaticDataModels.CharacterAttribute model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.CharacterAttribute, EveLoader.Entities.Db.CharacterAttribute>();
+    public static CharacterAttribute ToDbEntity(this Console.StaticDataModels.CharacterAttributeFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.CharacterAttributeFile, CharacterAttribute>();
 }

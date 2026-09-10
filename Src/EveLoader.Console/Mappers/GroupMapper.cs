@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class GroupMapper
 {
-    public static EveLoader.Entities.Db.Group ToDbEntity(this EveLoader.Entities.StaticDataModels.Group model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.Group, EveLoader.Entities.Db.Group>();
+    public static Group ToDbEntity(this Console.StaticDataModels.GroupFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.GroupFile, Group>();
 }

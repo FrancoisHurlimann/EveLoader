@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class StationOperationMapper
 {
-    public static EveLoader.Entities.Db.StationOperation ToDbEntity(this EveLoader.Entities.StaticDataModels.StationOperation model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.StationOperation, EveLoader.Entities.Db.StationOperation>();
+    public static StationOperation ToDbEntity(this Console.StaticDataModels.StationOperationFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.StationOperationFile, StationOperation>();
 }

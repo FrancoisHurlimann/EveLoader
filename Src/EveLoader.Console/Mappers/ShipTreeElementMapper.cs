@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class ShipTreeElementMapper
 {
-    public static EveLoader.Entities.Db.ShipTreeElement ToDbEntity(this EveLoader.Entities.StaticDataModels.ShipTreeElement model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.ShipTreeElement, EveLoader.Entities.Db.ShipTreeElement>();
+    public static ShipTreeElement ToDbEntity(this Console.StaticDataModels.ShipTreeElementFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.ShipTreeElementFile, ShipTreeElement>();
 }

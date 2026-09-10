@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class CloneGradeMapper
 {
-    public static EveLoader.Entities.Db.CloneGrade ToDbEntity(this EveLoader.Entities.StaticDataModels.CloneGrade model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.CloneGrade, EveLoader.Entities.Db.CloneGrade>();
+    public static CloneGrade ToDbEntity(this Console.StaticDataModels.CloneGradeFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.CloneGradeFile, CloneGrade>();
 }

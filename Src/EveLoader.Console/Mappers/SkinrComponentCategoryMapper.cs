@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class SkinrComponentCategoryMapper
 {
-    public static EveLoader.Entities.Db.SkinrComponentCategory ToDbEntity(this EveLoader.Entities.StaticDataModels.SkinrComponentCategory model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.SkinrComponentCategory, EveLoader.Entities.Db.SkinrComponentCategory>();
+    public static SkinrComponentCategory ToDbEntity(this Console.StaticDataModels.SkinrComponentCategoryFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.SkinrComponentCategoryFile, SkinrComponentCategory>();
 }

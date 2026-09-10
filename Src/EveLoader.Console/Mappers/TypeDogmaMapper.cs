@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class TypeDogmaMapper
 {
-    public static EveLoader.Entities.Db.TypeDogma ToDbEntity(this EveLoader.Entities.StaticDataModels.TypeDogma model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.TypeDogma, EveLoader.Entities.Db.TypeDogma>();
+    public static TypeDogma ToDbEntity(this Console.StaticDataModels.TypeDogmaFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.TypeDogmaFile, TypeDogma>();
 }

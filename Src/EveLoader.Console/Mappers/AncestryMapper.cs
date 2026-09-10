@@ -1,15 +1,14 @@
 using System;
-using System.Collections.Generic;
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
+using EveLoader.Console.StaticDataModels;
 
 namespace EveLoader.Mappers;
 
 public static class AncestryMapper
 {
-    public static EveLoader.Entities.Db.Ancestry ToDbEntity(this EveLoader.Entities.StaticDataModels.Ancestry model)
+    public static Ancestry ToDbEntity(this Console.StaticDataModels.AncestryFile model)
     {
-        return new EveLoader.Entities.Db.Ancestry
+        return new Ancestry
         {
             Key = model.Key,
             BloodlineID = model.BloodlineID,

@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class MissionMapper
 {
-    public static EveLoader.Entities.Db.Mission ToDbEntity(this EveLoader.Entities.StaticDataModels.Mission model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.Mission, EveLoader.Entities.Db.Mission>();
+    public static Mission ToDbEntity(this Console.StaticDataModels.MissionFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.MissionFile, Mission>();
 }

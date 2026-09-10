@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class NpcCharacterMapper
 {
-    public static EveLoader.Entities.Db.NpcCharacter ToDbEntity(this EveLoader.Entities.StaticDataModels.NpcCharacter model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.NpcCharacter, EveLoader.Entities.Db.NpcCharacter>();
+    public static NpcCharacter ToDbEntity(this Console.StaticDataModels.NpcCharacterFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.NpcCharacterFile, NpcCharacter>();
 }

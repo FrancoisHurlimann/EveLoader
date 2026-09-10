@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class MasteryMapper
 {
-    public static EveLoader.Entities.Db.Mastery ToDbEntity(this EveLoader.Entities.StaticDataModels.Mastery model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.Mastery, EveLoader.Entities.Db.Mastery>();
+    public static Mastery ToDbEntity(this Console.StaticDataModels.MasteryFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.MasteryFile, Mastery>();
 }

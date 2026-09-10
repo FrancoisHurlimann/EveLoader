@@ -1,14 +1,14 @@
 using System;
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
+using EveLoader.Console.StaticDataModels;
 
 namespace EveLoader.Mappers;
 
 public static class AgentsInSpaceMapper
 {
-    public static EveLoader.Entities.Db.AgentsInSpace ToDbEntity(this EveLoader.Entities.StaticDataModels.AgentsInSpace model)
+    public static AgentsInSpace ToDbEntity(this Console.StaticDataModels.AgentsInSpaceFile model)
     {
-        return new EveLoader.Entities.Db.AgentsInSpace
+        return new AgentsInSpace
         {
             Key = model.Key,
             DungeonID = model.DungeonID,

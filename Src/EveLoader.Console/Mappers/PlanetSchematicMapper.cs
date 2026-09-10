@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class PlanetSchematicMapper
 {
-    public static EveLoader.Entities.Db.PlanetSchematic ToDbEntity(this EveLoader.Entities.StaticDataModels.PlanetSchematic model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.PlanetSchematic, EveLoader.Entities.Db.PlanetSchematic>();
+    public static PlanetSchematic ToDbEntity(this Console.StaticDataModels.PlanetSchematicFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.PlanetSchematicFile, PlanetSchematic>();
 }

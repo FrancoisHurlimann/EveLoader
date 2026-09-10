@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class ShipTreeGroupMapper
 {
-    public static EveLoader.Entities.Db.ShipTreeGroup ToDbEntity(this EveLoader.Entities.StaticDataModels.ShipTreeGroup model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.ShipTreeGroup, EveLoader.Entities.Db.ShipTreeGroup>();
+    public static ShipTreeGroup ToDbEntity(this Console.StaticDataModels.ShipTreeGroupFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.ShipTreeGroupFile, ShipTreeGroup>();
 }

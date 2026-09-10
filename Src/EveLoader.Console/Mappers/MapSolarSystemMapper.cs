@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class MapSolarSystemMapper
 {
-    public static EveLoader.Entities.Db.MapSolarSystem ToDbEntity(this EveLoader.Entities.StaticDataModels.MapSolarSystem model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.MapSolarSystem, EveLoader.Entities.Db.MapSolarSystem>();
+    public static MapSolarSystem ToDbEntity(this Console.StaticDataModels.MapSolarSystemFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.MapSolarSystemFile, MapSolarSystem>();
 }

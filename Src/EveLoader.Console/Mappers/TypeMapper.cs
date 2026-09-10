@@ -1,10 +1,7 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
-
 namespace EveLoader.Mappers;
 
 public static class TypeMapper
 {
-    public static EveLoader.Entities.Db.Type ToDbEntity(this EveLoader.Entities.StaticDataModels.Type model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.Type, EveLoader.Entities.Db.Type>();
+    public static Console.Entities.Type ToDbEntity(this Console.StaticDataModels.TypeFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.TypeFile, Console.Entities.Type>();
 }

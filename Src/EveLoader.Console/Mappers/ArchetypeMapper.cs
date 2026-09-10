@@ -1,14 +1,13 @@
 using System;
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class ArchetypeMapper
 {
-    public static EveLoader.Entities.Db.Archetype ToDbEntity(this EveLoader.Entities.StaticDataModels.Archetype model)
+    public static Archetype ToDbEntity(this Console.StaticDataModels.ArchetypeFile model)
     {
-        return new EveLoader.Entities.Db.Archetype
+        return new Archetype
         {
             Key = model.Key,
             Description = model.Description?.GetValueOrDefault("en") ?? string.Empty,

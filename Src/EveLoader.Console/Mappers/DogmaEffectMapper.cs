@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class DogmaEffectMapper
 {
-    public static EveLoader.Entities.Db.DogmaEffect ToDbEntity(this EveLoader.Entities.StaticDataModels.DogmaEffect model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.DogmaEffect, EveLoader.Entities.Db.DogmaEffect>();
+    public static DogmaEffect ToDbEntity(this Console.StaticDataModels.DogmaEffectFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.DogmaEffectFile, DogmaEffect>();
 }

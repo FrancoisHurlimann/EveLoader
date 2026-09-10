@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class MarketGroupMapper
 {
-    public static EveLoader.Entities.Db.MarketGroup ToDbEntity(this EveLoader.Entities.StaticDataModels.MarketGroup model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.MarketGroup, EveLoader.Entities.Db.MarketGroup>();
+    public static MarketGroup ToDbEntity(this Console.StaticDataModels.MarketGroupFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.MarketGroupFile, MarketGroup>();
 }

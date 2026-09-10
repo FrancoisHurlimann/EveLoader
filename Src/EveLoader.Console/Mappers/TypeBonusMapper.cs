@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class TypeBonusMapper
 {
-    public static EveLoader.Entities.Db.TypeBonus ToDbEntity(this EveLoader.Entities.StaticDataModels.TypeBonus model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.TypeBonus, EveLoader.Entities.Db.TypeBonus>();
+    public static TypeBonus ToDbEntity(this Console.StaticDataModels.TypeBonusFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.TypeBonusFile, TypeBonus>();
 }

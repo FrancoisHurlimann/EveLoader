@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class CorporationActivityMapper
 {
-    public static EveLoader.Entities.Db.CorporationActivity ToDbEntity(this EveLoader.Entities.StaticDataModels.CorporationActivity model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.CorporationActivity, EveLoader.Entities.Db.CorporationActivity>();
+    public static CorporationActivity ToDbEntity(this Console.StaticDataModels.CorporationActivityFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.CorporationActivityFile, CorporationActivity>();
 }

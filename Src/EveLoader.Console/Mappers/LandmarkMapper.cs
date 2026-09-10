@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class LandmarkMapper
 {
-    public static EveLoader.Entities.Db.Landmark ToDbEntity(this EveLoader.Entities.StaticDataModels.Landmark model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.Landmark, EveLoader.Entities.Db.Landmark>();
+    public static Landmark ToDbEntity(this Console.StaticDataModels.LandmarkFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.LandmarkFile, Landmark>();
 }

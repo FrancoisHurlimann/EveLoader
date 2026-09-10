@@ -1,14 +1,14 @@
 using System;
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
+using EveLoader.Console.StaticDataModels;
 
-namespace EveLoader.Mappers;
+namespace EveLoader.Mappers;    
 
 public static class BloodlineMapper
 {
-    public static EveLoader.Entities.Db.Bloodline ToDbEntity(this EveLoader.Entities.StaticDataModels.Bloodline model)
+    public static Bloodline ToDbEntity(this Console.StaticDataModels.BloodlineFile model)
     {
-        return new EveLoader.Entities.Db.Bloodline
+        return new Bloodline
         {
             Key = model.Key,
             Charisma = model.Charisma,

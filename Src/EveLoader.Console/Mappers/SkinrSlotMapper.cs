@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class SkinrSlotMapper
 {
-    public static EveLoader.Entities.Db.SkinrSlot ToDbEntity(this EveLoader.Entities.StaticDataModels.SkinrSlot model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.SkinrSlot, EveLoader.Entities.Db.SkinrSlot>();
+    public static SkinrSlot ToDbEntity(this Console.StaticDataModels.SkinrSlotFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.SkinrSlotFile, SkinrSlot>();
 }

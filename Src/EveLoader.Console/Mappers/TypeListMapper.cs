@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class TypeListMapper
 {
-    public static EveLoader.Entities.Db.TypeList ToDbEntity(this EveLoader.Entities.StaticDataModels.TypeList model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.TypeList, EveLoader.Entities.Db.TypeList>();
+    public static TypeList ToDbEntity(this Console.StaticDataModels.TypeListFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.TypeListFile, TypeList>();
 }

@@ -1,10 +1,9 @@
-using EveLoader.Entities.Db;
-using EveLoader.Entities.StaticDataModels;
+using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
 
 public static class NpcStationMapper
 {
-    public static EveLoader.Entities.Db.NpcStation ToDbEntity(this EveLoader.Entities.StaticDataModels.NpcStation model)
-        => model.ToDbEntityViaJson<EveLoader.Entities.StaticDataModels.NpcStation, EveLoader.Entities.Db.NpcStation>();
+    public static NpcStation ToDbEntity(this Console.StaticDataModels.NpcStationFile model)
+        => model.ToDbEntityViaJson<Console.StaticDataModels.NpcStationFile, NpcStation>();
 }
