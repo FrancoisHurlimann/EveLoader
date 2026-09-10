@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -14,8 +14,6 @@ namespace EveLoader.Console.Repositories.Migrations
                 name: "AgentsInSpace",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Key = table.Column<long>(type: "bigint", nullable: false),
                     DungeonID = table.Column<long>(type: "bigint", nullable: false),
                     SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
@@ -24,7 +22,7 @@ namespace EveLoader.Console.Repositories.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AgentsInSpace", x => x.id);
+                    table.PrimaryKey("PK_AgentsInSpace", x => x.Key);
                 });
 
             migrationBuilder.CreateTable(
@@ -228,8 +226,6 @@ namespace EveLoader.Console.Repositories.Migrations
                 name: "Blueprints",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Key = table.Column<long>(type: "bigint", nullable: false),
                     Activitiesid = table.Column<int>(type: "int", nullable: false),
                     BlueprintTypeID = table.Column<long>(type: "bigint", nullable: false),
@@ -237,7 +233,7 @@ namespace EveLoader.Console.Repositories.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Blueprints", x => x.id);
+                    table.PrimaryKey("PK_Blueprints", x => x.Key);
                     table.ForeignKey(
                         name: "FK_Blueprints_BlueprintActivities_Activitiesid",
                         column: x => x.Activitiesid,

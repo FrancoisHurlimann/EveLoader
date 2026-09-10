@@ -32,23 +32,23 @@ public class LoadStaticData : ILoadStaticData
             switch (Path.GetFileName(fullPath)?.ToLowerInvariant())
             {
                 case "agentsinspace.jsonl":
-                    LoadBasic<AgentsInSpaceFile, EveLoader.Console.Entities.AgentsInSpace>(fullPath, m => m.ToDbEntity());
+                    LoadBasic<AgentsInSpaceFile,AgentsInSpace>(fullPath, m => m.ToDbEntity());
                     break;
-                case "agenttypes.jsonl":
-                    LoadBasic<AgentTypeFile, EveLoader.Console.Entities.AgentType>(fullPath, m => m.ToDbEntity());
+                //case "agenttypes.jsonl":
+                //    LoadBasic<AgentTypeFile, AgentType>(fullPath, m => m.ToDbEntity());
+                //    break;
+                //case "ancestries.jsonl":
+                //    LoadBasic<AncestryFile, Ancestry>(fullPath, m => m.ToDbEntity());
+                //    break;
+                //case "archetypes.jsonl":
+                //    LoadBasic<ArchetypeFile, Archetype>(fullPath, m => m.ToDbEntity());
+                //    break;
+                //case "bloodlines.jsonl":
+                //    LoadBasic<BloodlineFile, Bloodline>(fullPath, m => m.ToDbEntity());
+                //    break;
+                case "blueprints.jsonl":
+                    LoadBasic<BlueprintFile, Blueprint>(fullPath, m => m.ToDbEntity());
                     break;
-                case "ancestries.jsonl":
-                    LoadBasic<AncestryFile, EveLoader.Console.Entities.Ancestry>(fullPath, m => m.ToDbEntity());
-                    break;
-                case "archetypes.jsonl":
-                    LoadBasic<ArchetypeFile, EveLoader.Console.Entities.Archetype>(fullPath, m => m.ToDbEntity());
-                    break;
-                case "bloodlines.jsonl":
-                    LoadBasic<BloodlineFile, EveLoader.Console.Entities.Bloodline>(fullPath, m => m.ToDbEntity());
-                    break;
-                    //case "blueprints.jsonl":
-                    //    LoadBasic<EveLoader.Entities.StaticDataModels.Blueprint, EveLoader.Entities.Db.Blueprint>(fullPath, m => m.ToDbEntity());
-                    //    break;
                     //case "categories.jsonl":
                     //    LoadBasic<EveLoader.Entities.StaticDataModels.Category, EveLoader.Entities.Db.Category>(fullPath, m => m.ToDbEntity());
                     //    break;

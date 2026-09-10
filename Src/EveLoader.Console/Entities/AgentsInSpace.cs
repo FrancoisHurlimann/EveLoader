@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace EveLoader.Console.Entities
@@ -6,9 +7,7 @@ namespace EveLoader.Console.Entities
     public class AgentsInSpace
     {
         [Key]
-        public int Id { get; set; }
-
-        [JsonPropertyName("_key")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
         [JsonPropertyName("dungeonID")]
