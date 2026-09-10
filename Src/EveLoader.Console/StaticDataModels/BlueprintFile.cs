@@ -9,7 +9,7 @@ namespace EveLoader.Console.StaticDataModels
         public long Key { get; set; }
 
         [JsonPropertyName("activities")]
-        public BlueprintActivities Activities { get; set; }
+        public BlueprintActivitiesFile Activities { get; set; }
 
         [JsonPropertyName("blueprintTypeID")]
         public long BlueprintTypeID { get; set; }
@@ -18,10 +18,10 @@ namespace EveLoader.Console.StaticDataModels
         public long MaxProductionLimit { get; set; }
     }
 
-    public class BlueprintActivities
+    public class BlueprintActivitiesFile
     {
         [JsonPropertyName("copying")]
-        public BlueprintActivity Copying { get; set; }
+        public BlueprintActivityFile Copying { get; set; }
 
         [JsonPropertyName("manufacturing")]
         public BlueprintManufacturing Manufacturing { get; set; }
@@ -30,19 +30,19 @@ namespace EveLoader.Console.StaticDataModels
         public BlueprintInvention Invention { get; set; }
 
         [JsonPropertyName("research_material")]
-        public BlueprintActivity ResearchMaterial { get; set; }
+        public BlueprintActivityFile ResearchMaterial { get; set; }
 
         [JsonPropertyName("research_time")]
-        public BlueprintActivity ResearchTime { get; set; }
+        public BlueprintActivityFile ResearchTime { get; set; }
     }
 
-    public class BlueprintActivity
+    public class BlueprintActivityFile
     {
         [JsonPropertyName("time")]
         public long Time { get; set; }
     }
 
-    public class BlueprintManufacturing : BlueprintActivity
+    public class BlueprintManufacturing : BlueprintActivityFile
     {
         [JsonPropertyName("materials")]
         public List<BlueprintMaterial> Materials { get; set; }

@@ -294,6 +294,11 @@ public class LoadStaticData : ILoadStaticData
             .Select(item => map(item!))
             .ToList();
 
+        var itemst = lines
+           .Select(line => JsonSerializer.Deserialize<TFile>(line))
+           .Where(item => item != null)
+           .ToList();
+
         using (var scope = _serviceProvider.CreateScope())
         {
             var repository = scope.ServiceProvider.GetRequiredService<IAsyncRepository<TEntity>>();
