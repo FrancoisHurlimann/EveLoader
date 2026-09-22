@@ -101,64 +101,29 @@ namespace EveLoader.Console.Repositories.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlueprintActivity",
+                name: "BlueprintManufacturing",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Time = table.Column<long>(type: "bigint", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(34)", maxLength: 34, nullable: false)
+                    Time = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlueprintActivity", x => x.id);
+                    table.PrimaryKey("PK_BlueprintManufacturing", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlueprintActivities",
+                name: "Blueprints",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Copyingid = table.Column<int>(type: "int", nullable: false),
-                    Manufacturingid = table.Column<int>(type: "int", nullable: false),
-                    Inventionid = table.Column<int>(type: "int", nullable: false),
-                    ResearchMaterialid = table.Column<int>(type: "int", nullable: false),
-                    ResearchTimeid = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    BlueprintTypeID = table.Column<long>(type: "bigint", nullable: false),
+                    MaxProductionLimit = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlueprintActivities", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_BlueprintActivities_BlueprintActivity_Copyingid",
-                        column: x => x.Copyingid,
-                        principalTable: "BlueprintActivity",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BlueprintActivities_BlueprintActivity_Inventionid",
-                        column: x => x.Inventionid,
-                        principalTable: "BlueprintActivity",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BlueprintActivities_BlueprintActivity_Manufacturingid",
-                        column: x => x.Manufacturingid,
-                        principalTable: "BlueprintActivity",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BlueprintActivities_BlueprintActivity_ResearchMaterialid",
-                        column: x => x.ResearchMaterialid,
-                        principalTable: "BlueprintActivity",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BlueprintActivities_BlueprintActivity_ResearchTimeid",
-                        column: x => x.ResearchTimeid,
-                        principalTable: "BlueprintActivity",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                    table.PrimaryKey("PK_Blueprints", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,15 +134,16 @@ namespace EveLoader.Console.Repositories.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<long>(type: "bigint", nullable: false),
                     TypeID = table.Column<long>(type: "bigint", nullable: false),
+                    Time = table.Column<long>(type: "bigint", nullable: false),
                     BlueprintManufacturingid = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BlueprintMaterial", x => x.id);
                     table.ForeignKey(
-                        name: "FK_BlueprintMaterial_BlueprintActivity_BlueprintManufacturingid",
+                        name: "FK_BlueprintMaterial_BlueprintManufacturing_BlueprintManufacturingid",
                         column: x => x.BlueprintManufacturingid,
-                        principalTable: "BlueprintActivity",
+                        principalTable: "BlueprintManufacturing",
                         principalColumn: "id");
                 });
 
@@ -196,9 +162,9 @@ namespace EveLoader.Console.Repositories.Migrations
                 {
                     table.PrimaryKey("PK_BlueprintProduct", x => x.id);
                     table.ForeignKey(
-                        name: "FK_BlueprintProduct_BlueprintActivity_BlueprintManufacturingid",
+                        name: "FK_BlueprintProduct_BlueprintManufacturing_BlueprintManufacturingid",
                         column: x => x.BlueprintManufacturingid,
-                        principalTable: "BlueprintActivity",
+                        principalTable: "BlueprintManufacturing",
                         principalColumn: "id");
                 });
 
@@ -216,56 +182,76 @@ namespace EveLoader.Console.Repositories.Migrations
                 {
                     table.PrimaryKey("PK_BlueprintSkill", x => x.id);
                     table.ForeignKey(
-                        name: "FK_BlueprintSkill_BlueprintActivity_BlueprintManufacturingid",
+                        name: "FK_BlueprintSkill_BlueprintManufacturing_BlueprintManufacturingid",
                         column: x => x.BlueprintManufacturingid,
-                        principalTable: "BlueprintActivity",
+                        principalTable: "BlueprintManufacturing",
                         principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Blueprints",
+                name: "BlueprintActivities",
                 columns: table => new
                 {
-                    Key = table.Column<long>(type: "bigint", nullable: false),
-                    Activitiesid = table.Column<int>(type: "int", nullable: false),
-                    BlueprintTypeID = table.Column<long>(type: "bigint", nullable: false),
-                    MaxProductionLimit = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BlueprintId = table.Column<long>(type: "bigint", nullable: false),
+                    ManufacturingId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Blueprints", x => x.Key);
+                    table.PrimaryKey("PK_BlueprintActivities", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Blueprints_BlueprintActivities_Activitiesid",
-                        column: x => x.Activitiesid,
-                        principalTable: "BlueprintActivities",
+                        name: "FK_BlueprintActivities_BlueprintManufacturing_ManufacturingId",
+                        column: x => x.ManufacturingId,
+                        principalTable: "BlueprintManufacturing",
                         principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BlueprintActivities_Blueprints_BlueprintId",
+                        column: x => x.BlueprintId,
+                        principalTable: "Blueprints",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_BlueprintActivities_Copyingid",
-                table: "BlueprintActivities",
-                column: "Copyingid");
+            migrationBuilder.CreateTable(
+                name: "BlueprintCopying",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ActivitiesId = table.Column<int>(type: "int", nullable: false),
+                    Time = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlueprintCopying", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_BlueprintCopying_BlueprintActivities_ActivitiesId",
+                        column: x => x.ActivitiesId,
+                        principalTable: "BlueprintActivities",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlueprintActivities_Inventionid",
+                name: "IX_BlueprintActivities_BlueprintId",
                 table: "BlueprintActivities",
-                column: "Inventionid");
+                column: "BlueprintId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlueprintActivities_Manufacturingid",
+                name: "IX_BlueprintActivities_ManufacturingId",
                 table: "BlueprintActivities",
-                column: "Manufacturingid");
+                column: "ManufacturingId",
+                unique: true,
+                filter: "[ManufacturingId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlueprintActivities_ResearchMaterialid",
-                table: "BlueprintActivities",
-                column: "ResearchMaterialid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BlueprintActivities_ResearchTimeid",
-                table: "BlueprintActivities",
-                column: "ResearchTimeid");
+                name: "IX_BlueprintCopying_ActivitiesId",
+                table: "BlueprintCopying",
+                column: "ActivitiesId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlueprintMaterial_BlueprintManufacturingid",
@@ -276,11 +262,6 @@ namespace EveLoader.Console.Repositories.Migrations
                 name: "IX_BlueprintProduct_BlueprintManufacturingid",
                 table: "BlueprintProduct",
                 column: "BlueprintManufacturingid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Blueprints_Activitiesid",
-                table: "Blueprints",
-                column: "Activitiesid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlueprintSkill_BlueprintManufacturingid",
@@ -307,13 +288,13 @@ namespace EveLoader.Console.Repositories.Migrations
                 name: "Bloodlines");
 
             migrationBuilder.DropTable(
+                name: "BlueprintCopying");
+
+            migrationBuilder.DropTable(
                 name: "BlueprintMaterial");
 
             migrationBuilder.DropTable(
                 name: "BlueprintProduct");
-
-            migrationBuilder.DropTable(
-                name: "Blueprints");
 
             migrationBuilder.DropTable(
                 name: "BlueprintSkill");
@@ -322,7 +303,10 @@ namespace EveLoader.Console.Repositories.Migrations
                 name: "BlueprintActivities");
 
             migrationBuilder.DropTable(
-                name: "BlueprintActivity");
+                name: "BlueprintManufacturing");
+
+            migrationBuilder.DropTable(
+                name: "Blueprints");
         }
     }
 }

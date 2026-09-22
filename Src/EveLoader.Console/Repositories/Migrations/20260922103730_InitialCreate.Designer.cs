@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EveLoader.Console.Repositories.Migrations
 {
     [DbContext(typeof(EveDbContext))]
-    [Migration("20260910132547_InitialCreate")]
+    [Migration("20260922103730_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -219,11 +219,8 @@ namespace EveLoader.Console.Repositories.Migrations
 
             modelBuilder.Entity("EveLoader.Console.Entities.Blueprint", b =>
                 {
-                    b.Property<long>("Key")
+                    b.Property<long>("Id")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("Activitiesid")
-                        .HasColumnType("int");
 
                     b.Property<long>("BlueprintTypeID")
                         .HasColumnType("bigint")
@@ -233,9 +230,7 @@ namespace EveLoader.Console.Repositories.Migrations
                         .HasColumnType("bigint")
                         .HasJsonPropertyName("maxProductionLimit");
 
-                    b.HasKey("Key");
-
-                    b.HasIndex("Activitiesid");
+                    b.HasKey("Id");
 
                     b.ToTable("Blueprints");
                 });
@@ -248,39 +243,27 @@ namespace EveLoader.Console.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("Copyingid")
-                        .HasColumnType("int");
+                    b.Property<long>("BlueprintId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("Inventionid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Manufacturingid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ResearchMaterialid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ResearchTimeid")
+                    b.Property<int?>("ManufacturingId")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
-                    b.HasIndex("Copyingid");
+                    b.HasIndex("BlueprintId")
+                        .IsUnique();
 
-                    b.HasIndex("Inventionid");
-
-                    b.HasIndex("Manufacturingid");
-
-                    b.HasIndex("ResearchMaterialid");
-
-                    b.HasIndex("ResearchTimeid");
+                    b.HasIndex("ManufacturingId")
+                        .IsUnique()
+                        .HasFilter("[ManufacturingId] IS NOT NULL");
 
                     b.ToTable("BlueprintActivities");
 
                     b.HasAnnotation("Relational:JsonPropertyName", "activities");
                 });
 
-            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintActivity", b =>
+            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintCopying", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -288,10 +271,8 @@ namespace EveLoader.Console.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(34)
-                        .HasColumnType("nvarchar(34)");
+                    b.Property<int>("ActivitiesId")
+                        .HasColumnType("int");
 
                     b.Property<long>("Time")
                         .HasColumnType("bigint")
@@ -299,13 +280,31 @@ namespace EveLoader.Console.Repositories.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("BlueprintActivity");
+                    b.HasIndex("ActivitiesId")
+                        .IsUnique();
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("BlueprintActivity");
+                    b.ToTable("BlueprintCopying");
 
-                    b
-                        .UseTphMappingStrategy()
-                        .HasAnnotation("Relational:JsonPropertyName", "research_time");
+                    b.HasAnnotation("Relational:JsonPropertyName", "copying");
+                });
+
+            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintManufacturing", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<long>("Time")
+                        .HasColumnType("bigint")
+                        .HasJsonPropertyName("time");
+
+                    b.HasKey("id");
+
+                    b.ToTable("BlueprintManufacturing");
+
+                    b.HasAnnotation("Relational:JsonPropertyName", "manufacturing");
                 });
 
             modelBuilder.Entity("EveLoader.Console.Entities.BlueprintMaterial", b =>
@@ -322,6 +321,10 @@ namespace EveLoader.Console.Repositories.Migrations
                     b.Property<long>("Quantity")
                         .HasColumnType("bigint")
                         .HasJsonPropertyName("quantity");
+
+                    b.Property<long>("Time")
+                        .HasColumnType("bigint")
+                        .HasJsonPropertyName("time");
 
                     b.Property<long>("TypeID")
                         .HasColumnType("bigint")
@@ -396,76 +399,29 @@ namespace EveLoader.Console.Repositories.Migrations
                     b.HasAnnotation("Relational:JsonPropertyName", "skills");
                 });
 
-            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintManufacturing", b =>
+            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintActivities", b =>
                 {
-                    b.HasBaseType("EveLoader.Console.Entities.BlueprintActivity");
-
-                    b.HasDiscriminator().HasValue("BlueprintManufacturing");
-
-                    b.HasAnnotation("Relational:JsonPropertyName", "manufacturing");
-                });
-
-            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintInvention", b =>
-                {
-                    b.HasBaseType("EveLoader.Console.Entities.BlueprintManufacturing");
-
-                    b.HasDiscriminator().HasValue("BlueprintInvention");
-
-                    b.HasAnnotation("Relational:JsonPropertyName", "invention");
-                });
-
-            modelBuilder.Entity("EveLoader.Console.Entities.Blueprint", b =>
-                {
-                    b.HasOne("EveLoader.Console.Entities.BlueprintActivities", "Activities")
-                        .WithMany()
-                        .HasForeignKey("Activitiesid")
+                    b.HasOne("EveLoader.Console.Entities.Blueprint", null)
+                        .WithOne("Activities")
+                        .HasForeignKey("EveLoader.Console.Entities.BlueprintActivities", "BlueprintId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Activities");
-                });
-
-            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintActivities", b =>
-                {
-                    b.HasOne("EveLoader.Console.Entities.BlueprintActivity", "Copying")
-                        .WithMany()
-                        .HasForeignKey("Copyingid")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("EveLoader.Console.Entities.BlueprintInvention", "Invention")
-                        .WithMany()
-                        .HasForeignKey("Inventionid")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("EveLoader.Console.Entities.BlueprintManufacturing", "Manufacturing")
-                        .WithMany()
-                        .HasForeignKey("Manufacturingid")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("EveLoader.Console.Entities.BlueprintActivity", "ResearchMaterial")
-                        .WithMany()
-                        .HasForeignKey("ResearchMaterialid")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("EveLoader.Console.Entities.BlueprintActivity", "ResearchTime")
-                        .WithMany()
-                        .HasForeignKey("ResearchTimeid")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Copying");
-
-                    b.Navigation("Invention");
+                        .WithOne()
+                        .HasForeignKey("EveLoader.Console.Entities.BlueprintActivities", "ManufacturingId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Manufacturing");
+                });
 
-                    b.Navigation("ResearchMaterial");
-
-                    b.Navigation("ResearchTime");
+            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintCopying", b =>
+                {
+                    b.HasOne("EveLoader.Console.Entities.BlueprintActivities", null)
+                        .WithOne("Copying")
+                        .HasForeignKey("EveLoader.Console.Entities.BlueprintCopying", "ActivitiesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EveLoader.Console.Entities.BlueprintMaterial", b =>
@@ -487,6 +443,18 @@ namespace EveLoader.Console.Repositories.Migrations
                     b.HasOne("EveLoader.Console.Entities.BlueprintManufacturing", null)
                         .WithMany("Skills")
                         .HasForeignKey("BlueprintManufacturingid");
+                });
+
+            modelBuilder.Entity("EveLoader.Console.Entities.Blueprint", b =>
+                {
+                    b.Navigation("Activities")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EveLoader.Console.Entities.BlueprintActivities", b =>
+                {
+                    b.Navigation("Copying")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EveLoader.Console.Entities.BlueprintManufacturing", b =>

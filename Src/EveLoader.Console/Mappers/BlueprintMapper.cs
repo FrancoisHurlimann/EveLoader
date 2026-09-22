@@ -10,21 +10,23 @@ public static class BlueprintMapper
     {
         return new Blueprint
         {
+            Id = model.Key,
             BlueprintTypeID = model.BlueprintTypeID,
             MaxProductionLimit = model.MaxProductionLimit,
-            Activities = model.Activities.ToActivities(model.BlueprintTypeID)
+            Activities = model.Activities.ToActivities(model.Key)
         };
     }
 
-    public static BlueprintActivities ToActivities(this Console.StaticDataModels.BlueprintActivitiesFile model, long blueprintTypeId)
+    public static BlueprintActivities ToActivities(this Console.StaticDataModels.BlueprintActivitiesFile model, long blueprintId)
     {
         if (model == null) return null;
 
         return new BlueprintActivities
         {
+            BlueprintId = blueprintId,
             // map properties; adjust these lines if nested property types differ
             Copying = model.Copying.ToActivity(),
-            //Manufacturing = model.Manufacturing.ToManufacturing(),
+            Manufacturing = model.Manufacturing.ToManufacturing(),
             //Invention = model.Invention.ToInvention(),
             //ResearchMaterial = model.ResearchMaterial.ToActivity(),
             //ResearchTime = model.ResearchTime.ToActivity()
@@ -32,8 +34,8 @@ public static class BlueprintMapper
     }
 
     // Map a simple activity (file -> entity)
-    public static BlueprintActivity ToActivity(this Console.StaticDataModels.BlueprintActivityFile model)
-        => model == null ? null : new BlueprintActivity
+    public static BlueprintCopying ToActivity(this Console.StaticDataModels.BlueprintActivityFile model)
+        => model == null ? null : new BlueprintCopying
         {
             Time = model.Time
         };

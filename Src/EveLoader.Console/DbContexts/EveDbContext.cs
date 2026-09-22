@@ -1,4 +1,3 @@
-
 using EveLoader.Console.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,14 +15,27 @@ namespace EveLoader.DbContexts
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Blueprint>()
+                .HasOne(b => b.Activities)
+                .WithOne()
+                .HasForeignKey<BlueprintActivities>(ba => ba.BlueprintId);
+
             modelBuilder.Entity<BlueprintActivities>(entity =>
             {
-                entity.HasOne(a => a.Copying).WithMany().OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.Manufacturing).WithMany().OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.Invention).WithMany().OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.ResearchMaterial).WithMany().OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.ResearchTime).WithMany().OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(a => a.Copying)
+                    .WithOne() 
+                    .HasForeignKey<BlueprintCopying>(c => c.ActivitiesId)
+                    .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(a => a.Manufacturing)
+                    .WithOne()
+                    .HasForeignKey<BlueprintActivities>(a => a.ManufacturingId)
+                    .OnDelete(DeleteBehavior.Restrict);
+                //entity.HasOne(a => a.Invention).WithMany().OnDelete(DeleteBehavior.Restrict);
+                //entity.HasOne(a => a.ResearchMaterial).WithMany().OnDelete(DeleteBehavior.Restrict);
+                //entity.HasOne(a => a.ResearchTime).WithMany().OnDelete(DeleteBehavior.Restrict);
             });
+
+            
         }
 
         public DbSet<AgentsInSpace> AgentsInSpace { get; set; }
@@ -32,6 +44,7 @@ namespace EveLoader.DbContexts
         public DbSet<Archetype> Archetypes { get; set; }
         public DbSet<Bloodline> Bloodlines { get; set; }
         public DbSet<Blueprint> Blueprints { get; set; }
+
         //public DbSet<Category> Categories { get; set; }
         //public DbSet<Certificate> Certificates { get; set; }
         //public DbSet<CharacterAttribute> CharacterAttributes { get; set; }

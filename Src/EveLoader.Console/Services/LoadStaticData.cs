@@ -31,9 +31,9 @@ public class LoadStaticData : ILoadStaticData
 
             switch (Path.GetFileName(fullPath)?.ToLowerInvariant())
             {
-                case "agentsinspace.jsonl":
-                    LoadBasic<AgentsInSpaceFile,AgentsInSpace>(fullPath, m => m.ToDbEntity());
-                    break;
+                //case "agentsinspace.jsonl":
+                //    LoadBasic<AgentsInSpaceFile,AgentsInSpace>(fullPath, m => m.ToDbEntity());
+                //    break;
                 //case "agenttypes.jsonl":
                 //    LoadBasic<AgentTypeFile, AgentType>(fullPath, m => m.ToDbEntity());
                 //    break;
@@ -294,10 +294,12 @@ public class LoadStaticData : ILoadStaticData
             .Select(item => map(item!))
             .ToList();
 
-        var itemst = lines
-           .Select(line => JsonSerializer.Deserialize<TFile>(line))
-           .Where(item => item != null)
-           .ToList();
+     
+
+        //var itemst = lines
+        //   .Select(line => JsonSerializer.Deserialize<TFile>(line))
+        //   .Where(item => item != null)
+        //   .ToList();
 
         using (var scope = _serviceProvider.CreateScope())
         {

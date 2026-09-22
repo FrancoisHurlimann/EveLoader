@@ -9,7 +9,7 @@ namespace EveLoader.Console.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long Key { get; set; }
+        public long Id { get; set; }
 
         [JsonPropertyName("activities")]
         public BlueprintActivities Activities { get; set; }
@@ -26,32 +26,39 @@ namespace EveLoader.Console.Entities
         [Key]
         public int id { get; set; }
 
+        public long BlueprintId { get; set; }
+
         [JsonPropertyName("copying")]
-        public BlueprintActivity Copying { get; set; }
+        public BlueprintCopying Copying { get; set; }
+
+        public int? ManufacturingId { get; set; }
 
         [JsonPropertyName("manufacturing")]
         public BlueprintManufacturing Manufacturing { get; set; }
 
-        [JsonPropertyName("invention")]
-        public BlueprintInvention Invention { get; set; }
+        //[JsonPropertyName("invention")]
+        //public BlueprintInvention Invention { get; set; }
 
-        [JsonPropertyName("research_material")]
-        public BlueprintActivity ResearchMaterial { get; set; }
+        //[JsonPropertyName("research_material")]
+        //public BlueprintActivity ResearchMaterial { get; set; }
 
-        [JsonPropertyName("research_time")]
-        public BlueprintActivity ResearchTime { get; set; }
+        //[JsonPropertyName("research_time")]
+        //public BlueprintActivity ResearchTime { get; set; }
     }
 
-    public class BlueprintActivity
+    public class BlueprintCopying
     {
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("time")]
+        public int ActivitiesId { get; set; }
+        
+
+         [JsonPropertyName("time")]
         public long Time { get; set; }
     }
 
-    public class BlueprintManufacturing : BlueprintActivity
+    public class BlueprintManufacturing
     {
         [Key]
         public int id { get; set; }
@@ -64,10 +71,18 @@ namespace EveLoader.Console.Entities
 
         [JsonPropertyName("skills")]
         public List<BlueprintSkill> Skills { get; set; }
+
+        [JsonPropertyName("time")]
+        public long Time { get; set; }
     }
 
-    public class BlueprintInvention : BlueprintManufacturing
+    public class BlueprintInvention
     {
+        [Key]
+        public int id { get; set; }
+
+        [JsonPropertyName("time")]
+        public long Time { get; set; }
     }
 
     public class BlueprintMaterial
@@ -80,6 +95,8 @@ namespace EveLoader.Console.Entities
 
         [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
+        [JsonPropertyName("time")]
+        public long Time { get; set; }
     }
 
     public class BlueprintProduct

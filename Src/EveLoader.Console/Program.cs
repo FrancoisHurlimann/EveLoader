@@ -20,7 +20,12 @@ public class Program
     public static async Task Main(string[] args)
     {
         IHost host = CreateHostBuilder(args).Build();
-        var program = host.Services.GetRequiredService<Program>();
+
+        using var scope = host.Services.CreateScope();
+        //var dbContext = scope.ServiceProvider.GetRequiredService<EveDbContext>();
+        //await dbContext.Database.MigrateAsync();
+
+        var program = scope.ServiceProvider.GetRequiredService<Program>();
         await program.RunAsync();
     }
 
