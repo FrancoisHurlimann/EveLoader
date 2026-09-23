@@ -1,3 +1,4 @@
+using System.Linq;
 using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
@@ -5,5 +6,14 @@ namespace EveLoader.Mappers;
 public static class CloneGradeMapper
 {
     public static CloneGrade ToDbEntity(this Console.StaticDataModels.CloneGradeFile model)
-        => model.ToDbEntityViaJson<Console.StaticDataModels.CloneGradeFile, CloneGrade>();
+        => new CloneGrade
+        {
+            Key = model.Key,
+            Name = model.Name,
+            Skills = model.Skills?.Select(s => new CloneGradeSkill
+            {
+                Level = s.Level,
+                TypeID = s.TypeID
+            }).ToList()
+        };
 }

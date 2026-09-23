@@ -1,3 +1,4 @@
+using System.Linq;
 using EveLoader.Console.Entities;
 
 namespace EveLoader.Mappers;
@@ -5,5 +6,16 @@ namespace EveLoader.Mappers;
 public static class ControlTowerResourceMapper
 {
     public static ControlTowerResource ToDbEntity(this Console.StaticDataModels.ControlTowerResourceFile model)
-        => model.ToDbEntityViaJson<Console.StaticDataModels.ControlTowerResourceFile, ControlTowerResource>();
+        => new ControlTowerResource
+        {
+            Key = model.Key,
+            Resources = model.Resources?.Select(r => new ControlTowerResourceItem
+            {
+                Purpose = r.Purpose,
+                Quantity = r.Quantity,
+                ResourceTypeID = r.ResourceTypeID,
+                FactionID = r.FactionID,
+                MinSecurityLevel = r.MinSecurityLevel
+            }).ToList()
+        };
 }

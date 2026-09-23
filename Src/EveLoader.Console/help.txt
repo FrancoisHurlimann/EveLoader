@@ -1,2 +1,25 @@
 dotnet ef migrations add InitialCreate --project "Src\EveLoader.Console\EveLoader.Console.csproj" --context EveDbContext --output-dir Repositories\Migrations
 dotnet ef database update --project "Src\EveLoader.Console\EveLoader.Console.csproj" --context EveDbContext
+
+SELECT count(*) FROM [EveDatabase].[dbo].[Blueprints]
+SELECT count(*) FROM [EveDatabase].[dbo].[BlueprintActivities]
+SELECT count(*) FROM  [EveDatabase].[dbo].[BlueprintCopying]
+
+SELECT * FROM [EveDatabase].[dbo].[Blueprints] where id = 681
+SELECT * FROM [EveDatabase].[dbo].[BlueprintActivities] where BlueprintId = 681
+
+SELECT * FROM  [EveDatabase].[dbo].[BlueprintCopying] where id = 1
+
+SELECT * FROM [EveDatabase].[dbo].[BlueprintInvention]
+SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionMaterial]
+SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionProduct]
+SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionSkill]
+
+
+SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturing]
+SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingMaterial]
+SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingProduct]
+SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingSkill]
+
+SELECT * FROM [EveDatabase].[dbo].[BlueprintResearchMaterial]
+SELECT * FROM [EveDatabase].[dbo].[BlueprintResearchTime]

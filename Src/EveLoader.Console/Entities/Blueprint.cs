@@ -28,50 +28,37 @@ namespace EveLoader.Console.Entities
 
         public long BlueprintId { get; set; }
 
+        public int? CopyingId { get; set; }
+
         [JsonPropertyName("copying")]
         public BlueprintCopying Copying { get; set; }
+
+        public int? InventionId { get; set; }
+
+        [JsonPropertyName("invention")]
+        public BlueprintInvention Invention { get; set; }
 
         public int? ManufacturingId { get; set; }
 
         [JsonPropertyName("manufacturing")]
         public BlueprintManufacturing Manufacturing { get; set; }
 
-        //[JsonPropertyName("invention")]
-        //public BlueprintInvention Invention { get; set; }
+        public int? ResearchMaterialId { get; set; }
 
-        //[JsonPropertyName("research_material")]
-        //public BlueprintActivity ResearchMaterial { get; set; }
+        [JsonPropertyName("research_material")]
+        public BlueprintResearchMaterial ResearchMaterial { get; set; }
 
-        //[JsonPropertyName("research_time")]
-        //public BlueprintActivity ResearchTime { get; set; }
+        public int? ResearchTimeId { get; set; }
+
+        [JsonPropertyName("research_time")]
+        public BlueprintResearchTime ResearchTime { get; set; }
     }
 
     public class BlueprintCopying
     {
         [Key]
         public int id { get; set; }
-
-        public int ActivitiesId { get; set; }
         
-
-         [JsonPropertyName("time")]
-        public long Time { get; set; }
-    }
-
-    public class BlueprintManufacturing
-    {
-        [Key]
-        public int id { get; set; }
-
-        [JsonPropertyName("materials")]
-        public List<BlueprintMaterial> Materials { get; set; }
-
-        [JsonPropertyName("products")]
-        public List<BlueprintProduct> Products { get; set; }
-
-        [JsonPropertyName("skills")]
-        public List<BlueprintSkill> Skills { get; set; }
-
         [JsonPropertyName("time")]
         public long Time { get; set; }
     }
@@ -81,11 +68,20 @@ namespace EveLoader.Console.Entities
         [Key]
         public int id { get; set; }
 
+        [JsonPropertyName("materials")]
+        public List<BlueprintInventionMaterial> Materials { get; set; }
+
+        [JsonPropertyName("products")]
+        public List<BlueprintInventionProduct> Products { get; set; }
+
+        [JsonPropertyName("skills")]
+        public List<BlueprintInventionSkill> Skills { get; set; }
+
         [JsonPropertyName("time")]
         public long Time { get; set; }
     }
 
-    public class BlueprintMaterial
+    public class BlueprintInventionMaterial
     {
         [Key]
         public int id { get; set; }
@@ -95,11 +91,10 @@ namespace EveLoader.Console.Entities
 
         [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
-        [JsonPropertyName("time")]
-        public long Time { get; set; }
+
     }
 
-    public class BlueprintProduct
+    public class BlueprintInventionProduct
     {
         [Key]
         public int id { get; set; }
@@ -114,7 +109,7 @@ namespace EveLoader.Console.Entities
         public double? Probability { get; set; }
     }
 
-    public class BlueprintSkill
+    public class BlueprintInventionSkill
     {
         [Key]
         public int id { get; set; }
@@ -125,4 +120,109 @@ namespace EveLoader.Console.Entities
         [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
     }
+
+    public class BlueprintManufacturing
+    {
+        [Key]
+        public int id { get; set; }
+
+        [JsonPropertyName("materials")]
+        public List<BlueprintManufacturingMaterial> Materials { get; set; }
+
+        [JsonPropertyName("products")]
+        public List<BlueprintManufacturingProduct> Products { get; set; }
+
+        [JsonPropertyName("skills")]
+        public List<BlueprintManufacturingSkill> Skills { get; set; }
+
+        [JsonPropertyName("time")]
+        public long Time { get; set; }
+    }
+
+    public class BlueprintManufacturingMaterial
+    {
+        [Key]
+        public int id { get; set; }
+
+        [JsonPropertyName("quantity")]
+        public long Quantity { get; set; }
+
+        [JsonPropertyName("typeID")]
+        public long TypeID { get; set; }
+
+    }
+
+    public class BlueprintManufacturingProduct
+    {
+        [Key]
+        public int id { get; set; }
+
+        [JsonPropertyName("quantity")]
+        public long Quantity { get; set; }
+
+        [JsonPropertyName("typeID")]
+        public long TypeID { get; set; }
+
+        [JsonPropertyName("probability")]
+        public double? Probability { get; set; }
+    }
+
+    public class BlueprintManufacturingSkill
+    {
+        [Key]
+        public int id { get; set; }
+
+        [JsonPropertyName("level")]
+        public long Level { get; set; }
+
+        [JsonPropertyName("typeID")]
+        public long TypeID { get; set; }
+    }
+
+
+
+    public class BlueprintResearchMaterial
+    {
+        [Key]
+        public int id { get; set; }
+
+        [JsonPropertyName("time")]
+        public long Time { get; set; }
+    }
+
+    public class BlueprintResearchTime
+    {
+        [Key]
+        public int id { get; set; }
+
+        [JsonPropertyName("time")]
+        public long Time { get; set; }
+    }
+
+    //public class BlueprintProduct
+    //{
+    //    [Key]
+    //    public int id { get; set; }
+
+    //    [JsonPropertyName("quantity")]
+    //    public long Quantity { get; set; }
+
+    //    [JsonPropertyName("typeID")]
+    //    public long TypeID { get; set; }
+
+    //    [JsonPropertyName("probability")]
+    //    public double? Probability { get; set; }
+    //}
+
+    //public class BlueprintSkill
+    //{
+    //    [Key]
+    //    public int id { get; set; }
+
+    //    [JsonPropertyName("level")]
+    //    public long Level { get; set; }
+
+    //    [JsonPropertyName("typeID")]
+    //    public long TypeID { get; set; }
+    //}
 }

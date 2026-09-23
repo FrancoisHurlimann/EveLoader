@@ -24,37 +24,74 @@ public static class BlueprintMapper
         return new BlueprintActivities
         {
             BlueprintId = blueprintId,
-            // map properties; adjust these lines if nested property types differ
             Copying = model.Copying.ToActivity(),
+            Invention = model.Invention.ToInvention(),
             Manufacturing = model.Manufacturing.ToManufacturing(),
-            //Invention = model.Invention.ToInvention(),
-            //ResearchMaterial = model.ResearchMaterial.ToActivity(),
-            //ResearchTime = model.ResearchTime.ToActivity()
+            ResearchMaterial = model.ResearchMaterial.ToResearchMaterial(),
+            ResearchTime = model.ResearchTime.ToResearchTime()
         };
     }
 
-    // Map a simple activity (file -> entity)
     public static BlueprintCopying ToActivity(this Console.StaticDataModels.BlueprintActivityFile model)
         => model == null ? null : new BlueprintCopying
         {
             Time = model.Time
         };
 
-    // Map manufacturing (file -> entity). Currently maps shared/basic fields (Time).
-    // Extend mapping for Materials/Products/Skills when you have corresponding entity mappers.
+    public static BlueprintResearchMaterial ToResearchMaterial(this Console.StaticDataModels.BlueprintActivityFile model)
+        => model == null ? null : new BlueprintResearchMaterial
+        {
+            Time = model.Time
+        };
+
+    public static BlueprintResearchTime ToResearchTime(this Console.StaticDataModels.BlueprintActivityFile model)
+        => model == null ? null : new BlueprintResearchTime
+        {
+            Time = model.Time
+        };
+
+
     public static EveLoader.Console.Entities.BlueprintManufacturing ToManufacturing(this Console.StaticDataModels.BlueprintManufacturing model)
         => model == null ? null : new EveLoader.Console.Entities.BlueprintManufacturing
         {
-            Time = model.Time
-            // Materials = ... (map when corresponding mappers exist)
-            // Products = ...
-            // Skills = ...
+            Time = model.Time,
+            Materials = model.Materials?.Select(m => new EveLoader.Console.Entities.BlueprintManufacturingMaterial
+            {
+                Quantity = m.Quantity,
+                TypeID = m.TypeID
+            }).ToList(),
+            Products = model.Products?.Select(p => new EveLoader.Console.Entities.BlueprintManufacturingProduct
+            {
+                Quantity = p.Quantity,
+                TypeID = p.TypeID,
+                Probability = p.Probability 
+            }).ToList(),
+            Skills = model.Skills?.Select(s => new EveLoader.Console.Entities.BlueprintManufacturingSkill
+            {
+                Level = s.Level,
+                TypeID = s.TypeID
+            }).ToList()
         };
 
     public static EveLoader.Console.Entities.BlueprintInvention ToInvention(this Console.StaticDataModels.BlueprintInvention model)
         => model == null ? null : new EveLoader.Console.Entities.BlueprintInvention
         {
-            Time = model.Time
-            // map additional properties when entity mappers are available
+            Time = model.Time,
+            Materials = model.Materials?.Select(m => new EveLoader.Console.Entities.BlueprintInventionMaterial
+            {
+                Quantity = m.Quantity,
+                TypeID = m.TypeID
+            }).ToList(),
+            Products = model.Products?.Select(p => new EveLoader.Console.Entities.BlueprintInventionProduct
+            {
+                Quantity = p.Quantity,
+                TypeID = p.TypeID,
+                Probability = p.Probability
+            }).ToList(),
+            Skills = model.Skills?.Select(s => new EveLoader.Console.Entities.BlueprintInventionSkill
+            {
+                Level = s.Level,
+                TypeID = s.TypeID
+            }).ToList()
         };
 }

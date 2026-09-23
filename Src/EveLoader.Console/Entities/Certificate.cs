@@ -22,10 +22,20 @@ namespace EveLoader.Console.Entities
         public string Name { get; set; }
 
         [JsonPropertyName("recommendedFor")]
-        public List<long> RecommendedFor { get; set; }
+        public List<CertificateRecommendedFor> RecommendedFor { get; set; }
 
         [JsonPropertyName("skillTypes")]
         public List<CertificateSkillType> SkillTypes { get; set; }
+    }
+
+    public class CertificateRecommendedFor
+    {
+        [Key]
+        public int id { get; set; }
+
+        [JsonPropertyName("recommendedFor")]
+        public long RecommendedFor { get; set; }
+
     }
 
     public class CertificateSkillType
