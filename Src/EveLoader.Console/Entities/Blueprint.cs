@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace EveLoaderEntities
 {
@@ -11,13 +10,10 @@ namespace EveLoaderEntities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
 
-        [JsonPropertyName("activities")]
         public BlueprintActivities Activities { get; set; }
 
-        [JsonPropertyName("blueprintTypeID")]
         public long BlueprintTypeID { get; set; }
 
-        [JsonPropertyName("maxProductionLimit")]
         public long MaxProductionLimit { get; set; }
     }
 
@@ -30,27 +26,22 @@ namespace EveLoaderEntities
 
         public int? CopyingId { get; set; }
 
-        [JsonPropertyName("copying")]
         public BlueprintCopying Copying { get; set; }
 
         public int? InventionId { get; set; }
 
-        [JsonPropertyName("invention")]
         public BlueprintInvention Invention { get; set; }
 
         public int? ManufacturingId { get; set; }
 
-        [JsonPropertyName("manufacturing")]
         public BlueprintManufacturing Manufacturing { get; set; }
 
         public int? ResearchMaterialId { get; set; }
 
-        [JsonPropertyName("research_material")]
         public BlueprintResearchMaterial ResearchMaterial { get; set; }
 
         public int? ResearchTimeId { get; set; }
 
-        [JsonPropertyName("research_time")]
         public BlueprintResearchTime ResearchTime { get; set; }
     }
 
@@ -59,7 +50,6 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
         
-        [JsonPropertyName("time")]
         public long Time { get; set; }
     }
 
@@ -68,16 +58,12 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("materials")]
         public List<BlueprintInventionMaterial> Materials { get; set; }
 
-        [JsonPropertyName("products")]
         public List<BlueprintInventionProduct> Products { get; set; }
 
-        [JsonPropertyName("skills")]
         public List<BlueprintInventionSkill> Skills { get; set; }
 
-        [JsonPropertyName("time")]
         public long Time { get; set; }
     }
 
@@ -86,10 +72,8 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("quantity")]
         public long Quantity { get; set; }
 
-        [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
 
     }
@@ -99,13 +83,10 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("quantity")]
         public long Quantity { get; set; }
 
-        [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
 
-        [JsonPropertyName("probability")]
         public double? Probability { get; set; }
     }
 
@@ -114,10 +95,8 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("level")]
         public long Level { get; set; }
 
-        [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
     }
 
@@ -126,16 +105,12 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("materials")]
         public List<BlueprintManufacturingMaterial> Materials { get; set; }
 
-        [JsonPropertyName("products")]
         public List<BlueprintManufacturingProduct> Products { get; set; }
 
-        [JsonPropertyName("skills")]
         public List<BlueprintManufacturingSkill> Skills { get; set; }
 
-        [JsonPropertyName("time")]
         public long Time { get; set; }
     }
 
@@ -144,10 +119,8 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("quantity")]
         public long Quantity { get; set; }
 
-        [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
 
     }
@@ -157,13 +130,10 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("quantity")]
         public long Quantity { get; set; }
 
-        [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
 
-        [JsonPropertyName("probability")]
         public double? Probability { get; set; }
     }
 
@@ -172,10 +142,8 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("level")]
         public long Level { get; set; }
 
-        [JsonPropertyName("typeID")]
         public long TypeID { get; set; }
     }
 
@@ -186,7 +154,6 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("time")]
         public long Time { get; set; }
     }
 
@@ -195,7 +162,6 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("time")]
         public long Time { get; set; }
     }
 

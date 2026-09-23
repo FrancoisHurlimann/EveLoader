@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace EveLoaderEntities
 {
@@ -9,31 +8,23 @@ namespace EveLoaderEntities
         [Key]
         public int id { get; set; }
 
-        [JsonPropertyName("_key")]
         public long Key { get; set; }
 
-        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonPropertyName("iconID")]
         public long? IconID { get; set; }
 
-        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("position")]
         public Position Position { get; set; }
     }
 
     public class Position
     {
-        [JsonPropertyName("x")]
         public double X { get; set; }
 
-        [JsonPropertyName("y")]
         public double Y { get; set; }
 
-        [JsonPropertyName("z")]
         public double Z { get; set; }
     }
 }
