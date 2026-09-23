@@ -1,5 +1,5 @@
 using System.Linq;
-using EveLoader.Console.Entities;
+using EveLoaderEntities;
 
 namespace EveLoader.Mappers;
 

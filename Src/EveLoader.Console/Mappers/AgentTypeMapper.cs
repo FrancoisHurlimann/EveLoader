@@ -1,5 +1,5 @@
 using System;
-using EveLoader.Console.Entities;
+using EveLoaderEntities;
 using EveLoader.Console.StaticDataModels;
 
 namespace EveLoader.Mappers;

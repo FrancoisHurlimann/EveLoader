@@ -1,5 +1,5 @@
 using System.Linq;
-using EveLoader.Console.Entities;
+using EveLoaderEntities;
 using EveLoader.Console.StaticDataModels;
 
 namespace EveLoader.Mappers;
@@ -51,44 +51,44 @@ public static class BlueprintMapper
         };
 
 
-    public static EveLoader.Console.Entities.BlueprintManufacturing ToManufacturing(this Console.StaticDataModels.BlueprintManufacturing model)
-        => model == null ? null : new EveLoader.Console.Entities.BlueprintManufacturing
+    public static EveLoaderEntities.BlueprintManufacturing ToManufacturing(this Console.StaticDataModels.BlueprintManufacturing model)
+        => model == null ? null : new EveLoaderEntities.BlueprintManufacturing
         {
             Time = model.Time,
-            Materials = model.Materials?.Select(m => new EveLoader.Console.Entities.BlueprintManufacturingMaterial
+            Materials = model.Materials?.Select(m => new EveLoaderEntities.BlueprintManufacturingMaterial
             {
                 Quantity = m.Quantity,
                 TypeID = m.TypeID
             }).ToList(),
-            Products = model.Products?.Select(p => new EveLoader.Console.Entities.BlueprintManufacturingProduct
+            Products = model.Products?.Select(p => new EveLoaderEntities.BlueprintManufacturingProduct
             {
                 Quantity = p.Quantity,
                 TypeID = p.TypeID,
                 Probability = p.Probability 
             }).ToList(),
-            Skills = model.Skills?.Select(s => new EveLoader.Console.Entities.BlueprintManufacturingSkill
+            Skills = model.Skills?.Select(s => new EveLoaderEntities.BlueprintManufacturingSkill
             {
                 Level = s.Level,
                 TypeID = s.TypeID
             }).ToList()
         };
 
-    public static EveLoader.Console.Entities.BlueprintInvention ToInvention(this Console.StaticDataModels.BlueprintInvention model)
-        => model == null ? null : new EveLoader.Console.Entities.BlueprintInvention
+    public static EveLoaderEntities.BlueprintInvention ToInvention(this Console.StaticDataModels.BlueprintInvention model)
+        => model == null ? null : new EveLoaderEntities.BlueprintInvention
         {
             Time = model.Time,
-            Materials = model.Materials?.Select(m => new EveLoader.Console.Entities.BlueprintInventionMaterial
+            Materials = model.Materials?.Select(m => new EveLoaderEntities.BlueprintInventionMaterial
             {
                 Quantity = m.Quantity,
                 TypeID = m.TypeID
             }).ToList(),
-            Products = model.Products?.Select(p => new EveLoader.Console.Entities.BlueprintInventionProduct
+            Products = model.Products?.Select(p => new EveLoaderEntities.BlueprintInventionProduct
             {
                 Quantity = p.Quantity,
                 TypeID = p.TypeID,
                 Probability = p.Probability
             }).ToList(),
-            Skills = model.Skills?.Select(s => new EveLoader.Console.Entities.BlueprintInventionSkill
+            Skills = model.Skills?.Select(s => new EveLoaderEntities.BlueprintInventionSkill
             {
                 Level = s.Level,
                 TypeID = s.TypeID

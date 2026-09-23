@@ -1,9 +1,15 @@
-using EveLoader.Console.Entities;
+using EveLoaderEntities;
 
 namespace EveLoader.Mappers;
 
 public static class SkinLicenseMapper
 {
     public static SkinLicense ToDbEntity(this Console.StaticDataModels.SkinLicenseFile model)
-        => model.ToDbEntityViaJson<Console.StaticDataModels.SkinLicenseFile, SkinLicense>();
+        => new SkinLicense
+        {
+            Key = model.Key,
+            Duration = model.Duration,
+            LicenseTypeID = model.LicenseTypeID,
+            SkinID = model.SkinID
+        };
 }

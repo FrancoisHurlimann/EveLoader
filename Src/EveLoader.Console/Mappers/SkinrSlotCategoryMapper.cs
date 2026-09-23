@@ -1,9 +1,13 @@
-using EveLoader.Console.Entities;
+using EveLoaderEntities;
 
 namespace EveLoader.Mappers;
 
 public static class SkinrSlotCategoryMapper
 {
     public static SkinrSlotCategory ToDbEntity(this Console.StaticDataModels.SkinrSlotCategoryFile model)
-        => model.ToDbEntityViaJson<Console.StaticDataModels.SkinrSlotCategoryFile, SkinrSlotCategory>();
+        => new SkinrSlotCategory
+        {
+            Key = model.Key,
+            Name = model.Name
+        };
 }

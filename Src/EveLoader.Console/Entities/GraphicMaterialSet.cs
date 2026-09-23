@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace EveLoader.Console.Entities
+namespace EveLoaderEntities
 {
     public class GraphicMaterialSet
     {

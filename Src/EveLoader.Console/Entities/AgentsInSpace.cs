@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace EveLoader.Console.Entities
+namespace EveLoaderEntities
 {
     public class AgentsInSpace
     {

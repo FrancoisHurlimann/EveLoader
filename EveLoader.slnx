@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/Input/" />
   <Folder Name="/Src/">
-    <Project Path="Src/EveLoader.Console/EveLoader.Console.csproj" />
+    <Project Path="Src/EveLoader.Console/EveLoader.csproj" />
   </Folder>
   <Folder Name="/Test/" />
 </Solution>

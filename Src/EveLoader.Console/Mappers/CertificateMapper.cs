@@ -1,5 +1,5 @@
 using System.Linq;
-using EveLoader.Console.Entities;
+using EveLoaderEntities;
 
 namespace EveLoader.Mappers;
 
@@ -16,11 +16,11 @@ public static class CertificateMapper
             Name = model.Name != null && model.Name.TryGetValue("en", out var name)
                 ? name
                 : model.Name?.Values.FirstOrDefault(),
-            RecommendedFor = model.RecommendedFor?.Select(r => new EveLoader.Console.Entities.CertificateRecommendedFor
+            RecommendedFor = model.RecommendedFor?.Select(r => new EveLoaderEntities.CertificateRecommendedFor
             {
                 RecommendedFor = r
             }).ToList(),
-            SkillTypes = model.SkillTypes?.Select(s => new EveLoader.Console.Entities.CertificateSkillType
+            SkillTypes = model.SkillTypes?.Select(s => new EveLoaderEntities.CertificateSkillType
             {
                 Key = s.Key,
                 Advanced = s.Advanced,
