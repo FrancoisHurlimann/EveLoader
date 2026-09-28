@@ -11,9 +11,9 @@ public static class MapAsteroidBeltMapper
             CelestialIndex = model.CelestialIndex,
             OrbitID = model.OrbitID,
             OrbitIndex = model.OrbitIndex,
-            Position = model.Position == null
+            MapAsteroidBeltPosition = model.Position == null
                 ? null
-                : new Position
+                : new MapAsteroidBeltPosition
                 {
                     X = model.Position.X,
                     Y = model.Position.Y,
@@ -23,7 +23,7 @@ public static class MapAsteroidBeltMapper
             SolarSystemID = model.SolarSystemID,
             Statistics = model.Statistics == null
                 ? null
-                : new CelestialStatistics
+                : new MapAsteroidBeltCelestialStatistics
                 {
                     Density = model.Statistics.Density,
                     Eccentricity = model.Statistics.Eccentricity,

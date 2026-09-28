@@ -16,19 +16,20 @@ namespace EveLoaderEntities
 
         public long IconID { get; set; }
 
-        public List<EpicArcMission> Missions { get; set; }
+        public List<EpicArcMission>? Missions { get; set; }
 
         public string Name { get; set; }
     }
 
     public class EpicArcMission
     {
+        [Key]
         public long Key { get; set; }
 
         public long AgentID { get; set; }
 
         public long? FailMissionID { get; set; }
 
-        public List<long> NextMissions { get; set; }
+        public List<long>? NextMissions { get; set; }
     }
 }

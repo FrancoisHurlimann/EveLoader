@@ -19,14 +19,15 @@ namespace EveLoaderEntities
 
         public string Description { get; set; }
 
-        public string SofFactionName { get; set; }
+        public string? SofFactionName { get; set; }
 
-        public string SofRaceHint { get; set; }
+        public string? SofRaceHint { get; set; }
     }
 
     public class Color
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
         public double A { get; set; }

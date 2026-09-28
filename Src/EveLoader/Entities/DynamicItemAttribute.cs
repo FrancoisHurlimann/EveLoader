@@ -17,6 +17,7 @@ namespace EveLoaderEntities
 
     public class DynamicItemAttributeRange
     {
+        [Key]
         public long Key { get; set; }
 
         public bool? HighIsGood { get; set; }
@@ -28,6 +29,8 @@ namespace EveLoaderEntities
 
     public class DynamicItemInputOutputMapping
     {
+        [Key]
+        public long Key { get; set; }
         public List<long> ApplicableTypes { get; set; }
 
         public long ResultingType { get; set; }

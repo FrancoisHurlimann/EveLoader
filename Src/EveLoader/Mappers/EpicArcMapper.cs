@@ -14,7 +14,7 @@ public static class EpicArcMapper
             IconID = model.IconID,
             Missions = model.Missions?.Select(m => new EpicArcMission
             {
-                Key = m.Key,
+           
                 AgentID = m.AgentID,
                 FailMissionID = m.FailMissionID,
                 NextMissions = m.NextMissions?.ToList()

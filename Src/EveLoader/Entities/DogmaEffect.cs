@@ -10,13 +10,13 @@ namespace EveLoaderEntities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public bool DisallowAutoRepeat { get; set; }
 
         public long? DischargeAttributeID { get; set; }
 
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
 
         public long? Distribution { get; set; }
 
@@ -28,7 +28,7 @@ namespace EveLoaderEntities
 
         public long? FalloffAttributeID { get; set; }
 
-        public string Guid { get; set; }
+        public string? Guid { get; set; }
 
         public long? IconID { get; set; }
 
@@ -38,7 +38,7 @@ namespace EveLoaderEntities
 
         public bool IsWarpSafe { get; set; }
 
-        public List<DogmaEffectModifierInfo> ModifierInfo { get; set; }
+        public List<DogmaEffectModifierInfo>? ModifierInfo { get; set; }
 
         public string Name { get; set; }
 
@@ -55,6 +55,8 @@ namespace EveLoaderEntities
 
     public class DogmaEffectModifierInfo
     {
+        [Key]
+        public long Key { get; set; }
         public string Domain { get; set; }
 
         public string Func { get; set; }

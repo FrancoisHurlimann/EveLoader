@@ -15,54 +15,7 @@ namespace EveLoader.DbContexts
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Blueprint>()
-                .HasOne(b => b.Activities)
-                .WithOne()
-                .HasForeignKey<BlueprintActivities>(ba => ba.BlueprintId);
-
-            modelBuilder.Entity<BlueprintActivities>(entity =>
-            {
-                entity.HasOne(a => a.Copying)
-                    .WithOne()
-                    .HasForeignKey<BlueprintActivities>(a => a.CopyingId)
-                    .OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.Invention)
-                   .WithOne()
-                   .HasForeignKey<BlueprintActivities>(a => a.InventionId)
-                   .OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.Manufacturing)
-                    .WithOne()
-                    .HasForeignKey<BlueprintActivities>(a => a.ManufacturingId)
-                    .OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.ResearchMaterial)
-                   .WithOne()
-                   .HasForeignKey<BlueprintActivities>(a => a.ResearchMaterialId)
-                   .OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.ResearchTime)
-                   .WithOne()
-                   .HasForeignKey<BlueprintActivities>(a => a.ResearchTimeId)
-                   .OnDelete(DeleteBehavior.Restrict);
-            });
-
-            modelBuilder.Entity<BlueprintInvention>(entity =>
-            {
-                entity.HasMany(i => i.Materials)
-                    .WithOne()
-                    .HasForeignKey("BlueprintInventionId")
-                    .OnDelete(DeleteBehavior.Cascade);
-
-                entity.HasMany(i => i.Products)
-                    .WithOne()
-                    .HasForeignKey("BlueprintInventionId")
-                    .OnDelete(DeleteBehavior.Cascade);
-
-                entity.HasMany(i => i.Skills)
-                    .WithOne()
-                    .HasForeignKey("BlueprintInventionId")
-                    .OnDelete(DeleteBehavior.Cascade);
-            });
-
-
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EveDbContext).Assembly);
         }
 
         public DbSet<AgentsInSpace> AgentsInSpace { get; set; }
@@ -87,24 +40,24 @@ namespace EveLoader.DbContexts
         public DbSet<DogmaEffect> DogmaEffects { get; set; }
         public DbSet<DogmaUnit> DogmaUnits { get; set; }
         public DbSet<Dungeon> Dungeons { get; set; }
-        ////public DbSet<DynamicItemAttribute> DynamicItemAttributes { get; set; }
-        //public DbSet<EpicArc> EpicArcs { get; set; }
-        //public DbSet<Faction> Factions { get; set; }
-        //public DbSet<FreelanceJobSchema> FreelanceJobSchemas { get; set; }
-        //public DbSet<GraphicMaterialSet> GraphicMaterialSets { get; set; }
-        //public DbSet<Graphic> Graphics { get; set; }
-        //public DbSet<Group> Groups { get; set; }
-        //public DbSet<Icon> Icons { get; set; }
-        //public DbSet<Landmark> Landmarks { get; set; }
-        //public DbSet<MapAsteroidBelt> MapAsteroidBelts { get; set; }
-        //public DbSet<MapConstellation> MapConstellations { get; set; }
-        //public DbSet<MapMoon> MapMoons { get; set; }
-        //public DbSet<MapPlanet> MapPlanets { get; set; }
-        //public DbSet<MapRegion> MapRegions { get; set; }
-        //public DbSet<MapSecondarySun> MapSecondarySuns { get; set; }
-        //public DbSet<MapSolarSystem> MapSolarSystems { get; set; }
-        //public DbSet<MapStargate> MapStargates { get; set; }
-        //public DbSet<MapStar> MapStars { get; set; }
+        public DbSet<DynamicItemAttribute> DynamicItemAttributes { get; set; }
+        public DbSet<EpicArc> EpicArcs { get; set; }
+        public DbSet<Faction> Factions { get; set; }
+        public DbSet<FreelanceJobSchema> FreelanceJobSchemas { get; set; }
+        public DbSet<GraphicMaterialSet> GraphicMaterialSets { get; set; }
+        public DbSet<Graphic> Graphics { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Icon> Icons { get; set; }
+        public DbSet<Landmark> Landmarks { get; set; }
+        public DbSet<MapAsteroidBelt> MapAsteroidBelts { get; set; }
+        public DbSet<MapConstellation> MapConstellations { get; set; }
+        public DbSet<MapMoon> MapMoons { get; set; }
+        public DbSet<MapPlanet> MapPlanets { get; set; }
+        public DbSet<MapRegion> MapRegions { get; set; }
+        public DbSet<MapSecondarySun> MapSecondarySuns { get; set; }
+        public DbSet<MapSolarSystem> MapSolarSystems { get; set; }
+        public DbSet<MapStargate> MapStargates { get; set; }
+        public DbSet<MapStar> MapStars { get; set; }
         //public DbSet<MarketGroup> MarketGroups { get; set; }
         //public DbSet<Mastery> Masteries { get; set; }
         //public DbSet<MercenaryTacticalOperation> MercenaryTacticalOperations { get; set; }

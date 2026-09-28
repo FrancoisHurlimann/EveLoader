@@ -14,7 +14,7 @@ namespace EveLoaderEntities
 
         public string Name { get; set; }
 
-        public Position Position { get; set; }
+        public MapConstellationPosition MapConstellationPosition { get; set; }
 
         public long RegionID { get; set; }
 
@@ -22,4 +22,17 @@ namespace EveLoaderEntities
 
         public long? WormholeClassID { get; set; }
     }
+
+    public class MapConstellationPosition
+    {
+
+        [Key]
+        public long Key { get; set; }
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+        public double Z { get; set; }
+    }
+
 }

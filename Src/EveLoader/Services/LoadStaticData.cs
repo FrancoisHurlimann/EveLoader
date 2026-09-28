@@ -46,45 +46,45 @@ public class LoadStaticData : ILoadStaticData
                 //case "bloodlines.jsonl":
                 //    LoadBasic<BloodlineFile, Bloodline>(fullPath, m => m.ToDbEntity());
                 //    break;
-                //case "blueprints.jsonl":
-                //    LoadBasic<BlueprintFile, Blueprint>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "categories.jsonl":
-                //    LoadBasic<CategoryFile, Category>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "certificates.jsonl":
-                //    LoadBasic<CertificateFile, Certificate>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "characterattributes.jsonl":
-                //    LoadBasic<CharacterAttributeFile, CharacterAttribute>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "charactertitles.jsonl":
-                //    LoadBasic<CharacterTitleFile, CharacterTitle>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "clonegrades.jsonl":
-                //    LoadBasic<CloneGradeFile, CloneGrade>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "compressibletypes.jsonl":
-                //    LoadBasic<CompressibleTypeFile, CompressibleType>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "contrabandtypes.jsonl":
-                //    LoadBasic<ContrabandTypeFile, ContrabandType>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "controltowerresources.jsonl":
-                //    LoadBasic<ControlTowerResourceFile, ControlTowerResource>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "corporationactivities.jsonl":
-                //    LoadBasic<CorporationActivityFile, CorporationActivity>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "dbuffcollections.jsonl":
-                //    LoadBasic<DBuffCollectionFile, DBuffCollection>(fullPath, m => m.ToDbEntity());
-                //    break;
-                //case "dogmaattributecategories.jsonl":
-                //    LoadBasic<DogmaAttributeCategoryFile, DogmaAttributeCategory>(fullPath, m => m.ToDbEntity());
-                //    break;
-                case "dogmaattributes.jsonl":
-                    LoadBasic<DogmaAttributeFile, DogmaAttribute>(fullPath, m => m.ToDbEntity());
+                case "blueprints.jsonl":
+                    LoadBasic<BlueprintFile, Blueprint>(fullPath, m => m.ToDbEntity());
                     break;
+                    //case "categories.jsonl":
+                    //    LoadBasic<CategoryFile, Category>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "certificates.jsonl":
+                    //    LoadBasic<CertificateFile, Certificate>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "characterattributes.jsonl":
+                    //    LoadBasic<CharacterAttributeFile, CharacterAttribute>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "charactertitles.jsonl":
+                    //    LoadBasic<CharacterTitleFile, CharacterTitle>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "clonegrades.jsonl":
+                    //    LoadBasic<CloneGradeFile, CloneGrade>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "compressibletypes.jsonl":
+                    //    LoadBasic<CompressibleTypeFile, CompressibleType>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "contrabandtypes.jsonl":
+                    //    LoadBasic<ContrabandTypeFile, ContrabandType>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "controltowerresources.jsonl":
+                    //    LoadBasic<ControlTowerResourceFile, ControlTowerResource>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "corporationactivities.jsonl":
+                    //    LoadBasic<CorporationActivityFile, CorporationActivity>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "dbuffcollections.jsonl":
+                    //    LoadBasic<DBuffCollectionFile, DBuffCollection>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "dogmaattributecategories.jsonl":
+                    //    LoadBasic<DogmaAttributeCategoryFile, DogmaAttributeCategory>(fullPath, m => m.ToDbEntity());
+                    //    break;
+                    //case "dogmaattributes.jsonl":
+                    //    LoadBasic<DogmaAttributeFile, DogmaAttribute>(fullPath, m => m.ToDbEntity());
+                    //    break;
                     //case "dogmaeffects.jsonl":
                     //    LoadBasic<DogmaEffectFile, DogmaEffect>(fullPath, m => m.ToDbEntity());
                     //    break;
@@ -103,9 +103,11 @@ public class LoadStaticData : ILoadStaticData
                     //case "factions.jsonl":
                     //    LoadBasic<FactionFile, Faction>(fullPath, m => m.ToDbEntity());
                     //    break;
+                    //todo
                     //case "freelancejobschemas.jsonl":
                     //    LoadBasic<FreelanceJobSchemaFile, FreelanceJobSchema>(fullPath, m => m.ToDbEntity());
                     //    break;
+                    //todo
                     //case "graphicmaterialsets.jsonl":
                     //    LoadBasic<GraphicMaterialSetFile, GraphicMaterialSet>(fullPath, m => m.ToDbEntity());
                     //    break;
@@ -121,6 +123,7 @@ public class LoadStaticData : ILoadStaticData
                     //case "landmarks.jsonl":
                     //    LoadBasic<LandmarkFile, Landmark>(fullPath, m => m.ToDbEntity());
                     //    break;
+                    //todo
                     //case "mapasteroidbelts.jsonl":
                     //    LoadBasic<MapAsteroidBeltFile, MapAsteroidBelt>(fullPath, m => m.ToDbEntity());
                     //    break;

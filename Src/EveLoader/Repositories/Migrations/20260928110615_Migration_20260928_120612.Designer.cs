@@ -3,6 +3,7 @@ using EveLoader.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EveLoader.Repositories.Migrations
 {
     [DbContext(typeof(EveDbContext))]
-    partial class EveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260928110615_Migration_20260928_120612")]
+    partial class Migration_20260928_120612
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -15,7 +15,7 @@ namespace EveLoaderEntities
 
     public class FreelanceJobSchemaEntry
     {
-
+        [Key]
         public string Key { get; set; }
 
         public List<string> ContentTags { get; set; }
@@ -57,7 +57,7 @@ namespace EveLoaderEntities
 
     public class FreelanceJobSchemaParameter
     {
-   
+        [Key]
         public string Key { get; set; }
 
         public FreelanceJobSchemaMatcher Matcher { get; set; }

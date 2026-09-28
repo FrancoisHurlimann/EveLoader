@@ -28,13 +28,16 @@ namespace EveLoaderEntities
 
         public long SolarSystemID { get; set; }
 
-        public CelestialStatistics Statistics { get; set; }
+        public MapPlanetCelestialStatistics Statistics { get; set; }
 
         public long TypeID { get; set; }
     }
 
     public class PlanetAttributes
     {
+         
+        [Key]
+        public long Key { get; set; }
         public long HeightMap1 { get; set; }
 
         public long HeightMap2 { get; set; }
@@ -42,5 +45,37 @@ namespace EveLoaderEntities
         public bool Population { get; set; }
 
         public long ShaderPreset { get; set; }
+    }
+
+    public class MapPlanetCelestialStatistics
+    {
+        [Key]
+        public long Key { get; set; }
+
+        public double Density { get; set; }
+
+        public double Eccentricity { get; set; }
+
+        public double EscapeVelocity { get; set; }
+
+        public bool Locked { get; set; }
+
+        public double MassDust { get; set; }
+
+        public double MassGas { get; set; }
+
+        public double OrbitPeriod { get; set; }
+
+        public double OrbitRadius { get; set; }
+
+        public double? Pressure { get; set; }
+
+        public double RotationRate { get; set; }
+
+        public string SpectralClass { get; set; }
+
+        public double SurfaceGravity { get; set; }
+
+        public double Temperature { get; set; }
     }
 }

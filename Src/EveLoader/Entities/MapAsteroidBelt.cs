@@ -15,20 +15,32 @@ namespace EveLoaderEntities
 
         public long OrbitIndex { get; set; }
 
-        public Position Position { get; set; }
+        public MapAsteroidBeltPosition MapAsteroidBeltPosition { get; set; }
 
         public double Radius { get; set; }
 
         public long SolarSystemID { get; set; }
 
-        public CelestialStatistics Statistics { get; set; }
+        public MapAsteroidBeltCelestialStatistics Statistics { get; set; }
 
         public long TypeID { get; set; }
     }
 
-    public class CelestialStatistics
+    public class MapAsteroidBeltPosition
     {
         [Key]
+        public long Key { get; set; }
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+        public double Z { get; set; }
+    }
+
+    public class MapAsteroidBeltCelestialStatistics
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
         public double Density { get; set; }

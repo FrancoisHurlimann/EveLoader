@@ -13,9 +13,9 @@ public static class MapConstellationMapper
             Name = model.Name != null && model.Name.TryGetValue("en", out var name)
                 ? name
                 : model.Name?.Values.FirstOrDefault(),
-            Position = model.Position == null
+            MapConstellationPosition = model.Position == null
                 ? null
-                : new Position
+                : new MapConstellationPosition
                 {
                     X = model.Position.X,
                     Y = model.Position.Y,

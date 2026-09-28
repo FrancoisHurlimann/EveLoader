@@ -1,6 +1,10 @@
 dotnet ef migrations add InitialCreate --project "Src\EveLoader\EveLoader.csproj" --context EveDbContext --output-dir Repositories\Migrations
 dotnet ef database update --project "Src\EveLoader\EveLoader.csproj" --context EveDbContext
 
+dotnet ef migrations add "Migration_$(Get-Date -Format 'yyyyMMdd_HHmmss')" --project "Src\EveLoader\EveLoader.csproj" --context EveDbContext --output-dir Repositories\Migrations
+dotnet ef database update --project "Src\EveLoader\EveLoader.csproj" --context EveDbContext
+
+
 SELECT count(*) FROM [EveDatabase].[dbo].[Blueprints]
 SELECT count(*) FROM [EveDatabase].[dbo].[BlueprintActivities]
 SELECT count(*) FROM  [EveDatabase].[dbo].[BlueprintCopying]

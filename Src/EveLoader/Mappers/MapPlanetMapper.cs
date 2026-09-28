@@ -35,7 +35,7 @@ public static class MapPlanetMapper
             SolarSystemID = model.SolarSystemID,
             Statistics = model.Statistics == null
                 ? null
-                : new CelestialStatistics
+                : new MapPlanetCelestialStatistics
                 {
                     Density = model.Statistics.Density,
                     Eccentricity = model.Statistics.Eccentricity,

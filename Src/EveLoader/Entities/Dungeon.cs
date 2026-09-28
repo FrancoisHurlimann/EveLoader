@@ -10,7 +10,7 @@ namespace EveLoaderEntities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
-        public List<long> AllowedShipsList { get; set; }
+        public List<long>? AllowedShipsList { get; set; }
 
         public long ArchetypeID { get; set; }
 

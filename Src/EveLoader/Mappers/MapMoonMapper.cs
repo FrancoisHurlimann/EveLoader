@@ -31,7 +31,7 @@ public static class MapMoonMapper
             SolarSystemID = model.SolarSystemID,
             Statistics = model.Statistics == null
                 ? null
-                : new CelestialStatistics
+                : new MapMoonCelestialStatistics
                 {
                     Density = model.Statistics.Density,
                     Eccentricity = model.Statistics.Eccentricity,

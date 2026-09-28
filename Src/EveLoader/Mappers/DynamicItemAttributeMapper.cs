@@ -11,7 +11,6 @@ public static class DynamicItemAttributeMapper
             Key = model.Key,
             AttributeIDs = model.AttributeIDs?.Select(a => new DynamicItemAttributeRange
             {
-                Key = a.Key,
                 HighIsGood = a.HighIsGood,
                 Max = a.Max,
                 Min = a.Min

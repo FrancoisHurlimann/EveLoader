@@ -14,9 +14,9 @@ namespace EveLoaderEntities
 
         public string Description { get; set; }
 
-        public string FlatLogo { get; set; }
+        public string? FlatLogo { get; set; }
 
-        public string FlatLogoWithName { get; set; }
+        public string? FlatLogoWithName { get; set; }
 
         public long IconID { get; set; }
 
@@ -26,7 +26,7 @@ namespace EveLoaderEntities
 
         public string Name { get; set; }
 
-        public string ShortDescription { get; set; }
+        public string? ShortDescription { get; set; }
 
         public double SizeFactor { get; set; }
 

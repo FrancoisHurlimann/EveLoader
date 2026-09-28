@@ -16,9 +16,9 @@ namespace EveLoaderEntities
 
         public double DefaultValue { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
 
         public bool DisplayWhenZero { get; set; }
 
@@ -32,9 +32,9 @@ namespace EveLoaderEntities
 
         public bool Stackable { get; set; }
 
-        public string TooltipDescription { get; set; }
+        public string? TooltipDescription { get; set; }
 
-        public string TooltipTitle { get; set; }
+        public string? TooltipTitle { get; set; }
 
         public long? UnitID { get; set; }
     }

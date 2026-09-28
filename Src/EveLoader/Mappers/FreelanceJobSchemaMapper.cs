@@ -44,7 +44,7 @@ public static class FreelanceJobSchemaMapper
     private static FreelanceJobSchemaParameter ToDbEntity(this Console.StaticDataModels.FreelanceJobSchemaParameter model)
         => new FreelanceJobSchemaParameter
         {
-            Key = model.Key,
+           // Key = model.Key,
             Matcher = model.Matcher.ToDbEntity(),
             ItemDelivery = model.ItemDelivery.ToDbEntity(),
             InventoryType = model.InventoryType.ToDbEntity(),
