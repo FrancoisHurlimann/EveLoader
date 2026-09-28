@@ -12,7 +12,7 @@ namespace EveLoaderEntities
 
         public long AnarchyImpact { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public long DevelopmentImpact { get; set; }
 
@@ -20,6 +20,6 @@ namespace EveLoaderEntities
 
         public long InfomorphBonus { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

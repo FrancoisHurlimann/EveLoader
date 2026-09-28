@@ -14,25 +14,18 @@ namespace EveLoaderEntities
 
         public string Name { get; set; }
 
-        public MapConstellationPosition MapConstellationPosition { get; set; }
+        public double MapConstellationX { get; set; }
+
+        public double MapConstellationY { get; set; }
+
+        public double MapConstellationZ { get; set; }
 
         public long RegionID { get; set; }
 
         public List<long> SolarSystemIDs { get; set; }
 
         public long? WormholeClassID { get; set; }
-    }
 
-    public class MapConstellationPosition
-    {
-
-        [Key]
-        public long Key { get; set; }
-        public double X { get; set; }
-
-        public double Y { get; set; }
-
-        public double Z { get; set; }
     }
 
 }

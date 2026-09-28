@@ -5,7 +5,7 @@
 namespace EveLoader.Repositories.Migrations
 {
     /// <inheritdoc />
-    public partial class Migration_20260928_120612 : Migration
+    public partial class Migration_20260928_162527 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -93,19 +93,6 @@ namespace EveLoader.Repositories.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlueprintCopying",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Time = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BlueprintCopying", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BlueprintInvention",
                 columns: table => new
                 {
@@ -129,32 +116,6 @@ namespace EveLoader.Repositories.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BlueprintManufacturing", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BlueprintResearchMaterial",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Time = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BlueprintResearchMaterial", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BlueprintResearchTime",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Time = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BlueprintResearchTime", x => x.Key);
                 });
 
             migrationBuilder.CreateTable(
@@ -236,21 +197,6 @@ namespace EveLoader.Repositories.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CloneGrades", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Color",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false),
-                    A = table.Column<double>(type: "float", nullable: false),
-                    B = table.Column<double>(type: "float", nullable: false),
-                    G = table.Column<double>(type: "float", nullable: false),
-                    R = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Color", x => x.Key);
                 });
 
             migrationBuilder.CreateTable(
@@ -405,9 +351,9 @@ namespace EveLoader.Repositories.Migrations
                     Key = table.Column<long>(type: "bigint", nullable: false),
                     AllowedShipsList = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ArchetypeID = table.Column<long>(type: "bigint", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FactionID = table.Column<long>(type: "bigint", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -561,6 +507,36 @@ namespace EveLoader.Repositories.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GraphicMaterialSets",
+                columns: table => new
+                {
+                    Key = table.Column<long>(type: "bigint", nullable: false),
+                    ColorHullA = table.Column<double>(type: "float", nullable: false),
+                    ColorHullB = table.Column<double>(type: "float", nullable: false),
+                    ColorHullG = table.Column<double>(type: "float", nullable: false),
+                    ColorHullR = table.Column<double>(type: "float", nullable: false),
+                    ColorPrimaryA = table.Column<double>(type: "float", nullable: false),
+                    ColorPrimaryB = table.Column<double>(type: "float", nullable: false),
+                    ColorPrimaryG = table.Column<double>(type: "float", nullable: false),
+                    ColorPrimaryR = table.Column<double>(type: "float", nullable: false),
+                    ColorSecondaryA = table.Column<double>(type: "float", nullable: false),
+                    ColorSecondaryB = table.Column<double>(type: "float", nullable: false),
+                    ColorSecondaryG = table.Column<double>(type: "float", nullable: false),
+                    ColorSecondaryR = table.Column<double>(type: "float", nullable: false),
+                    ColorWindowA = table.Column<double>(type: "float", nullable: false),
+                    ColorWindowB = table.Column<double>(type: "float", nullable: false),
+                    ColorWindowG = table.Column<double>(type: "float", nullable: false),
+                    ColorWindowR = table.Column<double>(type: "float", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SofFactionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SofRaceHint = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GraphicMaterialSets", x => x.Key);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Graphics",
                 columns: table => new
                 {
@@ -625,65 +601,112 @@ namespace EveLoader.Repositories.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MapAsteroidBeltCelestialStatistics",
+                name: "MapAsteroidBelts",
                 columns: table => new
                 {
                     Key = table.Column<long>(type: "bigint", nullable: false),
-                    Density = table.Column<double>(type: "float", nullable: false),
-                    Eccentricity = table.Column<double>(type: "float", nullable: false),
-                    EscapeVelocity = table.Column<double>(type: "float", nullable: false),
-                    Locked = table.Column<bool>(type: "bit", nullable: false),
-                    MassDust = table.Column<double>(type: "float", nullable: false),
-                    MassGas = table.Column<double>(type: "float", nullable: false),
-                    OrbitPeriod = table.Column<double>(type: "float", nullable: false),
-                    OrbitRadius = table.Column<double>(type: "float", nullable: false),
-                    Pressure = table.Column<double>(type: "float", nullable: true),
-                    RotationRate = table.Column<double>(type: "float", nullable: false),
-                    SpectralClass = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SurfaceGravity = table.Column<double>(type: "float", nullable: false),
-                    Temperature = table.Column<double>(type: "float", nullable: false)
+                    CelestialIndex = table.Column<long>(type: "bigint", nullable: false),
+                    OrbitID = table.Column<long>(type: "bigint", nullable: false),
+                    OrbitIndex = table.Column<long>(type: "bigint", nullable: false),
+                    PositionX = table.Column<double>(type: "float", nullable: false),
+                    PositionY = table.Column<double>(type: "float", nullable: false),
+                    PositionZ = table.Column<double>(type: "float", nullable: false),
+                    Radius = table.Column<double>(type: "float", nullable: false),
+                    SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
+                    CelestialStatisticsDensity = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsEccentricity = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsEscapeVelocity = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsLocked = table.Column<bool>(type: "bit", nullable: false),
+                    CelestialStatisticsMassDust = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsMassGas = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsOrbitPeriod = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsOrbitRadius = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsPressure = table.Column<double>(type: "float", nullable: true),
+                    CelestialStatisticsRotationRate = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsSpectralClass = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CelestialStatisticsSurfaceGravity = table.Column<double>(type: "float", nullable: false),
+                    CelestialStatisticsTemperature = table.Column<double>(type: "float", nullable: false),
+                    TypeID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MapAsteroidBeltCelestialStatistics", x => x.Key);
+                    table.PrimaryKey("PK_MapAsteroidBelts", x => x.Key);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MapAsteroidBeltPosition",
+                name: "MapConstellations",
                 columns: table => new
                 {
-                    Key = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Key = table.Column<long>(type: "bigint", nullable: false),
+                    FactionID = table.Column<long>(type: "bigint", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MapConstellationX = table.Column<double>(type: "float", nullable: false),
+                    MapConstellationY = table.Column<double>(type: "float", nullable: false),
+                    MapConstellationZ = table.Column<double>(type: "float", nullable: false),
+                    RegionID = table.Column<long>(type: "bigint", nullable: false),
+                    SolarSystemIDs = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WormholeClassID = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MapConstellations", x => x.Key);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MapMoons",
+                columns: table => new
+                {
+                    Key = table.Column<long>(type: "bigint", nullable: false),
+                    HeightMap1 = table.Column<long>(type: "bigint", nullable: false),
+                    HeightMap2 = table.Column<long>(type: "bigint", nullable: false),
+                    Population = table.Column<bool>(type: "bit", nullable: false),
+                    ShaderPreset = table.Column<long>(type: "bigint", nullable: false),
+                    CelestialIndex = table.Column<long>(type: "bigint", nullable: false),
+                    OrbitID = table.Column<long>(type: "bigint", nullable: false),
                     X = table.Column<double>(type: "float", nullable: false),
                     Y = table.Column<double>(type: "float", nullable: false),
-                    Z = table.Column<double>(type: "float", nullable: false)
+                    Z = table.Column<double>(type: "float", nullable: false),
+                    Radius = table.Column<double>(type: "float", nullable: false),
+                    SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
+                    Density = table.Column<double>(type: "float", nullable: false),
+                    Eccentricity = table.Column<double>(type: "float", nullable: false),
+                    EscapeVelocity = table.Column<double>(type: "float", nullable: false),
+                    Locked = table.Column<bool>(type: "bit", nullable: false),
+                    MassDust = table.Column<double>(type: "float", nullable: false),
+                    MassGas = table.Column<double>(type: "float", nullable: false),
+                    OrbitPeriod = table.Column<double>(type: "float", nullable: false),
+                    OrbitRadius = table.Column<double>(type: "float", nullable: false),
+                    Pressure = table.Column<double>(type: "float", nullable: true),
+                    RotationRate = table.Column<double>(type: "float", nullable: false),
+                    SpectralClass = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SurfaceGravity = table.Column<double>(type: "float", nullable: false),
+                    Temperature = table.Column<double>(type: "float", nullable: false),
+                    TypeID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MapAsteroidBeltPosition", x => x.Key);
+                    table.PrimaryKey("PK_MapMoons", x => x.Key);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MapConstellationPosition",
+                name: "MapPlanets",
                 columns: table => new
                 {
-                    Key = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Key = table.Column<long>(type: "bigint", nullable: false),
+                    AsteroidBeltIDs = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HeightMap1 = table.Column<long>(type: "bigint", nullable: false),
+                    HeightMap2 = table.Column<long>(type: "bigint", nullable: false),
+                    Population = table.Column<bool>(type: "bit", nullable: false),
+                    ShaderPreset = table.Column<long>(type: "bigint", nullable: false),
+                    CelestialIndex = table.Column<long>(type: "bigint", nullable: false),
+                    MoonIDs = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NpcStationIDs = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrbitID = table.Column<long>(type: "bigint", nullable: false),
                     X = table.Column<double>(type: "float", nullable: false),
                     Y = table.Column<double>(type: "float", nullable: false),
-                    Z = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MapConstellationPosition", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MapMoonCelestialStatistics",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Z = table.Column<double>(type: "float", nullable: false),
+                    Radius = table.Column<double>(type: "float", nullable: false),
+                    SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
                     Density = table.Column<double>(type: "float", nullable: false),
                     Eccentricity = table.Column<double>(type: "float", nullable: false),
                     EscapeVelocity = table.Column<double>(type: "float", nullable: false),
@@ -694,38 +717,14 @@ namespace EveLoader.Repositories.Migrations
                     OrbitRadius = table.Column<double>(type: "float", nullable: false),
                     Pressure = table.Column<double>(type: "float", nullable: true),
                     RotationRate = table.Column<double>(type: "float", nullable: false),
-                    SpectralClass = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpectralClass = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SurfaceGravity = table.Column<double>(type: "float", nullable: false),
-                    Temperature = table.Column<double>(type: "float", nullable: false)
+                    Temperature = table.Column<double>(type: "float", nullable: false),
+                    TypeID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MapMoonCelestialStatistics", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MapPlanetCelestialStatistics",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Density = table.Column<double>(type: "float", nullable: false),
-                    Eccentricity = table.Column<double>(type: "float", nullable: false),
-                    EscapeVelocity = table.Column<double>(type: "float", nullable: false),
-                    Locked = table.Column<bool>(type: "bit", nullable: false),
-                    MassDust = table.Column<double>(type: "float", nullable: false),
-                    MassGas = table.Column<double>(type: "float", nullable: false),
-                    OrbitPeriod = table.Column<double>(type: "float", nullable: false),
-                    OrbitRadius = table.Column<double>(type: "float", nullable: false),
-                    Pressure = table.Column<double>(type: "float", nullable: true),
-                    RotationRate = table.Column<double>(type: "float", nullable: false),
-                    SpectralClass = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SurfaceGravity = table.Column<double>(type: "float", nullable: false),
-                    Temperature = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MapPlanetCelestialStatistics", x => x.Key);
+                    table.PrimaryKey("PK_MapPlanets", x => x.Key);
                 });
 
             migrationBuilder.CreateTable(
@@ -733,14 +732,14 @@ namespace EveLoader.Repositories.Migrations
                 columns: table => new
                 {
                     Key = table.Column<long>(type: "bigint", nullable: false),
-                    ConstellationIDs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConstellationIDs = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FactionID = table.Column<long>(type: "bigint", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NebulaID = table.Column<long>(type: "bigint", nullable: false),
-                    PositionX = table.Column<double>(type: "float", nullable: false),
-                    PositionY = table.Column<double>(type: "float", nullable: false),
-                    PositionZ = table.Column<double>(type: "float", nullable: false),
+                    X = table.Column<double>(type: "float", nullable: false),
+                    Y = table.Column<double>(type: "float", nullable: false),
+                    Z = table.Column<double>(type: "float", nullable: false),
                     WormholeClassID = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
@@ -754,9 +753,9 @@ namespace EveLoader.Repositories.Migrations
                 {
                     Key = table.Column<long>(type: "bigint", nullable: false),
                     EffectBeaconTypeID = table.Column<long>(type: "bigint", nullable: false),
-                    PositionX = table.Column<double>(type: "float", nullable: false),
-                    PositionY = table.Column<double>(type: "float", nullable: false),
-                    PositionZ = table.Column<double>(type: "float", nullable: false),
+                    X = table.Column<double>(type: "float", nullable: false),
+                    Y = table.Column<double>(type: "float", nullable: false),
+                    Z = table.Column<double>(type: "float", nullable: false),
                     SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
                     TypeID = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -777,20 +776,20 @@ namespace EveLoader.Repositories.Migrations
                     Hub = table.Column<bool>(type: "bit", nullable: true),
                     International = table.Column<bool>(type: "bit", nullable: true),
                     Luminosity = table.Column<double>(type: "float", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlanetIDs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PositionX = table.Column<double>(type: "float", nullable: false),
-                    PositionY = table.Column<double>(type: "float", nullable: false),
-                    PositionZ = table.Column<double>(type: "float", nullable: false),
-                    Position2DX = table.Column<double>(type: "float", nullable: false),
-                    Position2DY = table.Column<double>(type: "float", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlanetIDs = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    X = table.Column<double>(type: "float", nullable: false),
+                    Y = table.Column<double>(type: "float", nullable: false),
+                    Z = table.Column<double>(type: "float", nullable: false),
+                    Position2DX = table.Column<double>(type: "float", nullable: true),
+                    Position2DY = table.Column<double>(type: "float", nullable: true),
                     Radius = table.Column<double>(type: "float", nullable: false),
                     RegionID = table.Column<long>(type: "bigint", nullable: false),
                     Regional = table.Column<bool>(type: "bit", nullable: true),
-                    SecurityClass = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SecurityClass = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityStatus = table.Column<double>(type: "float", nullable: false),
                     StarID = table.Column<long>(type: "bigint", nullable: false),
-                    StargateIDs = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    StargateIDs = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -802,11 +801,11 @@ namespace EveLoader.Repositories.Migrations
                 columns: table => new
                 {
                     Key = table.Column<long>(type: "bigint", nullable: false),
-                    DestinationSolarSystemID = table.Column<long>(type: "bigint", nullable: false),
-                    DestinationStargateID = table.Column<long>(type: "bigint", nullable: false),
-                    PositionX = table.Column<double>(type: "float", nullable: false),
-                    PositionY = table.Column<double>(type: "float", nullable: false),
-                    PositionZ = table.Column<double>(type: "float", nullable: false),
+                    StargateDestinationSolarSystemID = table.Column<long>(type: "bigint", nullable: false),
+                    StargateDestinationStargateID = table.Column<long>(type: "bigint", nullable: false),
+                    X = table.Column<double>(type: "float", nullable: false),
+                    Y = table.Column<double>(type: "float", nullable: false),
+                    Z = table.Column<double>(type: "float", nullable: false),
                     SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
                     TypeID = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -822,32 +821,16 @@ namespace EveLoader.Repositories.Migrations
                     Key = table.Column<long>(type: "bigint", nullable: false),
                     Radius = table.Column<long>(type: "bigint", nullable: false),
                     SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
-                    StatisticsAge = table.Column<double>(type: "float", nullable: false),
-                    StatisticsLife = table.Column<double>(type: "float", nullable: false),
-                    StatisticsLuminosity = table.Column<double>(type: "float", nullable: false),
-                    StatisticsSpectralClass = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StatisticsTemperature = table.Column<double>(type: "float", nullable: false),
+                    Age = table.Column<double>(type: "float", nullable: false),
+                    Life = table.Column<double>(type: "float", nullable: false),
+                    Luminosity = table.Column<double>(type: "float", nullable: false),
+                    SpectralClass = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Temperature = table.Column<double>(type: "float", nullable: false),
                     TypeID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MapStars", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlanetAttributes",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    HeightMap1 = table.Column<long>(type: "bigint", nullable: false),
-                    HeightMap2 = table.Column<long>(type: "bigint", nullable: false),
-                    Population = table.Column<bool>(type: "bit", nullable: false),
-                    ShaderPreset = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlanetAttributes", x => x.Key);
                 });
 
             migrationBuilder.CreateTable(
@@ -922,16 +905,17 @@ namespace EveLoader.Repositories.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<long>(type: "bigint", nullable: false),
                     TypeID = table.Column<long>(type: "bigint", nullable: false),
-                    BlueprintManufacturingKey = table.Column<long>(type: "bigint", nullable: true)
+                    BlueprintManufacturingId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BlueprintManufacturingMaterial", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_BlueprintManufacturingMaterial_BlueprintManufacturing_BlueprintManufacturingKey",
-                        column: x => x.BlueprintManufacturingKey,
+                        name: "FK_BlueprintManufacturingMaterial_BlueprintManufacturing_BlueprintManufacturingId",
+                        column: x => x.BlueprintManufacturingId,
                         principalTable: "BlueprintManufacturing",
-                        principalColumn: "Key");
+                        principalColumn: "Key",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -942,16 +926,17 @@ namespace EveLoader.Repositories.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<long>(type: "bigint", nullable: false),
                     TypeID = table.Column<long>(type: "bigint", nullable: false),
-                    BlueprintManufacturingKey = table.Column<long>(type: "bigint", nullable: true)
+                    BlueprintManufacturingId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BlueprintManufacturingProduct", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_BlueprintManufacturingProduct_BlueprintManufacturing_BlueprintManufacturingKey",
-                        column: x => x.BlueprintManufacturingKey,
+                        name: "FK_BlueprintManufacturingProduct_BlueprintManufacturing_BlueprintManufacturingId",
+                        column: x => x.BlueprintManufacturingId,
                         principalTable: "BlueprintManufacturing",
-                        principalColumn: "Key");
+                        principalColumn: "Key",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -962,16 +947,17 @@ namespace EveLoader.Repositories.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Level = table.Column<long>(type: "bigint", nullable: false),
                     TypeID = table.Column<long>(type: "bigint", nullable: false),
-                    BlueprintManufacturingKey = table.Column<long>(type: "bigint", nullable: true)
+                    BlueprintManufacturingId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BlueprintManufacturingSkill", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_BlueprintManufacturingSkill_BlueprintManufacturing_BlueprintManufacturingKey",
-                        column: x => x.BlueprintManufacturingKey,
+                        name: "FK_BlueprintManufacturingSkill_BlueprintManufacturing_BlueprintManufacturingId",
+                        column: x => x.BlueprintManufacturingId,
                         principalTable: "BlueprintManufacturing",
-                        principalColumn: "Key");
+                        principalColumn: "Key",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -981,21 +967,15 @@ namespace EveLoader.Repositories.Migrations
                     Key = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BlueprintId = table.Column<long>(type: "bigint", nullable: false),
-                    CopyingId = table.Column<long>(type: "bigint", nullable: true),
                     InventionId = table.Column<long>(type: "bigint", nullable: true),
                     ManufacturingId = table.Column<long>(type: "bigint", nullable: true),
-                    ResearchMaterialId = table.Column<long>(type: "bigint", nullable: true),
-                    ResearchTimeId = table.Column<long>(type: "bigint", nullable: true)
+                    ResearchMaterialTime = table.Column<long>(type: "bigint", nullable: false),
+                    ResearchTimeTime = table.Column<long>(type: "bigint", nullable: false),
+                    CopyingTime = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BlueprintActivities", x => x.Key);
-                    table.ForeignKey(
-                        name: "FK_BlueprintActivities_BlueprintCopying_CopyingId",
-                        column: x => x.CopyingId,
-                        principalTable: "BlueprintCopying",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BlueprintActivities_BlueprintInvention_InventionId",
                         column: x => x.InventionId,
@@ -1006,18 +986,6 @@ namespace EveLoader.Repositories.Migrations
                         name: "FK_BlueprintActivities_BlueprintManufacturing_ManufacturingId",
                         column: x => x.ManufacturingId,
                         principalTable: "BlueprintManufacturing",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BlueprintActivities_BlueprintResearchMaterial_ResearchMaterialId",
-                        column: x => x.ResearchMaterialId,
-                        principalTable: "BlueprintResearchMaterial",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BlueprintActivities_BlueprintResearchTime_ResearchTimeId",
-                        column: x => x.ResearchTimeId,
-                        principalTable: "BlueprintResearchTime",
                         principalColumn: "Key",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -1093,48 +1061,6 @@ namespace EveLoader.Repositories.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GraphicMaterialSets",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false),
-                    ColorHullKey = table.Column<long>(type: "bigint", nullable: false),
-                    ColorPrimaryKey = table.Column<long>(type: "bigint", nullable: false),
-                    ColorSecondaryKey = table.Column<long>(type: "bigint", nullable: false),
-                    ColorWindowKey = table.Column<long>(type: "bigint", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SofFactionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SofRaceHint = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GraphicMaterialSets", x => x.Key);
-                    table.ForeignKey(
-                        name: "FK_GraphicMaterialSets_Color_ColorHullKey",
-                        column: x => x.ColorHullKey,
-                        principalTable: "Color",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GraphicMaterialSets_Color_ColorPrimaryKey",
-                        column: x => x.ColorPrimaryKey,
-                        principalTable: "Color",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GraphicMaterialSets_Color_ColorSecondaryKey",
-                        column: x => x.ColorSecondaryKey,
-                        principalTable: "Color",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GraphicMaterialSets_Color_ColorWindowKey",
-                        column: x => x.ColorWindowKey,
-                        principalTable: "Color",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ContrabandFaction",
                 columns: table => new
                 {
@@ -1188,14 +1114,14 @@ namespace EveLoader.Repositories.Migrations
                     Key = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DogmaAttributeID = table.Column<long>(type: "bigint", nullable: false),
-                    DBuffCollectionKey = table.Column<long>(type: "bigint", nullable: true)
+                    DBuffCollectionId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DBuffItemModifier", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_DBuffItemModifier_DBuffCollections_DBuffCollectionKey",
-                        column: x => x.DBuffCollectionKey,
+                        name: "FK_DBuffItemModifier_DBuffCollections_DBuffCollectionId",
+                        column: x => x.DBuffCollectionId,
                         principalTable: "DBuffCollections",
                         principalColumn: "Key",
                         onDelete: ReferentialAction.Cascade);
@@ -1209,14 +1135,14 @@ namespace EveLoader.Repositories.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DogmaAttributeID = table.Column<long>(type: "bigint", nullable: false),
                     GroupID = table.Column<long>(type: "bigint", nullable: false),
-                    DBuffCollectionKey = table.Column<long>(type: "bigint", nullable: true)
+                    DBuffCollectionId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DBuffLocationGroupModifier", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_DBuffLocationGroupModifier_DBuffCollections_DBuffCollectionKey",
-                        column: x => x.DBuffCollectionKey,
+                        name: "FK_DBuffLocationGroupModifier_DBuffCollections_DBuffCollectionId",
+                        column: x => x.DBuffCollectionId,
                         principalTable: "DBuffCollections",
                         principalColumn: "Key",
                         onDelete: ReferentialAction.Cascade);
@@ -1229,14 +1155,14 @@ namespace EveLoader.Repositories.Migrations
                     Key = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DogmaAttributeID = table.Column<long>(type: "bigint", nullable: false),
-                    DBuffCollectionKey = table.Column<long>(type: "bigint", nullable: true)
+                    DBuffCollectionId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DBuffLocationModifier", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_DBuffLocationModifier_DBuffCollections_DBuffCollectionKey",
-                        column: x => x.DBuffCollectionKey,
+                        name: "FK_DBuffLocationModifier_DBuffCollections_DBuffCollectionId",
+                        column: x => x.DBuffCollectionId,
                         principalTable: "DBuffCollections",
                         principalColumn: "Key",
                         onDelete: ReferentialAction.Cascade);
@@ -1250,14 +1176,14 @@ namespace EveLoader.Repositories.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DogmaAttributeID = table.Column<long>(type: "bigint", nullable: false),
                     SkillID = table.Column<long>(type: "bigint", nullable: false),
-                    DBuffCollectionKey = table.Column<long>(type: "bigint", nullable: true)
+                    DBuffCollectionId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DBuffLocationRequiredSkillModifier", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_DBuffLocationRequiredSkillModifier_DBuffCollections_DBuffCollectionKey",
-                        column: x => x.DBuffCollectionKey,
+                        name: "FK_DBuffLocationRequiredSkillModifier_DBuffCollections_DBuffCollectionId",
+                        column: x => x.DBuffCollectionId,
                         principalTable: "DBuffCollections",
                         principalColumn: "Key",
                         onDelete: ReferentialAction.Cascade);
@@ -1295,16 +1221,17 @@ namespace EveLoader.Repositories.Migrations
                     HighIsGood = table.Column<bool>(type: "bit", nullable: true),
                     Max = table.Column<double>(type: "float", nullable: false),
                     Min = table.Column<double>(type: "float", nullable: false),
-                    DynamicItemAttributeKey = table.Column<long>(type: "bigint", nullable: true)
+                    DynamicItemAttributeId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DynamicItemAttributeRange", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_DynamicItemAttributeRange_DynamicItemAttributes_DynamicItemAttributeKey",
-                        column: x => x.DynamicItemAttributeKey,
+                        name: "FK_DynamicItemAttributeRange_DynamicItemAttributes_DynamicItemAttributeId",
+                        column: x => x.DynamicItemAttributeId,
                         principalTable: "DynamicItemAttributes",
-                        principalColumn: "Key");
+                        principalColumn: "Key",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1315,16 +1242,17 @@ namespace EveLoader.Repositories.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicableTypes = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ResultingType = table.Column<long>(type: "bigint", nullable: false),
-                    DynamicItemAttributeKey = table.Column<long>(type: "bigint", nullable: true)
+                    DynamicItemAttributeId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DynamicItemInputOutputMapping", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_DynamicItemInputOutputMapping_DynamicItemAttributes_DynamicItemAttributeKey",
-                        column: x => x.DynamicItemAttributeKey,
+                        name: "FK_DynamicItemInputOutputMapping_DynamicItemAttributes_DynamicItemAttributeId",
+                        column: x => x.DynamicItemAttributeId,
                         principalTable: "DynamicItemAttributes",
-                        principalColumn: "Key");
+                        principalColumn: "Key",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1449,129 +1377,6 @@ namespace EveLoader.Repositories.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MapAsteroidBelts",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false),
-                    CelestialIndex = table.Column<long>(type: "bigint", nullable: false),
-                    OrbitID = table.Column<long>(type: "bigint", nullable: false),
-                    OrbitIndex = table.Column<long>(type: "bigint", nullable: false),
-                    MapAsteroidBeltPositionKey = table.Column<long>(type: "bigint", nullable: false),
-                    Radius = table.Column<double>(type: "float", nullable: false),
-                    SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
-                    StatisticsKey = table.Column<long>(type: "bigint", nullable: false),
-                    TypeID = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MapAsteroidBelts", x => x.Key);
-                    table.ForeignKey(
-                        name: "FK_MapAsteroidBelts_MapAsteroidBeltCelestialStatistics_StatisticsKey",
-                        column: x => x.StatisticsKey,
-                        principalTable: "MapAsteroidBeltCelestialStatistics",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MapAsteroidBelts_MapAsteroidBeltPosition_MapAsteroidBeltPositionKey",
-                        column: x => x.MapAsteroidBeltPositionKey,
-                        principalTable: "MapAsteroidBeltPosition",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MapConstellations",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false),
-                    FactionID = table.Column<long>(type: "bigint", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MapConstellationPositionKey = table.Column<long>(type: "bigint", nullable: false),
-                    RegionID = table.Column<long>(type: "bigint", nullable: false),
-                    SolarSystemIDs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WormholeClassID = table.Column<long>(type: "bigint", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MapConstellations", x => x.Key);
-                    table.ForeignKey(
-                        name: "FK_MapConstellations_MapConstellationPosition_MapConstellationPositionKey",
-                        column: x => x.MapConstellationPositionKey,
-                        principalTable: "MapConstellationPosition",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MapMoons",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false),
-                    AttributesKey = table.Column<long>(type: "bigint", nullable: false),
-                    CelestialIndex = table.Column<long>(type: "bigint", nullable: false),
-                    OrbitID = table.Column<long>(type: "bigint", nullable: false),
-                    PositionX = table.Column<double>(type: "float", nullable: false),
-                    PositionY = table.Column<double>(type: "float", nullable: false),
-                    PositionZ = table.Column<double>(type: "float", nullable: false),
-                    Radius = table.Column<double>(type: "float", nullable: false),
-                    SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
-                    StatisticsKey = table.Column<long>(type: "bigint", nullable: false),
-                    TypeID = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MapMoons", x => x.Key);
-                    table.ForeignKey(
-                        name: "FK_MapMoons_MapMoonCelestialStatistics_StatisticsKey",
-                        column: x => x.StatisticsKey,
-                        principalTable: "MapMoonCelestialStatistics",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MapMoons_PlanetAttributes_AttributesKey",
-                        column: x => x.AttributesKey,
-                        principalTable: "PlanetAttributes",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MapPlanets",
-                columns: table => new
-                {
-                    Key = table.Column<long>(type: "bigint", nullable: false),
-                    AsteroidBeltIDs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AttributesKey = table.Column<long>(type: "bigint", nullable: false),
-                    CelestialIndex = table.Column<long>(type: "bigint", nullable: false),
-                    MoonIDs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NpcStationIDs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrbitID = table.Column<long>(type: "bigint", nullable: false),
-                    PositionX = table.Column<double>(type: "float", nullable: false),
-                    PositionY = table.Column<double>(type: "float", nullable: false),
-                    PositionZ = table.Column<double>(type: "float", nullable: false),
-                    Radius = table.Column<double>(type: "float", nullable: false),
-                    SolarSystemID = table.Column<long>(type: "bigint", nullable: false),
-                    StatisticsKey = table.Column<long>(type: "bigint", nullable: false),
-                    TypeID = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MapPlanets", x => x.Key);
-                    table.ForeignKey(
-                        name: "FK_MapPlanets_MapPlanetCelestialStatistics_StatisticsKey",
-                        column: x => x.StatisticsKey,
-                        principalTable: "MapPlanetCelestialStatistics",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MapPlanets_PlanetAttributes_AttributesKey",
-                        column: x => x.AttributesKey,
-                        principalTable: "PlanetAttributes",
-                        principalColumn: "Key",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "FreelanceJobSchemaParameter",
                 columns: table => new
                 {
@@ -1631,13 +1436,6 @@ namespace EveLoader.Repositories.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlueprintActivities_CopyingId",
-                table: "BlueprintActivities",
-                column: "CopyingId",
-                unique: true,
-                filter: "[CopyingId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BlueprintActivities_InventionId",
                 table: "BlueprintActivities",
                 column: "InventionId",
@@ -1650,20 +1448,6 @@ namespace EveLoader.Repositories.Migrations
                 column: "ManufacturingId",
                 unique: true,
                 filter: "[ManufacturingId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BlueprintActivities_ResearchMaterialId",
-                table: "BlueprintActivities",
-                column: "ResearchMaterialId",
-                unique: true,
-                filter: "[ResearchMaterialId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BlueprintActivities_ResearchTimeId",
-                table: "BlueprintActivities",
-                column: "ResearchTimeId",
-                unique: true,
-                filter: "[ResearchTimeId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlueprintInventionMaterial_BlueprintInventionId",
@@ -1681,19 +1465,19 @@ namespace EveLoader.Repositories.Migrations
                 column: "BlueprintInventionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlueprintManufacturingMaterial_BlueprintManufacturingKey",
+                name: "IX_BlueprintManufacturingMaterial_BlueprintManufacturingId",
                 table: "BlueprintManufacturingMaterial",
-                column: "BlueprintManufacturingKey");
+                column: "BlueprintManufacturingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlueprintManufacturingProduct_BlueprintManufacturingKey",
+                name: "IX_BlueprintManufacturingProduct_BlueprintManufacturingId",
                 table: "BlueprintManufacturingProduct",
-                column: "BlueprintManufacturingKey");
+                column: "BlueprintManufacturingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlueprintManufacturingSkill_BlueprintManufacturingKey",
+                name: "IX_BlueprintManufacturingSkill_BlueprintManufacturingId",
                 table: "BlueprintManufacturingSkill",
-                column: "BlueprintManufacturingKey");
+                column: "BlueprintManufacturingId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CertificateRecommendedFor_CertificateKey",
@@ -1721,24 +1505,24 @@ namespace EveLoader.Repositories.Migrations
                 column: "ControlTowerResourceKey");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DBuffItemModifier_DBuffCollectionKey",
+                name: "IX_DBuffItemModifier_DBuffCollectionId",
                 table: "DBuffItemModifier",
-                column: "DBuffCollectionKey");
+                column: "DBuffCollectionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DBuffLocationGroupModifier_DBuffCollectionKey",
+                name: "IX_DBuffLocationGroupModifier_DBuffCollectionId",
                 table: "DBuffLocationGroupModifier",
-                column: "DBuffCollectionKey");
+                column: "DBuffCollectionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DBuffLocationModifier_DBuffCollectionKey",
+                name: "IX_DBuffLocationModifier_DBuffCollectionId",
                 table: "DBuffLocationModifier",
-                column: "DBuffCollectionKey");
+                column: "DBuffCollectionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DBuffLocationRequiredSkillModifier_DBuffCollectionKey",
+                name: "IX_DBuffLocationRequiredSkillModifier_DBuffCollectionId",
                 table: "DBuffLocationRequiredSkillModifier",
-                column: "DBuffCollectionKey");
+                column: "DBuffCollectionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DogmaEffectModifierInfo_DogmaEffectKey",
@@ -1746,14 +1530,14 @@ namespace EveLoader.Repositories.Migrations
                 column: "DogmaEffectKey");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicItemAttributeRange_DynamicItemAttributeKey",
+                name: "IX_DynamicItemAttributeRange_DynamicItemAttributeId",
                 table: "DynamicItemAttributeRange",
-                column: "DynamicItemAttributeKey");
+                column: "DynamicItemAttributeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicItemInputOutputMapping_DynamicItemAttributeKey",
+                name: "IX_DynamicItemInputOutputMapping_DynamicItemAttributeId",
                 table: "DynamicItemInputOutputMapping",
-                column: "DynamicItemAttributeKey");
+                column: "DynamicItemAttributeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EpicArcMission_EpicArcKey",
@@ -1828,71 +1612,6 @@ namespace EveLoader.Repositories.Migrations
                 name: "IX_FreelanceJobSchemaParameter_MatcherKey",
                 table: "FreelanceJobSchemaParameter",
                 column: "MatcherKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GraphicMaterialSets_ColorHullKey",
-                table: "GraphicMaterialSets",
-                column: "ColorHullKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GraphicMaterialSets_ColorPrimaryKey",
-                table: "GraphicMaterialSets",
-                column: "ColorPrimaryKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GraphicMaterialSets_ColorSecondaryKey",
-                table: "GraphicMaterialSets",
-                column: "ColorSecondaryKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GraphicMaterialSets_ColorWindowKey",
-                table: "GraphicMaterialSets",
-                column: "ColorWindowKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MapAsteroidBelts_MapAsteroidBeltPositionKey",
-                table: "MapAsteroidBelts",
-                column: "MapAsteroidBeltPositionKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MapAsteroidBelts_StatisticsKey",
-                table: "MapAsteroidBelts",
-                column: "StatisticsKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MapConstellations_MapConstellationPositionKey",
-                table: "MapConstellations",
-                column: "MapConstellationPositionKey");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MapMoons_AttributesKey",
-                table: "MapMoons",
-                column: "AttributesKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MapMoons_StatisticsKey",
-                table: "MapMoons",
-                column: "StatisticsKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MapPlanets_AttributesKey",
-                table: "MapPlanets",
-                column: "AttributesKey",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MapPlanets_StatisticsKey",
-                table: "MapPlanets",
-                column: "StatisticsKey",
                 unique: true);
         }
 
@@ -2050,15 +1769,6 @@ namespace EveLoader.Repositories.Migrations
                 name: "MapStars");
 
             migrationBuilder.DropTable(
-                name: "BlueprintCopying");
-
-            migrationBuilder.DropTable(
-                name: "BlueprintResearchMaterial");
-
-            migrationBuilder.DropTable(
-                name: "BlueprintResearchTime");
-
-            migrationBuilder.DropTable(
                 name: "Blueprints");
 
             migrationBuilder.DropTable(
@@ -2102,27 +1812,6 @@ namespace EveLoader.Repositories.Migrations
 
             migrationBuilder.DropTable(
                 name: "FreelanceJobSchemaItemDelivery");
-
-            migrationBuilder.DropTable(
-                name: "Color");
-
-            migrationBuilder.DropTable(
-                name: "MapAsteroidBeltCelestialStatistics");
-
-            migrationBuilder.DropTable(
-                name: "MapAsteroidBeltPosition");
-
-            migrationBuilder.DropTable(
-                name: "MapConstellationPosition");
-
-            migrationBuilder.DropTable(
-                name: "MapMoonCelestialStatistics");
-
-            migrationBuilder.DropTable(
-                name: "MapPlanetCelestialStatistics");
-
-            migrationBuilder.DropTable(
-                name: "PlanetAttributes");
 
             migrationBuilder.DropTable(
                 name: "FreelanceJobSchemaBooleanOption");

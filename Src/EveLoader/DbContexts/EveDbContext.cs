@@ -24,7 +24,6 @@ namespace EveLoader.DbContexts
         public DbSet<Archetype> Archetypes { get; set; }
         public DbSet<Bloodline> Bloodlines { get; set; }
         public DbSet<Blueprint> Blueprints { get; set; }
-
         public DbSet<Category> Categories { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
         public DbSet<CharacterAttribute> CharacterAttributes { get; set; }
@@ -58,16 +57,16 @@ namespace EveLoader.DbContexts
         public DbSet<MapSolarSystem> MapSolarSystems { get; set; }
         public DbSet<MapStargate> MapStargates { get; set; }
         public DbSet<MapStar> MapStars { get; set; }
-        //public DbSet<MarketGroup> MarketGroups { get; set; }
-        //public DbSet<Mastery> Masteries { get; set; }
-        //public DbSet<MercenaryTacticalOperation> MercenaryTacticalOperations { get; set; }
-        //public DbSet<MetaGroup> MetaGroups { get; set; }
-        ////public DbSet<MilitaryCampaignObjective> MilitaryCampaignObjectives { get; set; }
-        ////public DbSet<MilitaryCampaign> MilitaryCampaigns { get; set; }
-        //public DbSet<Mission> Missions { get; set; }
-        //public DbSet<NpcCharacter> NpcCharacters { get; set; }
-        //public DbSet<NpcCorporationDivision> NpcCorporationDivisions { get; set; }
-        ////public DbSet<NpcCorporation> NpcCorporations { get; set; }
+        public DbSet<MarketGroup> MarketGroups { get; set; }
+        public DbSet<Mastery> Masteries { get; set; }
+        public DbSet<MercenaryTacticalOperation> MercenaryTacticalOperations { get; set; }
+        public DbSet<MetaGroup> MetaGroups { get; set; }
+        //public DbSet<MilitaryCampaignObjective> MilitaryCampaignObjectives { get; set; }
+        //public DbSet<MilitaryCampaign> MilitaryCampaigns { get; set; }
+        public DbSet<Mission> Missions { get; set; }
+        public DbSet<NpcCharacter> NpcCharacters { get; set; }
+        public DbSet<NpcCorporationDivision> NpcCorporationDivisions { get; set; }
+        //public DbSet<NpcCorporation> NpcCorporations { get; set; }
         //public DbSet<NpcStation> NpcStations { get; set; }
         //public DbSet<PlanetResource> PlanetResources { get; set; }
         //public DbSet<PlanetSchematic> PlanetSchematics { get; set; }

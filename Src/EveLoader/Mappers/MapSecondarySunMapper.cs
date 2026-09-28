@@ -9,14 +9,9 @@ public static class MapSecondarySunMapper
         {
             Key = model.Key,
             EffectBeaconTypeID = model.EffectBeaconTypeID,
-            Position = model.Position == null
-                ? null
-                : new Position
-                {
-                    X = model.Position.X,
-                    Y = model.Position.Y,
-                    Z = model.Position.Z
-                },
+            X = model.Position.X,
+            Y = model.Position.Y,
+            Z = model.Position.Z,
             SolarSystemID = model.SolarSystemID,
             TypeID = model.TypeID
         };

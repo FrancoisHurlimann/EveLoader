@@ -10,22 +10,22 @@ namespace EveLoader.DbContexts.Configurations
         {
             builder.HasMany(d => d.ItemModifiers)
                 .WithOne()
-                .HasForeignKey("DBuffCollectionKey")
+                .HasForeignKey("DBuffCollectionId")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(d => d.LocationGroupModifiers)
                 .WithOne()
-                .HasForeignKey("DBuffCollectionKey")
+                .HasForeignKey("DBuffCollectionId")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(d => d.LocationModifiers)
                 .WithOne()
-                .HasForeignKey("DBuffCollectionKey")
+                .HasForeignKey("DBuffCollectionId")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(d => d.LocationRequiredSkillModifiers)
                 .WithOne()
-                .HasForeignKey("DBuffCollectionKey")
+                .HasForeignKey("DBuffCollectionId")
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

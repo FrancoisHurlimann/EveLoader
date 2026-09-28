@@ -14,10 +14,10 @@ namespace EveLoaderEntities
 
         public long ArchetypeID { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public long FactionID { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

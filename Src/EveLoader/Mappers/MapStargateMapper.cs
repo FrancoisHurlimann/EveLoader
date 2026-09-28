@@ -8,21 +8,11 @@ public static class MapStargateMapper
         => new MapStargate
         {
             Key = model.Key,
-            Destination = model.Destination == null
-                ? null
-                : new StargateDestination
-                {
-                    SolarSystemID = model.Destination.SolarSystemID,
-                    StargateID = model.Destination.StargateID
-                },
-            Position = model.Position == null
-                ? null
-                : new Position
-                {
-                    X = model.Position.X,
-                    Y = model.Position.Y,
-                    Z = model.Position.Z
-                },
+            StargateDestinationSolarSystemID = model.Destination.SolarSystemID,
+            StargateDestinationStargateID = model.Destination.StargateID,
+            X = model.Position.X,
+            Y = model.Position.Y,
+            Z = model.Position.Z,
             SolarSystemID = model.SolarSystemID,
             TypeID = model.TypeID
         };

@@ -9,19 +9,19 @@ namespace EveLoaderEntities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
-        public StargateDestination Destination { get; set; }
+        public long StargateDestinationSolarSystemID { get; set; }
 
-        public Position Position { get; set; }
+        public long StargateDestinationStargateID { get; set; }
+
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+        public double Z { get; set; }
 
         public long SolarSystemID { get; set; }
 
         public long TypeID { get; set; }
     }
 
-    public class StargateDestination
-    {
-        public long SolarSystemID { get; set; }
-
-        public long StargateID { get; set; }
-    }
 }

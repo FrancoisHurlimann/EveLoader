@@ -1,5 +1,6 @@
-using System.Linq;
+using EveLoader.Console.StaticDataModels;
 using EveLoaderEntities;
+using System.Linq;
 
 namespace EveLoader.Mappers;
 
@@ -9,10 +10,6 @@ public static class MasteryMapper
         => new Mastery
         {
             Key = model.Key,
-            Value = model.Value?.Select(v => new MasteryLevel
-            {
-                Key = v.Key,
-                Value = v.Value?.ToList()
-            }).ToList()
+            Value = model.Value?.SelectMany(level => level.Value).ToList()
         };
 }

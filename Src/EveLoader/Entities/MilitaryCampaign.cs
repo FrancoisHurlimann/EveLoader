@@ -13,7 +13,9 @@ namespace EveLoaderEntities
 
         public JsonElement Annotations { get; set; }
 
-        public MilitaryCampaignIssuer Issuer { get; set; }
+        public long? CorporationID { get; set; }
+
+        public long? FactionID { get; set; }
 
         public string Subtitle { get; set; }
 
@@ -22,10 +24,5 @@ namespace EveLoaderEntities
         public string Title { get; set; }
     }
 
-    public class MilitaryCampaignIssuer
-    {
-        public long? CorporationID { get; set; }
-
-        public long? FactionID { get; set; }
-    }
+  
 }

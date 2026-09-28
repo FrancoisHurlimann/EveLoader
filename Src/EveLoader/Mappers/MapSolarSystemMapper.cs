@@ -20,21 +20,11 @@ public static class MapSolarSystemMapper
                 ? name
                 : model.Name?.Values.FirstOrDefault(),
             PlanetIDs = model.PlanetIDs?.ToList(),
-            Position = model.Position == null
-                ? null
-                : new Position
-                {
-                    X = model.Position.X,
-                    Y = model.Position.Y,
-                    Z = model.Position.Z
-                },
-            Position2D = model.Position2D == null
-                ? null
-                : new Position2D
-                {
-                    X = model.Position2D.X,
-                    Y = model.Position2D.Y
-                },
+            X = model.Position.X,
+            Y = model.Position.Y,
+            Z = model.Position.Z,
+            Position2DX = model.Position2D?.X,
+            Position2DY = model.Position2D?.Y,
             Radius = model.Radius,
             RegionID = model.RegionID,
             Regional = model.Regional,

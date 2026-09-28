@@ -11,34 +11,24 @@ public static class MapAsteroidBeltMapper
             CelestialIndex = model.CelestialIndex,
             OrbitID = model.OrbitID,
             OrbitIndex = model.OrbitIndex,
-            MapAsteroidBeltPosition = model.Position == null
-                ? null
-                : new MapAsteroidBeltPosition
-                {
-                    X = model.Position.X,
-                    Y = model.Position.Y,
-                    Z = model.Position.Z
-                },
+            PositionX = model.Position.X,
+            PositionY = model.Position.Y,
+            PositionZ = model.Position.Z,
             Radius = model.Radius,
             SolarSystemID = model.SolarSystemID,
-            Statistics = model.Statistics == null
-                ? null
-                : new MapAsteroidBeltCelestialStatistics
-                {
-                    Density = model.Statistics.Density,
-                    Eccentricity = model.Statistics.Eccentricity,
-                    EscapeVelocity = model.Statistics.EscapeVelocity,
-                    Locked = model.Statistics.Locked,
-                    MassDust = model.Statistics.MassDust,
-                    MassGas = model.Statistics.MassGas,
-                    OrbitPeriod = model.Statistics.OrbitPeriod,
-                    OrbitRadius = model.Statistics.OrbitRadius,
-                    Pressure = model.Statistics.Pressure,
-                    RotationRate = model.Statistics.RotationRate,
-                    SpectralClass = model.Statistics.SpectralClass,
-                    SurfaceGravity = model.Statistics.SurfaceGravity,
-                    Temperature = model.Statistics.Temperature
-                },
+            CelestialStatisticsDensity = model.Statistics?.Density ?? default,
+            CelestialStatisticsEccentricity = model.Statistics?.Eccentricity ?? default,
+            CelestialStatisticsEscapeVelocity = model.Statistics?.EscapeVelocity ?? default,
+            CelestialStatisticsLocked = model.Statistics?.Locked ?? default,
+            CelestialStatisticsMassDust = model.Statistics?.MassDust ?? default,
+            CelestialStatisticsMassGas = model.Statistics?.MassGas ?? default,
+            CelestialStatisticsOrbitPeriod = model.Statistics?.OrbitPeriod ?? default,
+            CelestialStatisticsOrbitRadius = model.Statistics?.OrbitRadius ?? default,
+            CelestialStatisticsPressure = model.Statistics?.Pressure,
+            CelestialStatisticsRotationRate = model.Statistics?.RotationRate ?? default,
+            CelestialStatisticsSpectralClass = model.Statistics?.SpectralClass,
+            CelestialStatisticsSurfaceGravity = model.Statistics?.SurfaceGravity ?? default,
+            CelestialStatisticsTemperature = model.Statistics?.Temperature ?? default,
             TypeID = model.TypeID
         };
 }

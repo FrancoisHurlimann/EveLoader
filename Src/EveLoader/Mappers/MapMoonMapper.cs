@@ -8,45 +8,30 @@ public static class MapMoonMapper
         => new MapMoon
         {
             Key = model.Key,
-            Attributes = model.Attributes == null
-                ? null
-                : new PlanetAttributes
-                {
-                    HeightMap1 = model.Attributes.HeightMap1,
-                    HeightMap2 = model.Attributes.HeightMap2,
-                    Population = model.Attributes.Population,
-                    ShaderPreset = model.Attributes.ShaderPreset
-                },
+            HeightMap1 = model.Attributes.HeightMap1,
+            HeightMap2 = model.Attributes.HeightMap2,
+            Population = model.Attributes.Population,
+            ShaderPreset = model.Attributes.ShaderPreset,
             CelestialIndex = model.CelestialIndex,
             OrbitID = model.OrbitID,
-            Position = model.Position == null
-                ? null
-                : new Position
-                {
-                    X = model.Position.X,
-                    Y = model.Position.Y,
-                    Z = model.Position.Z
-                },
+            X = model.Position.X,
+            Y = model.Position.Y,
+            Z = model.Position.Z,
             Radius = model.Radius,
             SolarSystemID = model.SolarSystemID,
-            Statistics = model.Statistics == null
-                ? null
-                : new MapMoonCelestialStatistics
-                {
-                    Density = model.Statistics.Density,
-                    Eccentricity = model.Statistics.Eccentricity,
-                    EscapeVelocity = model.Statistics.EscapeVelocity,
-                    Locked = model.Statistics.Locked,
-                    MassDust = model.Statistics.MassDust,
-                    MassGas = model.Statistics.MassGas,
-                    OrbitPeriod = model.Statistics.OrbitPeriod,
-                    OrbitRadius = model.Statistics.OrbitRadius,
-                    Pressure = model.Statistics.Pressure,
-                    RotationRate = model.Statistics.RotationRate,
-                    SpectralClass = model.Statistics.SpectralClass,
-                    SurfaceGravity = model.Statistics.SurfaceGravity,
-                    Temperature = model.Statistics.Temperature
-                },
+            Density = model.Statistics?.Density ?? default,
+            Eccentricity = model.Statistics?.Eccentricity ?? default,
+            EscapeVelocity = model.Statistics?.EscapeVelocity ?? default,
+            Locked = model.Statistics?.Locked ?? default,
+            MassDust = model.Statistics?.MassDust ?? default,
+            MassGas = model.Statistics?.MassGas ?? default,
+            OrbitPeriod = model.Statistics?.OrbitPeriod ?? default,
+            OrbitRadius = model.Statistics?.OrbitRadius ?? default,
+            Pressure = model.Statistics?.Pressure,
+            RotationRate = model.Statistics?.RotationRate ?? default,
+            SpectralClass = model.Statistics?.SpectralClass,
+            SurfaceGravity = model.Statistics?.SurfaceGravity ?? default,
+            Temperature = model.Statistics?.Temperature ?? default,
             TypeID = model.TypeID
         };
 }

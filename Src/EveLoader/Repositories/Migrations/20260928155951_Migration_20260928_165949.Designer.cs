@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EveLoader.Repositories.Migrations
 {
     [DbContext(typeof(EveDbContext))]
-    [Migration("20260928110615_Migration_20260928_120612")]
-    partial class Migration_20260928_120612
+    [Migration("20260928155951_Migration_20260928_165949")]
+    partial class Migration_20260928_165949
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,7 +186,7 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<long>("BlueprintId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CopyingId")
+                    b.Property<long>("CopyingTime")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("InventionId")
@@ -195,20 +195,16 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<long?>("ManufacturingId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ResearchMaterialId")
+                    b.Property<long>("ResearchMaterialTime")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ResearchTimeId")
+                    b.Property<long>("ResearchTimeTime")
                         .HasColumnType("bigint");
 
                     b.HasKey("Key");
 
                     b.HasIndex("BlueprintId")
                         .IsUnique();
-
-                    b.HasIndex("CopyingId")
-                        .IsUnique()
-                        .HasFilter("[CopyingId] IS NOT NULL");
 
                     b.HasIndex("InventionId")
                         .IsUnique()
@@ -218,31 +214,7 @@ namespace EveLoader.Repositories.Migrations
                         .IsUnique()
                         .HasFilter("[ManufacturingId] IS NOT NULL");
 
-                    b.HasIndex("ResearchMaterialId")
-                        .IsUnique()
-                        .HasFilter("[ResearchMaterialId] IS NOT NULL");
-
-                    b.HasIndex("ResearchTimeId")
-                        .IsUnique()
-                        .HasFilter("[ResearchTimeId] IS NOT NULL");
-
                     b.ToTable("BlueprintActivities");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.BlueprintCopying", b =>
-                {
-                    b.Property<long>("Key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
-
-                    b.Property<long>("Time")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("BlueprintCopying");
                 });
 
             modelBuilder.Entity("EveLoaderEntities.BlueprintInvention", b =>
@@ -360,7 +332,7 @@ namespace EveLoader.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
-                    b.Property<long?>("BlueprintManufacturingKey")
+                    b.Property<long?>("BlueprintManufacturingId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("Quantity")
@@ -371,7 +343,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("BlueprintManufacturingKey");
+                    b.HasIndex("BlueprintManufacturingId");
 
                     b.ToTable("BlueprintManufacturingMaterial");
                 });
@@ -384,7 +356,7 @@ namespace EveLoader.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
-                    b.Property<long?>("BlueprintManufacturingKey")
+                    b.Property<long?>("BlueprintManufacturingId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("Quantity")
@@ -395,7 +367,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("BlueprintManufacturingKey");
+                    b.HasIndex("BlueprintManufacturingId");
 
                     b.ToTable("BlueprintManufacturingProduct");
                 });
@@ -408,7 +380,7 @@ namespace EveLoader.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
-                    b.Property<long?>("BlueprintManufacturingKey")
+                    b.Property<long?>("BlueprintManufacturingId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("Level")
@@ -419,41 +391,9 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("BlueprintManufacturingKey");
+                    b.HasIndex("BlueprintManufacturingId");
 
                     b.ToTable("BlueprintManufacturingSkill");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.BlueprintResearchMaterial", b =>
-                {
-                    b.Property<long>("Key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
-
-                    b.Property<long>("Time")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("BlueprintResearchMaterial");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.BlueprintResearchTime", b =>
-                {
-                    b.Property<long>("Key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
-
-                    b.Property<long>("Time")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("BlueprintResearchTime");
                 });
 
             modelBuilder.Entity("EveLoaderEntities.Category", b =>
@@ -632,28 +572,6 @@ namespace EveLoader.Repositories.Migrations
                     b.ToTable("CloneGradeSkill");
                 });
 
-            modelBuilder.Entity("EveLoaderEntities.Color", b =>
-                {
-                    b.Property<long>("Key")
-                        .HasColumnType("bigint");
-
-                    b.Property<double>("A")
-                        .HasColumnType("float");
-
-                    b.Property<double>("B")
-                        .HasColumnType("float");
-
-                    b.Property<double>("G")
-                        .HasColumnType("float");
-
-                    b.Property<double>("R")
-                        .HasColumnType("float");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("Color");
-                });
-
             modelBuilder.Entity("EveLoaderEntities.CompressibleType", b =>
                 {
                     b.Property<long>("Key")
@@ -801,7 +719,7 @@ namespace EveLoader.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
-                    b.Property<long?>("DBuffCollectionKey")
+                    b.Property<long?>("DBuffCollectionId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("DogmaAttributeID")
@@ -809,7 +727,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("DBuffCollectionKey");
+                    b.HasIndex("DBuffCollectionId");
 
                     b.ToTable("DBuffItemModifier");
                 });
@@ -822,7 +740,7 @@ namespace EveLoader.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
-                    b.Property<long?>("DBuffCollectionKey")
+                    b.Property<long?>("DBuffCollectionId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("DogmaAttributeID")
@@ -833,7 +751,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("DBuffCollectionKey");
+                    b.HasIndex("DBuffCollectionId");
 
                     b.ToTable("DBuffLocationGroupModifier");
                 });
@@ -846,7 +764,7 @@ namespace EveLoader.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
-                    b.Property<long?>("DBuffCollectionKey")
+                    b.Property<long?>("DBuffCollectionId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("DogmaAttributeID")
@@ -854,7 +772,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("DBuffCollectionKey");
+                    b.HasIndex("DBuffCollectionId");
 
                     b.ToTable("DBuffLocationModifier");
                 });
@@ -867,7 +785,7 @@ namespace EveLoader.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
-                    b.Property<long?>("DBuffCollectionKey")
+                    b.Property<long?>("DBuffCollectionId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("DogmaAttributeID")
@@ -878,7 +796,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("DBuffCollectionKey");
+                    b.HasIndex("DBuffCollectionId");
 
                     b.ToTable("DBuffLocationRequiredSkillModifier");
                 });
@@ -1091,14 +1009,12 @@ namespace EveLoader.Repositories.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("FactionID")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Key");
@@ -1124,7 +1040,7 @@ namespace EveLoader.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
-                    b.Property<long?>("DynamicItemAttributeKey")
+                    b.Property<long?>("DynamicItemAttributeId")
                         .HasColumnType("bigint");
 
                     b.Property<bool?>("HighIsGood")
@@ -1138,7 +1054,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("DynamicItemAttributeKey");
+                    b.HasIndex("DynamicItemAttributeId");
 
                     b.ToTable("DynamicItemAttributeRange");
                 });
@@ -1155,7 +1071,7 @@ namespace EveLoader.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("DynamicItemAttributeKey")
+                    b.Property<long?>("DynamicItemAttributeId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("ResultingType")
@@ -1163,7 +1079,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("DynamicItemAttributeKey");
+                    b.HasIndex("DynamicItemAttributeId");
 
                     b.ToTable("DynamicItemInputOutputMapping");
                 });
@@ -1675,17 +1591,53 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<long>("Key")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ColorHullKey")
-                        .HasColumnType("bigint");
+                    b.Property<double>("ColorHullA")
+                        .HasColumnType("float");
 
-                    b.Property<long>("ColorPrimaryKey")
-                        .HasColumnType("bigint");
+                    b.Property<double>("ColorHullB")
+                        .HasColumnType("float");
 
-                    b.Property<long>("ColorSecondaryKey")
-                        .HasColumnType("bigint");
+                    b.Property<double>("ColorHullG")
+                        .HasColumnType("float");
 
-                    b.Property<long>("ColorWindowKey")
-                        .HasColumnType("bigint");
+                    b.Property<double>("ColorHullR")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorPrimaryA")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorPrimaryB")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorPrimaryG")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorPrimaryR")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorSecondaryA")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorSecondaryB")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorSecondaryG")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorSecondaryR")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorWindowA")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorWindowB")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorWindowG")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ColorWindowR")
+                        .HasColumnType("float");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -1698,18 +1650,6 @@ namespace EveLoader.Repositories.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Key");
-
-                    b.HasIndex("ColorHullKey")
-                        .IsUnique();
-
-                    b.HasIndex("ColorPrimaryKey")
-                        .IsUnique();
-
-                    b.HasIndex("ColorSecondaryKey")
-                        .IsUnique();
-
-                    b.HasIndex("ColorWindowKey")
-                        .IsUnique();
 
                     b.ToTable("GraphicMaterialSets");
                 });
@@ -1792,8 +1732,44 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<long>("CelestialIndex")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("MapAsteroidBeltPositionKey")
-                        .HasColumnType("bigint");
+                    b.Property<double>("CelestialStatisticsDensity")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CelestialStatisticsEccentricity")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CelestialStatisticsEscapeVelocity")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("CelestialStatisticsLocked")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("CelestialStatisticsMassDust")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CelestialStatisticsMassGas")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CelestialStatisticsOrbitPeriod")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CelestialStatisticsOrbitRadius")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("CelestialStatisticsPressure")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CelestialStatisticsRotationRate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("CelestialStatisticsSpectralClass")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("CelestialStatisticsSurfaceGravity")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CelestialStatisticsTemperature")
+                        .HasColumnType("float");
 
                     b.Property<long>("OrbitID")
                         .HasColumnType("bigint");
@@ -1801,13 +1777,19 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<long>("OrbitIndex")
                         .HasColumnType("bigint");
 
+                    b.Property<double>("PositionX")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PositionY")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PositionZ")
+                        .HasColumnType("float");
+
                     b.Property<double>("Radius")
                         .HasColumnType("float");
 
                     b.Property<long>("SolarSystemID")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("StatisticsKey")
                         .HasColumnType("bigint");
 
                     b.Property<long>("TypeID")
@@ -1815,85 +1797,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("MapAsteroidBeltPositionKey")
-                        .IsUnique();
-
-                    b.HasIndex("StatisticsKey")
-                        .IsUnique();
-
                     b.ToTable("MapAsteroidBelts");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapAsteroidBeltCelestialStatistics", b =>
-                {
-                    b.Property<long>("Key")
-                        .HasColumnType("bigint");
-
-                    b.Property<double>("Density")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Eccentricity")
-                        .HasColumnType("float");
-
-                    b.Property<double>("EscapeVelocity")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("Locked")
-                        .HasColumnType("bit");
-
-                    b.Property<double>("MassDust")
-                        .HasColumnType("float");
-
-                    b.Property<double>("MassGas")
-                        .HasColumnType("float");
-
-                    b.Property<double>("OrbitPeriod")
-                        .HasColumnType("float");
-
-                    b.Property<double>("OrbitRadius")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Pressure")
-                        .HasColumnType("float");
-
-                    b.Property<double>("RotationRate")
-                        .HasColumnType("float");
-
-                    b.Property<string>("SpectralClass")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("SurfaceGravity")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Temperature")
-                        .HasColumnType("float");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("MapAsteroidBeltCelestialStatistics");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapAsteroidBeltPosition", b =>
-                {
-                    b.Property<long>("Key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
-
-                    b.Property<double>("X")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Y")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Z")
-                        .HasColumnType("float");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("MapAsteroidBeltPosition");
                 });
 
             modelBuilder.Entity("EveLoaderEntities.MapConstellation", b =>
@@ -1904,8 +1808,14 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<long?>("FactionID")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("MapConstellationPositionKey")
-                        .HasColumnType("bigint");
+                    b.Property<double>("MapConstellationX")
+                        .HasColumnType("float");
+
+                    b.Property<double>("MapConstellationY")
+                        .HasColumnType("float");
+
+                    b.Property<double>("MapConstellationZ")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1923,18 +1833,79 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.HasIndex("MapConstellationPositionKey");
-
                     b.ToTable("MapConstellations");
                 });
 
-            modelBuilder.Entity("EveLoaderEntities.MapConstellationPosition", b =>
+            modelBuilder.Entity("EveLoaderEntities.MapMoon", b =>
                 {
                     b.Property<long>("Key")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
+                    b.Property<long>("CelestialIndex")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("Density")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Eccentricity")
+                        .HasColumnType("float");
+
+                    b.Property<double>("EscapeVelocity")
+                        .HasColumnType("float");
+
+                    b.Property<long>("HeightMap1")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("HeightMap2")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("Locked")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("MassDust")
+                        .HasColumnType("float");
+
+                    b.Property<double>("MassGas")
+                        .HasColumnType("float");
+
+                    b.Property<long>("OrbitID")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("OrbitPeriod")
+                        .HasColumnType("float");
+
+                    b.Property<double>("OrbitRadius")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Population")
+                        .HasColumnType("bit");
+
+                    b.Property<double?>("Pressure")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Radius")
+                        .HasColumnType("float");
+
+                    b.Property<double>("RotationRate")
+                        .HasColumnType("float");
+
+                    b.Property<long>("ShaderPreset")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SolarSystemID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SpectralClass")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("SurfaceGravity")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Temperature")
+                        .HasColumnType("float");
+
+                    b.Property<long>("TypeID")
+                        .HasColumnType("bigint");
 
                     b.Property<double>("X")
                         .HasColumnType("float");
@@ -1947,97 +1918,7 @@ namespace EveLoader.Repositories.Migrations
 
                     b.HasKey("Key");
 
-                    b.ToTable("MapConstellationPosition");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapMoon", b =>
-                {
-                    b.Property<long>("Key")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AttributesKey")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CelestialIndex")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OrbitID")
-                        .HasColumnType("bigint");
-
-                    b.Property<double>("Radius")
-                        .HasColumnType("float");
-
-                    b.Property<long>("SolarSystemID")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("StatisticsKey")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("TypeID")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Key");
-
-                    b.HasIndex("AttributesKey")
-                        .IsUnique();
-
-                    b.HasIndex("StatisticsKey")
-                        .IsUnique();
-
                     b.ToTable("MapMoons");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapMoonCelestialStatistics", b =>
-                {
-                    b.Property<long>("Key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
-
-                    b.Property<double>("Density")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Eccentricity")
-                        .HasColumnType("float");
-
-                    b.Property<double>("EscapeVelocity")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("Locked")
-                        .HasColumnType("bit");
-
-                    b.Property<double>("MassDust")
-                        .HasColumnType("float");
-
-                    b.Property<double>("MassGas")
-                        .HasColumnType("float");
-
-                    b.Property<double>("OrbitPeriod")
-                        .HasColumnType("float");
-
-                    b.Property<double>("OrbitRadius")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Pressure")
-                        .HasColumnType("float");
-
-                    b.Property<double>("RotationRate")
-                        .HasColumnType("float");
-
-                    b.Property<string>("SpectralClass")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("SurfaceGravity")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Temperature")
-                        .HasColumnType("float");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("MapMoonCelestialStatistics");
                 });
 
             modelBuilder.Entity("EveLoaderEntities.MapPlanet", b =>
@@ -2046,56 +1927,10 @@ namespace EveLoader.Repositories.Migrations
                         .HasColumnType("bigint");
 
                     b.PrimitiveCollection<string>("AsteroidBeltIDs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("AttributesKey")
-                        .HasColumnType("bigint");
 
                     b.Property<long>("CelestialIndex")
                         .HasColumnType("bigint");
-
-                    b.PrimitiveCollection<string>("MoonIDs")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.PrimitiveCollection<string>("NpcStationIDs")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("OrbitID")
-                        .HasColumnType("bigint");
-
-                    b.Property<double>("Radius")
-                        .HasColumnType("float");
-
-                    b.Property<long>("SolarSystemID")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("StatisticsKey")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("TypeID")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Key");
-
-                    b.HasIndex("AttributesKey")
-                        .IsUnique();
-
-                    b.HasIndex("StatisticsKey")
-                        .IsUnique();
-
-                    b.ToTable("MapPlanets");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapPlanetCelestialStatistics", b =>
-                {
-                    b.Property<long>("Key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
 
                     b.Property<double>("Density")
                         .HasColumnType("float");
@@ -2106,6 +1941,12 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<double>("EscapeVelocity")
                         .HasColumnType("float");
 
+                    b.Property<long>("HeightMap1")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("HeightMap2")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("Locked")
                         .HasColumnType("bit");
 
@@ -2115,20 +1956,40 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<double>("MassGas")
                         .HasColumnType("float");
 
+                    b.PrimitiveCollection<string>("MoonIDs")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.PrimitiveCollection<string>("NpcStationIDs")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("OrbitID")
+                        .HasColumnType("bigint");
+
                     b.Property<double>("OrbitPeriod")
                         .HasColumnType("float");
 
                     b.Property<double>("OrbitRadius")
                         .HasColumnType("float");
 
+                    b.Property<bool>("Population")
+                        .HasColumnType("bit");
+
                     b.Property<double?>("Pressure")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Radius")
                         .HasColumnType("float");
 
                     b.Property<double>("RotationRate")
                         .HasColumnType("float");
 
+                    b.Property<long>("ShaderPreset")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SolarSystemID")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("SpectralClass")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("SurfaceGravity")
@@ -2137,9 +1998,21 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<double>("Temperature")
                         .HasColumnType("float");
 
+                    b.Property<long>("TypeID")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("X")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Y")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Z")
+                        .HasColumnType("float");
+
                     b.HasKey("Key");
 
-                    b.ToTable("MapPlanetCelestialStatistics");
+                    b.ToTable("MapPlanets");
                 });
 
             modelBuilder.Entity("EveLoaderEntities.MapRegion", b =>
@@ -2148,18 +2021,15 @@ namespace EveLoader.Repositories.Migrations
                         .HasColumnType("bigint");
 
                     b.PrimitiveCollection<string>("ConstellationIDs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("FactionID")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("NebulaID")
@@ -2167,6 +2037,15 @@ namespace EveLoader.Repositories.Migrations
 
                     b.Property<long?>("WormholeClassID")
                         .HasColumnType("bigint");
+
+                    b.Property<double>("X")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Y")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Z")
+                        .HasColumnType("float");
 
                     b.HasKey("Key");
 
@@ -2186,6 +2065,15 @@ namespace EveLoader.Repositories.Migrations
 
                     b.Property<long>("TypeID")
                         .HasColumnType("bigint");
+
+                    b.Property<double>("X")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Y")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Z")
+                        .HasColumnType("float");
 
                     b.HasKey("Key");
 
@@ -2219,12 +2107,16 @@ namespace EveLoader.Repositories.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.PrimitiveCollection<string>("PlanetIDs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Position2DX")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Position2DY")
+                        .HasColumnType("float");
 
                     b.Property<double>("Radius")
                         .HasColumnType("float");
@@ -2236,7 +2128,6 @@ namespace EveLoader.Repositories.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityClass")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("SecurityStatus")
@@ -2246,8 +2137,16 @@ namespace EveLoader.Repositories.Migrations
                         .HasColumnType("bigint");
 
                     b.PrimitiveCollection<string>("StargateIDs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("X")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Y")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Z")
+                        .HasColumnType("float");
 
                     b.HasKey("Key");
 
@@ -2259,11 +2158,26 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<long>("Key")
                         .HasColumnType("bigint");
 
+                    b.Property<double>("Age")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Life")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Luminosity")
+                        .HasColumnType("float");
+
                     b.Property<long>("Radius")
                         .HasColumnType("bigint");
 
                     b.Property<long>("SolarSystemID")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("SpectralClass")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Temperature")
+                        .HasColumnType("float");
 
                     b.Property<long>("TypeID")
                         .HasColumnType("bigint");
@@ -2281,37 +2195,151 @@ namespace EveLoader.Repositories.Migrations
                     b.Property<long>("SolarSystemID")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("StargateDestinationSolarSystemID")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("StargateDestinationStargateID")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("TypeID")
                         .HasColumnType("bigint");
+
+                    b.Property<double>("X")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Y")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Z")
+                        .HasColumnType("float");
 
                     b.HasKey("Key");
 
                     b.ToTable("MapStargates");
                 });
 
-            modelBuilder.Entity("EveLoaderEntities.PlanetAttributes", b =>
+            modelBuilder.Entity("EveLoaderEntities.MarketGroup", b =>
                 {
                     b.Property<long>("Key")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Key"));
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("HeightMap1")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("HeightMap2")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("Population")
+                    b.Property<bool>("HasTypes")
                         .HasColumnType("bit");
 
-                    b.Property<long>("ShaderPreset")
+                    b.Property<long>("IconID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ParentGroupID")
                         .HasColumnType("bigint");
 
                     b.HasKey("Key");
 
-                    b.ToTable("PlanetAttributes");
+                    b.ToTable("MarketGroups");
+                });
+
+            modelBuilder.Entity("EveLoaderEntities.Mastery", b =>
+                {
+                    b.Property<long>("Key")
+                        .HasColumnType("bigint");
+
+                    b.PrimitiveCollection<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Key");
+
+                    b.ToTable("Masteries");
+                });
+
+            modelBuilder.Entity("EveLoaderEntities.MercenaryTacticalOperation", b =>
+                {
+                    b.Property<long>("Key")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AnarchyImpact")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("DevelopmentImpact")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("DungeonID")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("InfomorphBonus")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Key");
+
+                    b.ToTable("MercenaryTacticalOperations");
+                });
+
+            modelBuilder.Entity("EveLoaderEntities.MetaGroup", b =>
+                {
+                    b.Property<long>("Key")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("B")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("G")
+                        .HasColumnType("float");
+
+                    b.Property<long?>("IconID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("IconSuffix")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("R")
+                        .HasColumnType("float");
+
+                    b.HasKey("Key");
+
+                    b.ToTable("MetaGroups");
+                });
+
+            modelBuilder.Entity("EveLoaderEntities.Mission", b =>
+                {
+                    b.Property<long>("Key")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("DungeonID")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("HasStandingRewards")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ObjectiveQuantity")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Key");
+
+                    b.ToTable("Missions");
                 });
 
             modelBuilder.Entity("EveLoaderEntities.BlueprintActivities", b =>
@@ -2321,11 +2349,6 @@ namespace EveLoader.Repositories.Migrations
                         .HasForeignKey("EveLoaderEntities.BlueprintActivities", "BlueprintId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("EveLoaderEntities.BlueprintCopying", "Copying")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.BlueprintActivities", "CopyingId")
-                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("EveLoaderEntities.BlueprintInvention", "Invention")
                         .WithOne()
@@ -2337,25 +2360,9 @@ namespace EveLoader.Repositories.Migrations
                         .HasForeignKey("EveLoaderEntities.BlueprintActivities", "ManufacturingId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("EveLoaderEntities.BlueprintResearchMaterial", "ResearchMaterial")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.BlueprintActivities", "ResearchMaterialId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("EveLoaderEntities.BlueprintResearchTime", "ResearchTime")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.BlueprintActivities", "ResearchTimeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Copying");
-
                     b.Navigation("Invention");
 
                     b.Navigation("Manufacturing");
-
-                    b.Navigation("ResearchMaterial");
-
-                    b.Navigation("ResearchTime");
                 });
 
             modelBuilder.Entity("EveLoaderEntities.BlueprintInventionMaterial", b =>
@@ -2386,21 +2393,24 @@ namespace EveLoader.Repositories.Migrations
                 {
                     b.HasOne("EveLoaderEntities.BlueprintManufacturing", null)
                         .WithMany("Materials")
-                        .HasForeignKey("BlueprintManufacturingKey");
+                        .HasForeignKey("BlueprintManufacturingId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EveLoaderEntities.BlueprintManufacturingProduct", b =>
                 {
                     b.HasOne("EveLoaderEntities.BlueprintManufacturing", null)
                         .WithMany("Products")
-                        .HasForeignKey("BlueprintManufacturingKey");
+                        .HasForeignKey("BlueprintManufacturingId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EveLoaderEntities.BlueprintManufacturingSkill", b =>
                 {
                     b.HasOne("EveLoaderEntities.BlueprintManufacturing", null)
                         .WithMany("Skills")
-                        .HasForeignKey("BlueprintManufacturingKey");
+                        .HasForeignKey("BlueprintManufacturingId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EveLoaderEntities.CertificateRecommendedFor", b =>
@@ -2446,7 +2456,7 @@ namespace EveLoader.Repositories.Migrations
                 {
                     b.HasOne("EveLoaderEntities.DBuffCollection", null)
                         .WithMany("ItemModifiers")
-                        .HasForeignKey("DBuffCollectionKey")
+                        .HasForeignKey("DBuffCollectionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -2454,7 +2464,7 @@ namespace EveLoader.Repositories.Migrations
                 {
                     b.HasOne("EveLoaderEntities.DBuffCollection", null)
                         .WithMany("LocationGroupModifiers")
-                        .HasForeignKey("DBuffCollectionKey")
+                        .HasForeignKey("DBuffCollectionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -2462,7 +2472,7 @@ namespace EveLoader.Repositories.Migrations
                 {
                     b.HasOne("EveLoaderEntities.DBuffCollection", null)
                         .WithMany("LocationModifiers")
-                        .HasForeignKey("DBuffCollectionKey")
+                        .HasForeignKey("DBuffCollectionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -2470,7 +2480,7 @@ namespace EveLoader.Repositories.Migrations
                 {
                     b.HasOne("EveLoaderEntities.DBuffCollection", null)
                         .WithMany("LocationRequiredSkillModifiers")
-                        .HasForeignKey("DBuffCollectionKey")
+                        .HasForeignKey("DBuffCollectionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -2485,14 +2495,16 @@ namespace EveLoader.Repositories.Migrations
                 {
                     b.HasOne("EveLoaderEntities.DynamicItemAttribute", null)
                         .WithMany("AttributeIDs")
-                        .HasForeignKey("DynamicItemAttributeKey");
+                        .HasForeignKey("DynamicItemAttributeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EveLoaderEntities.DynamicItemInputOutputMapping", b =>
                 {
                     b.HasOne("EveLoaderEntities.DynamicItemAttribute", null)
                         .WithMany("InputOutputMapping")
-                        .HasForeignKey("DynamicItemAttributeKey");
+                        .HasForeignKey("DynamicItemAttributeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EveLoaderEntities.EpicArcMission", b =>
@@ -2604,41 +2616,6 @@ namespace EveLoader.Repositories.Migrations
                     b.Navigation("Matcher");
                 });
 
-            modelBuilder.Entity("EveLoaderEntities.GraphicMaterialSet", b =>
-                {
-                    b.HasOne("EveLoaderEntities.Color", "ColorHull")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.GraphicMaterialSet", "ColorHullKey")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("EveLoaderEntities.Color", "ColorPrimary")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.GraphicMaterialSet", "ColorPrimaryKey")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("EveLoaderEntities.Color", "ColorSecondary")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.GraphicMaterialSet", "ColorSecondaryKey")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("EveLoaderEntities.Color", "ColorWindow")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.GraphicMaterialSet", "ColorWindowKey")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ColorHull");
-
-                    b.Navigation("ColorPrimary");
-
-                    b.Navigation("ColorSecondary");
-
-                    b.Navigation("ColorWindow");
-                });
-
             modelBuilder.Entity("EveLoaderEntities.Landmark", b =>
                 {
                     b.OwnsOne("EveLoaderEntities.Position", "Position", b1 =>
@@ -2665,342 +2642,6 @@ namespace EveLoader.Repositories.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("LandmarkKey");
                         });
-
-                    b.Navigation("Position")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapAsteroidBelt", b =>
-                {
-                    b.HasOne("EveLoaderEntities.MapAsteroidBeltPosition", "MapAsteroidBeltPosition")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.MapAsteroidBelt", "MapAsteroidBeltPositionKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EveLoaderEntities.MapAsteroidBeltCelestialStatistics", "Statistics")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.MapAsteroidBelt", "StatisticsKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MapAsteroidBeltPosition");
-
-                    b.Navigation("Statistics");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapConstellation", b =>
-                {
-                    b.HasOne("EveLoaderEntities.MapConstellationPosition", "MapConstellationPosition")
-                        .WithMany()
-                        .HasForeignKey("MapConstellationPositionKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MapConstellationPosition");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapMoon", b =>
-                {
-                    b.HasOne("EveLoaderEntities.PlanetAttributes", "Attributes")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.MapMoon", "AttributesKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EveLoaderEntities.MapMoonCelestialStatistics", "Statistics")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.MapMoon", "StatisticsKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("EveLoaderEntities.Position", "Position", b1 =>
-                        {
-                            b1.Property<long>("MapMoonKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<double>("X")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionX");
-
-                            b1.Property<double>("Y")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionY");
-
-                            b1.Property<double>("Z")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionZ");
-
-                            b1.HasKey("MapMoonKey");
-
-                            b1.ToTable("MapMoons");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapMoonKey");
-                        });
-
-                    b.Navigation("Attributes");
-
-                    b.Navigation("Position")
-                        .IsRequired();
-
-                    b.Navigation("Statistics");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapPlanet", b =>
-                {
-                    b.HasOne("EveLoaderEntities.PlanetAttributes", "Attributes")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.MapPlanet", "AttributesKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EveLoaderEntities.MapPlanetCelestialStatistics", "Statistics")
-                        .WithOne()
-                        .HasForeignKey("EveLoaderEntities.MapPlanet", "StatisticsKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("EveLoaderEntities.Position", "Position", b1 =>
-                        {
-                            b1.Property<long>("MapPlanetKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<double>("X")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionX");
-
-                            b1.Property<double>("Y")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionY");
-
-                            b1.Property<double>("Z")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionZ");
-
-                            b1.HasKey("MapPlanetKey");
-
-                            b1.ToTable("MapPlanets");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapPlanetKey");
-                        });
-
-                    b.Navigation("Attributes");
-
-                    b.Navigation("Position")
-                        .IsRequired();
-
-                    b.Navigation("Statistics");
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapRegion", b =>
-                {
-                    b.OwnsOne("EveLoaderEntities.Position", "Position", b1 =>
-                        {
-                            b1.Property<long>("MapRegionKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<double>("X")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionX");
-
-                            b1.Property<double>("Y")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionY");
-
-                            b1.Property<double>("Z")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionZ");
-
-                            b1.HasKey("MapRegionKey");
-
-                            b1.ToTable("MapRegions");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapRegionKey");
-                        });
-
-                    b.Navigation("Position")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapSecondarySun", b =>
-                {
-                    b.OwnsOne("EveLoaderEntities.Position", "Position", b1 =>
-                        {
-                            b1.Property<long>("MapSecondarySunKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<double>("X")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionX");
-
-                            b1.Property<double>("Y")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionY");
-
-                            b1.Property<double>("Z")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionZ");
-
-                            b1.HasKey("MapSecondarySunKey");
-
-                            b1.ToTable("MapSecondarySuns");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapSecondarySunKey");
-                        });
-
-                    b.Navigation("Position")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapSolarSystem", b =>
-                {
-                    b.OwnsOne("EveLoaderEntities.Position", "Position", b1 =>
-                        {
-                            b1.Property<long>("MapSolarSystemKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<double>("X")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionX");
-
-                            b1.Property<double>("Y")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionY");
-
-                            b1.Property<double>("Z")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionZ");
-
-                            b1.HasKey("MapSolarSystemKey");
-
-                            b1.ToTable("MapSolarSystems");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapSolarSystemKey");
-                        });
-
-                    b.OwnsOne("EveLoaderEntities.Position2D", "Position2D", b1 =>
-                        {
-                            b1.Property<long>("MapSolarSystemKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<double>("X")
-                                .HasColumnType("float")
-                                .HasColumnName("Position2DX");
-
-                            b1.Property<double>("Y")
-                                .HasColumnType("float")
-                                .HasColumnName("Position2DY");
-
-                            b1.HasKey("MapSolarSystemKey");
-
-                            b1.ToTable("MapSolarSystems");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapSolarSystemKey");
-                        });
-
-                    b.Navigation("Position")
-                        .IsRequired();
-
-                    b.Navigation("Position2D")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapStar", b =>
-                {
-                    b.OwnsOne("EveLoaderEntities.StarStatistics", "Statistics", b1 =>
-                        {
-                            b1.Property<long>("MapStarKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<double>("Age")
-                                .HasColumnType("float")
-                                .HasColumnName("StatisticsAge");
-
-                            b1.Property<double>("Life")
-                                .HasColumnType("float")
-                                .HasColumnName("StatisticsLife");
-
-                            b1.Property<double>("Luminosity")
-                                .HasColumnType("float")
-                                .HasColumnName("StatisticsLuminosity");
-
-                            b1.Property<string>("SpectralClass")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("StatisticsSpectralClass");
-
-                            b1.Property<double>("Temperature")
-                                .HasColumnType("float")
-                                .HasColumnName("StatisticsTemperature");
-
-                            b1.HasKey("MapStarKey");
-
-                            b1.ToTable("MapStars");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapStarKey");
-                        });
-
-                    b.Navigation("Statistics")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EveLoaderEntities.MapStargate", b =>
-                {
-                    b.OwnsOne("EveLoaderEntities.Position", "Position", b1 =>
-                        {
-                            b1.Property<long>("MapStargateKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<double>("X")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionX");
-
-                            b1.Property<double>("Y")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionY");
-
-                            b1.Property<double>("Z")
-                                .HasColumnType("float")
-                                .HasColumnName("PositionZ");
-
-                            b1.HasKey("MapStargateKey");
-
-                            b1.ToTable("MapStargates");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapStargateKey");
-                        });
-
-                    b.OwnsOne("EveLoaderEntities.StargateDestination", "Destination", b1 =>
-                        {
-                            b1.Property<long>("MapStargateKey")
-                                .HasColumnType("bigint");
-
-                            b1.Property<long>("SolarSystemID")
-                                .HasColumnType("bigint")
-                                .HasColumnName("DestinationSolarSystemID");
-
-                            b1.Property<long>("StargateID")
-                                .HasColumnType("bigint")
-                                .HasColumnName("DestinationStargateID");
-
-                            b1.HasKey("MapStargateKey");
-
-                            b1.ToTable("MapStargates");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MapStargateKey");
-                        });
-
-                    b.Navigation("Destination")
-                        .IsRequired();
 
                     b.Navigation("Position")
                         .IsRequired();

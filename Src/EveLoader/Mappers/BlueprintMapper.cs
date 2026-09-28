@@ -24,32 +24,14 @@ public static class BlueprintMapper
         return new BlueprintActivities
         {
             BlueprintId = blueprintId,
-            Copying = model.Copying.ToActivity(),
+            
             Invention = model.Invention.ToInvention(),
             Manufacturing = model.Manufacturing.ToManufacturing(),
-            ResearchMaterial = model.ResearchMaterial.ToResearchMaterial(),
-            ResearchTime = model.ResearchTime.ToResearchTime()
+            ResearchMaterialTime = model.ResearchMaterial?.Time ?? 0,
+            ResearchTimeTime = model.ResearchTime?.Time ?? 0,
+            CopyingTime = model.Copying?.Time ?? 0,
         };
     }
-
-    public static BlueprintCopying ToActivity(this Console.StaticDataModels.BlueprintActivityFile model)
-        => model == null ? null : new BlueprintCopying
-        {
-            Time = model.Time
-        };
-
-    public static BlueprintResearchMaterial ToResearchMaterial(this Console.StaticDataModels.BlueprintActivityFile model)
-        => model == null ? null : new BlueprintResearchMaterial
-        {
-            Time = model.Time
-        };
-
-    public static BlueprintResearchTime ToResearchTime(this Console.StaticDataModels.BlueprintActivityFile model)
-        => model == null ? null : new BlueprintResearchTime
-        {
-            Time = model.Time
-        };
-
 
     public static EveLoaderEntities.BlueprintManufacturing ToManufacturing(this Console.StaticDataModels.BlueprintManufacturing model)
         => model == null ? null : new EveLoaderEntities.BlueprintManufacturing

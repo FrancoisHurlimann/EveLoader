@@ -10,25 +10,9 @@ public static class MissionMapper
         {
             Key = model.Key,
             HasStandingRewards = model.HasStandingRewards,
-            KillMission = model.KillMission == null
-                ? null
-                : new MissionKillMission
-                {
-                    DungeonID = model.KillMission.DungeonID,
-                    ObjectiveQuantity = model.KillMission.ObjectiveQuantity
-                },
-            Messages = model.Messages?.Select(m => new MissionMessage
-            {
-                Key = m.Key,
-                De = m.De,
-                En = m.En,
-                Es = m.Es,
-                Fr = m.Fr,
-                Ja = m.Ja,
-                Ko = m.Ko,
-                Ru = m.Ru,
-                Zh = m.Zh
-            }).ToList(),
+            DungeonID = model.KillMission?.DungeonID ?? 0,
+            ObjectiveQuantity = model.KillMission?.ObjectiveQuantity ?? 0,
+            Message = model.Messages?.FirstOrDefault(m => m.Key == "en")?.En ?? string.Empty,
             Name = model.Name != null && model.Name.TryGetValue("en", out var name)
                 ? name
                 : model.Name?.Values.FirstOrDefault()

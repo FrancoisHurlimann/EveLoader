@@ -33,7 +33,7 @@ namespace EveLoader.Console.StaticDataModels
         [JsonPropertyName("skills")]
         public List<NpcCharacterSkill> Skills { get; set; }
 
-        [JsonPropertyName("startDate")]
+        [JsonIgnore]
         public DateTime StartDate { get; set; }
 
         [JsonPropertyName("uniqueName")]

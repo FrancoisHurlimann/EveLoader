@@ -10,34 +10,8 @@ namespace EveLoaderEntities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
-        public List<long> AsteroidBeltIDs { get; set; }
+        public List<long>? AsteroidBeltIDs { get; set; }
 
-        public PlanetAttributes Attributes { get; set; }
-
-        public long CelestialIndex { get; set; }
-
-        public List<long> MoonIDs { get; set; }
-
-        public List<long> NpcStationIDs { get; set; }
-
-        public long OrbitID { get; set; }
-
-        public Position Position { get; set; }
-
-        public double Radius { get; set; }
-
-        public long SolarSystemID { get; set; }
-
-        public MapPlanetCelestialStatistics Statistics { get; set; }
-
-        public long TypeID { get; set; }
-    }
-
-    public class PlanetAttributes
-    {
-         
-        [Key]
-        public long Key { get; set; }
         public long HeightMap1 { get; set; }
 
         public long HeightMap2 { get; set; }
@@ -45,12 +19,24 @@ namespace EveLoaderEntities
         public bool Population { get; set; }
 
         public long ShaderPreset { get; set; }
-    }
 
-    public class MapPlanetCelestialStatistics
-    {
-        [Key]
-        public long Key { get; set; }
+        public long CelestialIndex { get; set; }
+
+        public List<long>? MoonIDs { get; set; }
+
+        public List<long>? NpcStationIDs { get; set; }
+
+        public long OrbitID { get; set; }
+
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+        public double Z { get; set; }
+
+        public double Radius { get; set; }
+
+        public long SolarSystemID { get; set; }
 
         public double Density { get; set; }
 
@@ -72,10 +58,16 @@ namespace EveLoaderEntities
 
         public double RotationRate { get; set; }
 
-        public string SpectralClass { get; set; }
+        public string? SpectralClass { get; set; }
 
         public double SurfaceGravity { get; set; }
 
         public double Temperature { get; set; }
+
+        public long TypeID { get; set; }
     }
+
+
+
+ 
 }

@@ -18,10 +18,6 @@ namespace EveLoader.DbContexts.Configurations
     {
         public void Configure(EntityTypeBuilder<BlueprintActivities> builder)
         {
-            builder.HasOne(a => a.Copying)
-                .WithOne()
-                .HasForeignKey<BlueprintActivities>(a => a.CopyingId)
-                .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(a => a.Invention)
                .WithOne()
                .HasForeignKey<BlueprintActivities>(a => a.InventionId)
@@ -30,14 +26,6 @@ namespace EveLoader.DbContexts.Configurations
                 .WithOne()
                 .HasForeignKey<BlueprintActivities>(a => a.ManufacturingId)
                 .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(a => a.ResearchMaterial)
-               .WithOne()
-               .HasForeignKey<BlueprintActivities>(a => a.ResearchMaterialId)
-               .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(a => a.ResearchTime)
-               .WithOne()
-               .HasForeignKey<BlueprintActivities>(a => a.ResearchTimeId)
-               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 
@@ -58,6 +46,27 @@ namespace EveLoader.DbContexts.Configurations
             builder.HasMany(i => i.Skills)
                 .WithOne()
                 .HasForeignKey("BlueprintInventionId")
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
+
+    public class BlueprintManufacturingConfiguration : IEntityTypeConfiguration<BlueprintManufacturing>
+    {
+        public void Configure(EntityTypeBuilder<BlueprintManufacturing> builder)
+        {
+            builder.HasMany(m => m.Materials)
+                .WithOne()
+                .HasForeignKey("BlueprintManufacturingId")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(m => m.Products)
+                .WithOne()
+                .HasForeignKey("BlueprintManufacturingId")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(m => m.Skills)
+                .WithOne()
+                .HasForeignKey("BlueprintManufacturingId")
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

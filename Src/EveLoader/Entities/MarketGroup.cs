@@ -10,13 +10,13 @@ namespace EveLoaderEntities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public bool HasTypes { get; set; }
 
         public long IconID { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public long? ParentGroupID { get; set; }
     }

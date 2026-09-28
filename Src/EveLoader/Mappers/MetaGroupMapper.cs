@@ -9,14 +9,9 @@ public static class MetaGroupMapper
         => new MetaGroup
         {
             Key = model.Key,
-            Color = model.Color == null
-                ? null
-                : new ColorRGB
-                {
-                    R = model.Color.R,
-                    G = model.Color.G,
-                    B = model.Color.B
-                },
+            R = model.Color?.R ?? 0,
+            G = model.Color?.G ?? 0,
+            B = model.Color?.B ?? 0,
             Description = model.Description != null && model.Description.TryGetValue("en", out var description)
                 ? description
                 : model.Description?.Values.FirstOrDefault(),

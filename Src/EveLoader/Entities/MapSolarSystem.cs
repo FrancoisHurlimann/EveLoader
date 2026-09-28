@@ -24,13 +24,19 @@ namespace EveLoaderEntities
 
         public double Luminosity { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public List<long> PlanetIDs { get; set; }
+        public List<long>? PlanetIDs { get; set; }
 
-        public Position Position { get; set; }
+        public double X { get; set; }
 
-        public Position2D Position2D { get; set; }
+        public double Y { get; set; }
+
+        public double Z { get; set; }
+
+        public double? Position2DX { get; set; }
+
+        public double? Position2DY { get; set; }
 
         public double Radius { get; set; }
 
@@ -38,19 +44,14 @@ namespace EveLoaderEntities
 
         public bool? Regional { get; set; }
 
-        public string SecurityClass { get; set; }
+        public string? SecurityClass { get; set; }
 
         public double SecurityStatus { get; set; }
 
         public long StarID { get; set; }
 
-        public List<long> StargateIDs { get; set; }
+        public List<long>? StargateIDs { get; set; }
     }
 
-    public class Position2D
-    {
-        public double X { get; set; }
-
-        public double Y { get; set; }
-    }
+  
 }

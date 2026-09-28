@@ -24,10 +24,6 @@ namespace EveLoaderEntities
 
         public long BlueprintId { get; set; }
 
-        public long? CopyingId { get; set; }
-
-        public BlueprintCopying? Copying { get; set; }
-
         public long? InventionId { get; set; }
 
         public BlueprintInvention? Invention { get; set; }
@@ -36,21 +32,11 @@ namespace EveLoaderEntities
 
         public BlueprintManufacturing? Manufacturing { get; set; }
 
-        public long? ResearchMaterialId { get; set; }
+        public long ResearchMaterialTime { get; set; }
 
-        public BlueprintResearchMaterial? ResearchMaterial { get; set; }
+        public long ResearchTimeTime { get; set; }
 
-        public long? ResearchTimeId { get; set; }
-
-        public BlueprintResearchTime? ResearchTime { get; set; }
-    }
-
-    public class BlueprintCopying
-    {
-        [Key]
-        public long Key { get; set; }
-        
-        public long Time { get; set; }
+        public long CopyingTime { get; set; }
     }
 
     public class BlueprintInvention
@@ -149,46 +135,4 @@ namespace EveLoaderEntities
 
 
 
-    public class BlueprintResearchMaterial
-    {
-        [Key]
-        public long Key { get; set; }
-
-        public long Time { get; set; }
-    }
-
-    public class BlueprintResearchTime
-    {
-        [Key]
-        public long Key { get; set; }
-
-        public long Time { get; set; }
-    }
-
-    //public class BlueprintProduct
-    //{
-    //    [Key]
-    //    public long Key { get; set; }
-
-    //    [JsonPropertyName("quantity")]
-    //    public long Quantity { get; set; }
-
-    //    [JsonPropertyName("typeID")]
-    //    public long TypeID { get; set; }
-
-    //    [JsonPropertyName("probability")]
-    //    public double? Probability { get; set; }
-    //}
-
-    //public class BlueprintSkill
-    //{
-    //    [Key]
-    //    public long Key { get; set; }
-
-    //    [JsonPropertyName("level")]
-    //    public long Level { get; set; }
-
-    //    [JsonPropertyName("typeID")]
-    //    public long TypeID { get; set; }
-    //}
 }

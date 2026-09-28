@@ -10,13 +10,10 @@ public static class MilitaryCampaignMapper
         {
             Key = model.Key,
             Annotations = model.Annotations,
-            Issuer = model.Issuer == null
-                ? null
-                : new MilitaryCampaignIssuer
-                {
+
                     CorporationID = model.Issuer.CorporationID,
-                    FactionID = model.Issuer.FactionID
-                },
+                    FactionID = model.Issuer.FactionID,
+
             Subtitle = model.Subtitle != null && model.Subtitle.TryGetValue("en", out var subtitle)
                 ? subtitle
                 : model.Subtitle?.Values.FirstOrDefault(),

@@ -5,25 +5,17 @@ dotnet ef migrations add "Migration_$(Get-Date -Format 'yyyyMMdd_HHmmss')" --pro
 dotnet ef database update --project "Src\EveLoader\EveLoader.csproj" --context EveDbContext
 
 
-SELECT count(*) FROM [EveDatabase].[dbo].[Blueprints]
-SELECT count(*) FROM [EveDatabase].[dbo].[BlueprintActivities]
-SELECT count(*) FROM  [EveDatabase].[dbo].[BlueprintCopying]
-
-SELECT * FROM [EveDatabase].[dbo].[Blueprints] where [key]= 681
-SELECT * FROM [EveDatabase].[dbo].[BlueprintActivities] where BlueprintId = 681
-
-SELECT * FROM  [EveDatabase].[dbo].[BlueprintCopying] where [key] = 1
-
-SELECT * FROM [EveDatabase].[dbo].[BlueprintInvention]
-SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionMaterial]
-SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionProduct]
-SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionSkill]
+SELECT * FROM [EveDatabase].[dbo].[Blueprints] where [key]= 685
+SELECT * FROM [EveDatabase].[dbo].[BlueprintActivities] where BlueprintId = 685
 
 
-SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturing]
-SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingMaterial]
-SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingProduct]
-SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingSkill]
+SELECT * FROM [EveDatabase].[dbo].[BlueprintInvention] where [key] = 3
+SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionMaterial] where BlueprintInventionId = 3
+SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionProduct] where BlueprintInventionId = 3
+SELECT * FROM [EveDatabase].[dbo].[BlueprintInventionSkill] where BlueprintInventionId = 3
 
-SELECT * FROM [EveDatabase].[dbo].[BlueprintResearchMaterial]
-SELECT * FROM [EveDatabase].[dbo].[BlueprintResearchTime]
+
+SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturing] where [key] = 5
+SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingMaterial] where BlueprintManufacturingId = 4876
+SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingProduct] where BlueprintManufacturingId = 4876
+SELECT * FROM [EveDatabase].[dbo].[BlueprintManufacturingSkill] where BlueprintManufacturingId = 4876

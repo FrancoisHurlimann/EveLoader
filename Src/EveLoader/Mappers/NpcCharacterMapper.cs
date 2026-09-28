@@ -18,8 +18,8 @@ public static class NpcCharacterMapper
                 ? name
                 : model.Name?.Values.FirstOrDefault(),
             RaceID = model.RaceID,
-            Skills = model.Skills?.Select(s => new NpcCharacterSkill { TypeID = s.TypeID }).ToList(),
-            StartDate = model.StartDate,
+            Skills = model.Skills?.Select(s => s.TypeID).ToList(),
+            //StartDate = model.StartDate,
             UniqueName = model.UniqueName
         };
 }

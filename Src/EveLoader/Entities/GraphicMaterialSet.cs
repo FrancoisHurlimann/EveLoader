@@ -9,13 +9,37 @@ namespace EveLoaderEntities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Key { get; set; }
 
-        public Color ColorHull { get; set; }
+        public double ColorHullA { get; set; }
 
-        public Color ColorPrimary { get; set; }
+        public double ColorHullB { get; set; }
 
-        public Color ColorSecondary { get; set; }
+        public double ColorHullG { get; set; }
 
-        public Color ColorWindow { get; set; }
+        public double ColorHullR { get; set; }
+
+        public double ColorPrimaryA { get; set; }
+
+        public double ColorPrimaryB { get; set; }
+
+        public double ColorPrimaryG { get; set; }
+
+        public double ColorPrimaryR { get; set; }
+
+        public double ColorSecondaryA { get; set; }
+
+        public double ColorSecondaryB { get; set; }
+
+        public double ColorSecondaryG { get; set; }
+
+        public double ColorSecondaryR { get; set; }
+
+        public double ColorWindowA { get; set; }
+
+        public double ColorWindowB { get; set; }
+
+        public double ColorWindowG { get; set; }
+
+        public double ColorWindowR { get; set; }
 
         public string Description { get; set; }
 
@@ -24,18 +48,18 @@ namespace EveLoaderEntities
         public string? SofRaceHint { get; set; }
     }
 
-    public class Color
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long Key { get; set; }
+    //public class Color
+    //{
+    //    [Key]
+    //    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    //    public long Key { get; set; }
 
-        public double A { get; set; }
+    //    public double A { get; set; }
 
-        public double B { get; set; }
+    //    public double B { get; set; }
 
-        public double G { get; set; }
+    //    public double G { get; set; }
 
-        public double R { get; set; }
-    }
+    //    public double R { get; set; }
+    //}
 }

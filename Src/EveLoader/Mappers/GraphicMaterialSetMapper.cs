@@ -8,24 +8,24 @@ public static class GraphicMaterialSetMapper
         => new GraphicMaterialSet
         {
             Key = model.Key,
-            ColorHull = model.ColorHull.ToDbColor(model.Key * 10 + 1),
-            ColorPrimary = model.ColorPrimary.ToDbColor(model.Key * 10 + 2),
-            ColorSecondary = model.ColorSecondary.ToDbColor(model.Key * 10 + 3),
-            ColorWindow = model.ColorWindow.ToDbColor(model.Key * 10 + 4),
+            ColorHullA = model.ColorHull?.A ?? 0,
+            ColorHullB = model.ColorHull?.B ?? 0,
+            ColorHullG = model.ColorHull?.G ?? 0,
+            ColorHullR = model.ColorHull?.R ?? 0,
+            ColorPrimaryA = model.ColorPrimary?.A ?? 0,
+            ColorPrimaryB = model.ColorPrimary?.B ?? 0,
+            ColorPrimaryG = model.ColorPrimary?.G ?? 0,
+            ColorPrimaryR = model.ColorPrimary?.R ?? 0,
+            ColorSecondaryA = model.ColorSecondary?.A ?? 0,
+            ColorSecondaryB = model.ColorSecondary?.B ?? 0,
+            ColorSecondaryG = model.ColorSecondary?.G ?? 0,
+            ColorSecondaryR = model.ColorSecondary?.R ?? 0,
+            ColorWindowA = model.ColorWindow?.A ?? 0,
+            ColorWindowB = model.ColorWindow?.B ?? 0,
+            ColorWindowG = model.ColorWindow?.G ?? 0,
+            ColorWindowR = model.ColorWindow?.R ?? 0,
             Description = model.Description,
             SofFactionName = model.SofFactionName,
             SofRaceHint = model.SofRaceHint
         };
-
-    private static Color ToDbColor(this Console.StaticDataModels.Color color, long key)
-        => color == null
-            ? null
-            : new Color
-            {
-                Key = key,
-                A = color.A,
-                B = color.B,
-                G = color.G,
-                R = color.R
-            };
 }
